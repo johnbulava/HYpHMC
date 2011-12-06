@@ -5,6 +5,6 @@
 #                   includes (to install includes)
 #                   main (build main programs)
 #
-SUBDIRS = asmCode64 lib mainprogs 
+SUBDIRS = lib mainprogs 
 
 
