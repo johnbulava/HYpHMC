@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<plotDescription>
+	<plotName>explicitCurrentScan</plotName>
+	<plotTitle>Dependence on an explicit current</plotTitle>
+	<plotCaption>The plot shows the dependence of the boson masses on an
+explicit symmmetry breaking external current.</plotCaption>
+	<runSelector>
+		<constraint>
+			<obsName>General</obsName>
+			<tagName>L1</tagName>
+			<constraintRel>=</constraintRel>
+			<constraintValue>16</constraintValue>
+		</constraint>
+		<constraint>
+			<obsName>General</obsName>
+			<tagName>KappaN</tagName>
+			<constraintRel>=</constraintRel>
+			<constraintValue>0.30200</constraintValue>
+		</constraint>		
+                <constraint>
+			<obsName>General</obsName>
+			<tagName>YN</tagName>
+			<constraintRel>=</constraintRel>
+			<constraintValue>0.57390</constraintValue>
+		</constraint>
+	</runSelector>
+	<column>
+		<obsName>General</obsName>
+		<tagName>ExternalCurrent</tagName>
+	</column>
+	<column>
+		<obsName>HiggsCorrelator</obsName>
+		<tagName>LatMass</tagName>
+	</column>
+	<column>
+		<obsName>GoldstonePropagator</obsName>
+		<tagName>LatPropMassArcFit</tagName>
+	</column>
+	<plotInfo>
+		<xLogScale>0</xLogScale>
+		<yLogScale>0</yLogScale>
+		<xLabel>$J$</xLabel>
+		<yLabel>$m_L$</yLabel>
+		<yErrorBars>1</yErrorBars>
+		<xErrorBars>0</xErrorBars>
+		<xSize>0.85</xSize>
+		<ySize>0.85</ySize>
+		<pointSize>1</pointSize>
+		<xRangeMin>0.0009</xRangeMin>
+		<xRangeMax>0.0165</xRangeMax>
+		<yRangeMin>-INFINITY</yRangeMin>
+		<yRangeMax>INFINITY</yRangeMax>		
+		<pointType>1</pointType>
+		<lineType>1</lineType>
+		<lineWidth>1</lineWidth>				
+	</plotInfo>
+	<plotData>
+		<usingString>1:3:4</usingString>
+		<title>$m_H$</title>
+	</plotData>
+	<plotData>
+		<usingString>1:5:6</usingString>
+		<title>$m_G$</title>
+	</plotData>
+	<plotData>
+		<usingString>1:($3/$5):(sqrt( $4**2/$5**2 + ($3/$5)**2 * $6**2 ))</usingString>
+		<title>$\\frac{m_H}{m_G}$</title>
+	</plotData>
+</plotDescription>

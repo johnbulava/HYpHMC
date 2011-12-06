@@ -1,0 +1,34 @@
+cd $1
+
+tsm_retrieve $1_Vol0.tar
+tsm_retrieve $1_Vol1.tar
+tsm_retrieve $1_Vol2.tar
+tsm_retrieve $1_Vol3.tar
+tsm_retrieve $1_Vol4.tar
+tsm_retrieve $1_Vol5.tar
+tsm_retrieve $1_Vol6.tar
+tsm_retrieve $1_Vol7.tar
+tsm_retrieve $1_Vol8.tar
+tsm_retrieve $1_Vol9.tar
+
+
+tar -xvf $1_Vol0.tar
+rm $1_Vol0.tar
+tar -xvf $1_Vol1.tar
+rm $1_Vol1.tar
+tar -xvf $1_Vol2.tar
+rm $1_Vol2.tar
+tar -xvf $1_Vol3.tar
+rm $1_Vol3.tar
+tar -xvf $1_Vol4.tar
+rm $1_Vol4.tar
+tar -xvf $1_Vol5.tar
+rm $1_Vol5.tar
+tar -xvf $1_Vol6.tar
+rm $1_Vol6.tar
+tar -xvf $1_Vol7.tar
+rm $1_Vol7.tar
+tar -xvf $1_Vol8.tar
+rm $1_Vol8.tar
+tar -xvf $1_Vol9.tar
+rm $1_Vol9.tar

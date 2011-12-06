@@ -1,0 +1,11 @@
+LD_LIBRARY_PATH=/opt/products/fftw/3.1.2/lib64/:/opt/products/fftw/3.1.2/lib:/opt/products/lib64/
+export LD_LIBRARY_PATH
+
+rm analyzer
+rm ValGrind_Analyzer.log
+
+g++34 -g -fno-default-inline -I/opt/products/fftw/3.1.2/include/ -I/opt/products/gsl/1.9/include/ -L ./asmCode64 -L/products/ARPACK/lib -L/opt/products/fftw/3.1.2/lib64/ -L/opt/products/fftw/3.1.2/lib/ -L/opt/products/lib64/ -m64 -Wall -O1 -o analyzer analyzer.C -lg2c -larpack_Linux -lfftw3_threads -lfftw3 -lpthread -lm -llapack -lgslcblas -lnuma -lxSSE64
+
+valgrind --leak-check=full --log-file-exactly=ValGrind_Analyzer.log ./analyzer 12345 0.3 0
+
+cat ValGrind_Analyzer.log

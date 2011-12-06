@@ -1,0 +1,194 @@
+#!/bin/ksh
+progname=makePlot
+version="21-June-2006  1.0"
+GNUPLOT_Program=gnuplot
+#------------------------------------------------------------------------75
+
+function Usage
+{
+cat << EOF 1>&2
+  Usage: makePlot [-V] [-h] [-bw] file
+  ------
+         makePlot creates (color) plots as an eps-file with Gnuplot 
+         by using the pslatex-option of Gnuplot 3.7.2. 
+EOF
+exit 1
+}
+
+function Error 
+{
+  echo 
+  echo "$progname: $error"
+  echo
+  exit 1
+}
+
+function CheckArg  # Usage: CheckArg number_of_arguments
+{ 
+    if [[ $1 -lt 2 ]]
+    then
+        error="No argument !"
+        Error  
+    fi
+}
+
+#--------------------------------------------------------------------------
+# Initialization:
+
+TEMP_FILE="makePlot_tmp_$RANDOM"
+all_infiles=
+font=11pt
+OUTPUT=
+color=color
+error=
+
+#--------------------------------------------------------------------------
+# Interpretation of the command line:
+
+while [[ $# -gt 0 ]]
+do
+  case $1 in
+        -V)     echo $version
+                exit
+                ;;
+        -h)     Usage
+                ;;
+        -bw)    color=monochrome
+                shift
+                ;;
+        -font)  CheckArg $#
+                font="$2"
+                shift 2
+                ;;
+        -*)     error="Option $1 unknown !"
+                Error
+                ;;
+         *)     break
+                ;;
+   esac
+done
+
+if [[ $# -ge 1 ]]
+then
+   while [[ $# -ge 1 ]]
+   do
+     if test -r "$1.gnu"
+     then
+        all_infiles="$all_infiles $1"
+        shift 1
+     else
+        error="Can't find readable File: $1.gnu !"
+        Error $error
+     fi
+   done
+else
+   error="No File given!"
+   Error $error
+fi
+
+
+#------------------------------------------------------------------------75
+# head and end for latex-file:
+
+function header
+{  
+  print '\\documentclass["$font"]{article}'
+  print '\\usepackage{graphicx,color}'
+  print '\\usepackage{amsfonts}' 
+  print '\\usepackage{amsmath}'
+  print '\\usepackage{amssymb}'
+  print '\\setlength{\\textwidth}{16cm}'
+  print '\\begin{document}'
+  print '\\pagestyle{empty}'
+}
+
+function writeend
+{
+  print '\\end{document}'
+}
+
+
+#-------------------------------------------------------------------------
+# Here we go:
+
+for infile in $all_infiles
+do
+#=========================================================================
+# Creating of Gnuplot-file:
+
+TEMP_PLOT="$TEMP_FILE.$RANDOM.gnu"
+infile_Full="$infile.gnu"
+
+print "set terminal unknown"  > $TEMP_PLOT
+cat $infile_Full             >> $TEMP_PLOT
+printf "\n"                  >> $TEMP_PLOT
+print "set terminal pslatex $color " >> $TEMP_PLOT
+printf "set output \"Cont_%s.tex\" \n" "$TEMP_FILE" >> $TEMP_PLOT
+printf "%s\n" "replot" >> $TEMP_PLOT
+printf "%s\n" "set output" >> $TEMP_PLOT
+printf "%s\n"   "quit"       >> $TEMP_PLOT
+
+#--------------------------------------------------------------------------
+# Running Gnuplot:
+
+$GNUPLOT_Program $TEMP_PLOT
+
+if [ $? != 0 ]    
+then
+   error="Gnuplot-Error(s) in input-file: $infile !"
+   Error $error
+   exit
+fi
+
+#--------------------------------------------------------------------------
+# Creating Latex-File(s), Running Latex:
+
+   header                         > $TEMP_FILE.tex
+   print '\\input{Cont_'$TEMP_FILE'.tex}' >> $TEMP_FILE.tex
+   writeend                           >> $TEMP_FILE.tex
+
+   latex  $TEMP_FILE.tex                 # Create dvi-File with latex
+   if [ $? != 0 ]    
+   then
+       error="Latex-Error(s) in temporary file $TEMP_FILE.tex !"
+       Error $error
+       exit
+   fi 
+   mv $TEMP_FILE.dvi $infile.dvi       # Looks better in gv-title
+   rm $TEMP_FILE.*
+   rm Cont_$TEMP_FILE.tex
+
+#--------------------------------------------------------------------------
+# Create eps-File:
+
+   dvips -E -o $infile.eps -Pcmz -Pamz $infile.dvi  
+
+   if [ $? != 0 ]                                          
+   then
+       error="Dvips-Error(s) with temporary file $TEMP_FILE.dvi !"
+       Error $error
+       exit
+   fi
+   rm $infile.dvi
+
+#--------------------------------------------------------------------------
+# Fix Bounding Box, because sometimes dvips does it not properly:
+
+   fixbb $infile.eps
+
+#==========================================================================
+done                        # for all infiles 
+
+
+#--------------------------------------------------------------------------
+# Going back and End-Report:
+
+echo
+echo "----------------------------------------------------------"
+echo " Conversion finished !"
+echo "----------------------------------------------------------"
+
+
+#--------------------------------------------------------------------------
+exit
+#--------------------------------------------------------------------------

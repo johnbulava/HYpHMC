@@ -13,6 +13,9 @@ int AdvancedSeed = 0;
 double eps = 0.0;
 double NaN = 0.0;
 Complex* ASMParameterData;
+double epsilon4[4][4][4][4];
+Quat sigmaPlus[4];            //Der Einfachheit halber sigma0 = sigma4
+Quat sigmaMinus[4];
 
 int LuescherZetaFunctionHelper2_NvecSqr;
 int LuescherDerivativeOfZetaFunction_dZdqSqrHelper2_NvecSqr;

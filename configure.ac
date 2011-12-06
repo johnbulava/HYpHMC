@@ -3,13 +3,18 @@
 
 AC_PREREQ([2.67])
 AC_INIT([HYpHMC], [0.1.0], [john.bulava@cern.ch])
-AC_CONFIG_SRCDIR([AnalyzerObservableGaussianWeightEstimate.C])
+AC_CONFIG_SRCDIR([lib/AnalyzerObservableGaussianWeightEstimate.C])
 AM_INIT_AUTOMAKE
 
 
 # Checks for programs.
 AC_PROG_CXX
 AC_PROG_CC
+AC_PROG_RANLIB
+
+AM_PROG_AS
+
+AC_PROG_MAKE_SET
 
 # Checks for libraries.
 # FIXME: Replace `main' with a function in `-larpack':
@@ -71,5 +76,10 @@ AC_TYPE_SIZE_T
 # Checks for library functions.
 AC_CHECK_FUNCS([floor gettimeofday pow sqrt strrchr strstr])
 
+AC_CONFIG_SUBDIRS(lib)
+
 AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES(lib/Makefile)
+AC_CONFIG_FILES(mainprogs/Makefile)
+
 AC_OUTPUT

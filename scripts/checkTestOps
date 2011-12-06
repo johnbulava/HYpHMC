@@ -1,0 +1,11 @@
+LD_LIBRARY_PATH=/opt/products/fftw/3.1.2/lib64/:/opt/products/fftw/3.1.2/lib:/opt/products/lib64/
+export LD_LIBRARY_PATH
+
+rm testOps
+rm ValGrind_TestOps.log
+
+g++34 -g -fno-default-inline -I/opt/products/fftw/3.1.2/include/ -I/opt/products/gsl/1.9/include/ -L./asmCode64 -L/products/ARPACK/lib -L/opt/products/fftw/3.1.2/lib64/ -L/opt/products/fftw/3.1.2/lib/ -L/opt/products/lib64/ -m64 -Wall -O1 -o testOps testOps.C -lg2c -larpack_Linux -lcln -lfftw3_threads -lfftw3 -lpthread -lm -llapack -lgslcblas -lnuma -lxSSE64
+
+valgrind --leak-check=full --show-reachable=no --log-file-exactly=ValGrind_TestOps.log ./testOps
+
+cat ValGrind_TestOps.log

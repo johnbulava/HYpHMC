@@ -1,0 +1,33 @@
+cd $1
+
+tar -cvf $1_Vol0.tar *0.dat
+tar -cvf $1_Vol1.tar *1.dat
+tar -cvf $1_Vol2.tar *2.dat
+tar -cvf $1_Vol3.tar *3.dat
+tar -cvf $1_Vol4.tar *4.dat
+tar -cvf $1_Vol5.tar *5.dat
+tar -cvf $1_Vol6.tar *6.dat
+tar -cvf $1_Vol7.tar *7.dat
+tar -cvf $1_Vol8.tar *8.dat
+tar -cvf $1_Vol9.tar *9.dat
+
+tsm_d_archiv -n $1_Vol0.tar 
+tsm_archiv -d -f -M 3y -D $1_Vol0.tar $1_Vol0.tar 
+tsm_d_archiv -n $1_Vol1.tar 
+tsm_archiv -d -f -M 3y -D $1_Vol1.tar $1_Vol1.tar 
+tsm_d_archiv -n $1_Vol2.tar 
+tsm_archiv -d -f -M 3y -D $1_Vol2.tar $1_Vol2.tar 
+tsm_d_archiv -n $1_Vol3.tar 
+tsm_archiv -d -f -M 3y -D $1_Vol3.tar $1_Vol3.tar 
+tsm_d_archiv -n $1_Vol4.tar 
+tsm_archiv -d -f -M 3y -D $1_Vol4.tar $1_Vol4.tar 
+tsm_d_archiv -n $1_Vol5.tar 
+tsm_archiv -d -f -M 3y -D $1_Vol5.tar $1_Vol5.tar 
+tsm_d_archiv -n $1_Vol6.tar 
+tsm_archiv -d -f -M 3y -D $1_Vol6.tar $1_Vol6.tar 
+tsm_d_archiv -n $1_Vol7.tar 
+tsm_archiv -d -f -M 3y -D $1_Vol7.tar $1_Vol7.tar 
+tsm_d_archiv -n $1_Vol8.tar 
+tsm_archiv -d -f -M 3y -D $1_Vol8.tar $1_Vol8.tar 
+tsm_d_archiv -n $1_Vol9.tar 
+tsm_archiv -d -f -M 3y -D $1_Vol9.tar $1_Vol9.tar 

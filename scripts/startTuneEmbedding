@@ -1,0 +1,19 @@
+LD_LIBRARY_PATH=~/ARPACK/lib/:~/gfortran/lib/:~/atlas/lib/:~/fftw/lib/:~/cln/cln-1.1.13/src/.libs
+export LD_LIBRARY_PATH
+
+L0=4
+L1=4
+L2=4
+L3=4
+ParaOpMode=0
+ThreadsPerNodeMax=2
+FLAG_xFFT=1
+FLAG_USE_P=0
+FLAG_USE_Q=0
+FLAG_USE_R=1
+FLAG_USE_QHM=1
+MAXXTRSIZE=3
+
+job_submit -t 4320 -m 16000 -J "TuneEmbedding" -p 1/4 -c p tuneEmbedding $L0 $L1 $L2 $L3 $ParaOpMode $ThreadsPerNodeMax $FLAG_xFFT $FLAG_USE_P $FLAG_USE_Q $FLAG_USE_R $FLAG_USE_QHM $MAXXTRSIZE
+
+

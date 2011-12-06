@@ -1,0 +1,11 @@
+#!/bin/ksh
+
+integer i=0
+while ((i < $1));
+do
+  print "Moving number: " $i;
+
+  mv $2$i.dat $3/$2$i.dat
+
+  (( i = i + 1));
+done

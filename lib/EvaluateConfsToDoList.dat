@@ -1,0 +1,20 @@
+StateDescriptorL4x4x4x4Nf1Kap0.12160Lam0.00000Y0.35300Rho1.000R0.500PolDeg360PolAl0.500_level13.dat     specsmfnp specsmfrnp weight  mags hcorr hdtcorr   
+StateDescriptorL6x6x6x6Nf1Kap0.12360Lam0.00000Y0.35300Rho1.000R0.500PolDeg360PolAl0.500_level13.dat     specsmfnp weight  mags gprop hprop hcorr hdtcorr 
+StateDescriptorL6x6x6x6Nf1Kap0.12360Lam0.00000Y0.35300Rho1.000R0.500PolDeg360PolAl0.500_level13.dat     weight  mags gprop hprop hcorr hdtcorr 
+StateDescriptorL6x6x6x6Nf1Kap0.12350Lam0.00000Y0.35276Rho1.000R0.500PolDeg360PolAl0.500_level13.dat  specsmfnp
+StateDescriptorL4x4x4x8Nf1Kap0.12157Lam0.00000Y0.35230Rho1.000R0.500PolDeg26PolAl0.500_level13.dat       weight  mags gprop hprop hcorr hdtcorr
+StateDescriptorL4x4x4x4Nf1Kap0.12205Lam0.00000Y0.35276Rho1.000R0.500PolDeg360PolAl0.500_level13.dat    hcorr hdtcorr 
+StateDescriptorL4x4x4x4Nf1Kap0.12207Lam0.00000Y0.35276Rho1.000R0.500PolDeg360PolAl0.500_level13.dat   specsmfnp    
+StateDescriptorL16x16x16x16Nf1Kap0.13000Lam0.01000Y0.36274Rho1.000R0.500PolDeg20PolAl0.500_level12.dat     weight  mags gprop hprop hcorr hdtcorr hgucorr hgu2pk0corr
+StateDescriptorL12x12x12x12Nf1Kap0.13000Lam0.01000Y0.36274Rho1.000R0.500PolDeg20PolAl0.500_level12.dat  weight  mags hgu2pk012corr
+StateDescriptorL8x8x8x8Nf1Kap0.13000Lam0.01000Y0.36274Rho1.000R0.500PolDeg20PolAl0.500_level12.dat      weight  mags hgu2pk012corr
+StateDescriptorL8x8x8x16Nf1Kap0.12280Lam0.00000Y0.35255Rho1.000R0.500PolDeg128PolAl0.500_level9.dat     weight  mags hcorr hdtcorr 
+StateDescriptorL8x8x8x16Nf1Kap0.12400Lam0.00000Y0.00000Rho1.000R0.500PolDeg26PolAl0.500_level9.dat      weight  mags  phirulam
+StateDescriptorL8x8x8x16Nf1Kap0.12400Lam0.00001Y0.00000Rho1.000R0.500PolDeg24PolAl0.500_level12.dat     weight  mags  hrlam phirlam
+StateDescriptorL8x8x8x16Nf1Kap0.12400Lam0.00010Y0.00000Rho1.000R0.500PolDeg24PolAl0.500_level12.dat     weight  mags  hrlam phirlam
+StateDescriptorL8x8x8x16Nf1Kap0.12400Lam0.00100Y0.00000Rho1.000R0.500PolDeg24PolAl0.500_level12.dat     weight  mags  hrlam phirlam
+StateDescriptorL8x8x8x16Nf1Kap0.12400Lam0.01000Y0.00000Rho1.000R0.500PolDeg24PolAl0.500_level12.dat      weight  mags phirulam
+StateDescriptorL8x8x8x16Nf1Kap0.12400Lam0.10000Y0.00000Rho1.000R0.500PolDeg24PolAl0.500_level12.dat      weight  mags gprop hprop hcorr hrlam phirlam
+StateDescriptorL8x8x8x16Nf1Kap0.16400Lam0.10000Y0.00000Rho1.000R0.500PolDeg24PolAl0.500_level12.dat      weight  mags phirulam
+StateDescriptorL8x8x8x16Nf1Kap0.30416LamnanY0.55470Rho1.000R0.500PolDeg20PolAl0.500_level12.dat      weight  mags gprop hprop hcorr hrlam phirlam
+StateDescriptorL4x4x4x8Nf1Kap0.24002Lam1.00000Y0.71090Rho1.000R0.500PolDeg64PolAl0.500_level10.dat      weight  mags  phirlam

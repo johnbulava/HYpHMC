@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<plotDescription>
+	<plotName>YukawaCoup</plotName>
+	<plotTitle>The Renormalized Yukawa-Coupling</plotTitle>
+	<plotCaption>The plot shows the renormalized Yukawa Coupling against the bare coupling</plotCaption>
+	<runSelector>
+		<constraint>
+			<obsName>General</obsName>
+			<tagName>L1</tagName>
+			<constraintRel>&gt;</constraintRel>
+			<constraintValue>4</constraintValue>
+		</constraint>
+		<constraint>
+			<obsName>General</obsName>
+			<tagName>Nf</tagName>
+			<constraintRel>=</constraintRel>
+			<constraintValue>1</constraintValue>
+		</constraint>		
+	</runSelector>
+	<column>
+		<obsName>General</obsName>
+		<tagName>Y0</tagName>
+	</column>
+	<column>
+		<obsName>PsiBarPsiCorr</obsName>
+		<tagName>Yr</tagName>
+	</column>
+	<plotInfo>
+		<xLogScale>0</xLogScale>
+		<yLogScale>0</yLogScale>
+		<xLabel>$y_0$</xLabel>
+		<yLabel>$y_R$</yLabel>
+		<yErrorBars>1</yErrorBars>
+		<xErrorBars>0</xErrorBars>
+		<xSize>0.85</xSize>
+		<ySize>0.85</ySize>
+		<pointSize>1</pointSize>
+		<xRangeMin>0</xRangeMin>
+		<xRangeMax>1.5</xRangeMax>
+		<yRangeMin>-INFINITY</yRangeMin>
+		<yRangeMax>INFINITY</yRangeMax>		
+		<pointType>1</pointType>
+		<lineType>1</lineType>
+		<lineWidth>1</lineWidth>				
+	</plotInfo>
+	<plotData>
+		<usingString>1:3:4</usingString>
+		<title>$y_r$</title>
+	</plotData>
+	<directPlot>replot 2*x</directPlot>
+	<directPlot>replot x*x</directPlot>
+</plotDescription>
