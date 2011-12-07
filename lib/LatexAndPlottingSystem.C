@@ -1,3 +1,5 @@
+#include "LatexAndPlottingSystem.h"
+
 LatexAndPlottingSystem::LatexAndPlottingSystem(const char* baseDirName, const char* lapBaseName) { 
 	if (LogLevel>1) printf("Initializing LatexAndPlottingSystem with BaseDirectory=%s and LAPsystem BaseName=%s ...\n",baseDirName,lapBaseName);
 	BaseDirectoryName = new char[1+strlen(baseDirName)];

@@ -1,4 +1,5 @@
 #include "AutoCorrelation.h"
+#include "Tools.h"
 
 void AutoCorrelation::ini(int obsCount, int GWmax) {
   observableCount = obsCount;

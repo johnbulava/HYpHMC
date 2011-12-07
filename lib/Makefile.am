@@ -224,13 +224,15 @@ libhyphmc_a_SOURCES = AnalyzerHiggs.C \
 											AnalyzerObservableWeight.C\
 											AnalyzerPhiFieldConfiguration.C\
 											AnalyzerTop.C\
-											CacheSimulator.C\
+											AutoCorrelation.C\
+                      CacheSimulator.C\
 											ChebyshevOneOverXPlusOne.C\
 											ChebyshevOneOverXPlusOneRelError.C\
 											Complex.C\
 											ComplexMatrix.C\
 											ComplexPolynom.C\
 											ComplexVector.C\
+											ControlLogger.C\
 											DiracMatrix.C\
 											DistributedMemoryObject.C\
 											EvaluateObservableBottomBarBottomCorrChiralLeftHandedGauged.C\
@@ -300,8 +302,11 @@ libhyphmc_a_SOURCES = AnalyzerHiggs.C \
 											HighPrecisionComplexPolynom.C\
 											HMCForce.C\
 											HMCPropagator.C\
-											LatticeMomentumBins.C\
+											LAPsystemPlot.C\
+											LatexAndPlottingSystem.C\
+                      LatticeMomentumBins.C\
 											LatticeSiteBins.C\
+											MassCorrelationMatrixAnalyzer.C\
 											MultiThreadedOperations.C\
 											NeubergerMatrix.C\
 											PerformanceProfiler.C\

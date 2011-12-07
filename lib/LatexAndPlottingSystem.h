@@ -42,6 +42,4 @@ public:
 };
 
 
-#include "LatexAndPlottingSystem.C"
-
 #endif
