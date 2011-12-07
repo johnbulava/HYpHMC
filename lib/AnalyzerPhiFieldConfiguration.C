@@ -1,3 +1,5 @@
+#include "AnalyzerPhiFieldConfiguration.h"
+
 AnalyzerPhiFieldConfiguration::AnalyzerPhiFieldConfiguration(char* fileName, FermionMatrixOperations* fOps) {
   fermiOps = fOps;
   

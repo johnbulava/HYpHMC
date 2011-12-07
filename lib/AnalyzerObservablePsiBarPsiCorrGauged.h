@@ -24,6 +24,4 @@ public:
 };
 
 
-#include "AnalyzerObservablePsiBarPsiCorrGauged.C"
-
 #endif

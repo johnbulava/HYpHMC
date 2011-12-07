@@ -24,6 +24,4 @@ public:
 };
 
 
-#include "AnalyzerObservablePsiBarPsiChiralLeftHandedCorrRandomGauged.C"
-
 #endif

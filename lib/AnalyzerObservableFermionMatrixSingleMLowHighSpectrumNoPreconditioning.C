@@ -1,3 +1,5 @@
+#include "AnalyzerObservableFermionMatrixSingleMLowHighSpectrumNoPreconditioning.h"
+
 AnalyzerObservableFermionMatrixSingleMLowHighSpectrumNoPreconditioning::AnalyzerObservableFermionMatrixSingleMLowHighSpectrumNoPreconditioning(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "FermionMatrixSingleMLowHighSpectrumNoPreconditioning", "lhspecsmnp") { 
   if (fermiOps->get1DSizeLargest() >= 32) {
     analyzeEveryXXXconf = 8;

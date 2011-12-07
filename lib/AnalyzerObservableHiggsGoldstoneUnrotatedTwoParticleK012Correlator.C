@@ -1,3 +1,5 @@
+#include "AnalyzerObservableHiggsGoldstoneUnrotatedTwoParticleK012Correlator.h"
+
 AnalyzerObservableHiggsGoldstoneUnrotatedTwoParticleK012Correlator::AnalyzerObservableHiggsGoldstoneUnrotatedTwoParticleK012Correlator(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "HiggsGoldstoneUnrotatedTwoParticleK012Correlator", "hgu2pk012corr") { 
   ini(getAnalyzerResultsCount());
 }

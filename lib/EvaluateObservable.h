@@ -88,6 +88,4 @@ public:
 };
 
 
-#include "EvaluateObservable.C"
-
 #endif

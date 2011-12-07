@@ -1,3 +1,5 @@
+#include "AnalyzerObservableFermionMatrixConditionNumberQHMPreconditioning.h"
+
 AnalyzerObservableFermionMatrixConditionNumberQHMPreconditioning::AnalyzerObservableFermionMatrixConditionNumberQHMPreconditioning(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "FermionMatrixConditionNumberQHMPreconditioning", "condqhm") { 
   if (fermiOps->get1DSizeLargest() >= 32) {
     analyzeEveryXXXconf = 8;

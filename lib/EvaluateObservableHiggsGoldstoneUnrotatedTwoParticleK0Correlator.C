@@ -1,3 +1,5 @@
+#include "EvaluateObservableHiggsGoldstoneUnrotatedTwoParticleK0Correlator.h"
+
 EvaluateObservableHiggsGoldstoneUnrotatedTwoParticleK0Correlator::EvaluateObservableHiggsGoldstoneUnrotatedTwoParticleK0Correlator(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, "HiggsGoldstoneUnrotatedTwoParticleK0Correlator", "hgu2pk0corr", relStart, relEnd) { 
   ini(getAnalyzerResultsCount(), obsWeight, obsDetSign);
   

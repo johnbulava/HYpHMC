@@ -1,3 +1,5 @@
+#include "AnalyzerIOControl.h"
+
 AnalyzerIOControl::AnalyzerIOControl(char* extension, int jID) {
   if (LogLevel>1) printf("AnalyzerIOControl initialized with extension = %s, JobID = %d\n",extension,jID);
   JobID = jID;

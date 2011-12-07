@@ -24,6 +24,4 @@ public:
 };
 
 
-#include "EvaluateObservableHiggsGoldstoneUnrotatedCorrelator.C"
-
 #endif

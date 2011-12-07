@@ -27,6 +27,4 @@ public:
 };
 
 
-#include "AnalyzerObservableWeight.C"
-
 #endif

@@ -22,6 +22,4 @@ public:
 };
 
 
-#include "EvaluateObservableFermionMatrixConditionNumberQHMPreconditioning.C"
-
 #endif

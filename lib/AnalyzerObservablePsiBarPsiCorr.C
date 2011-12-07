@@ -1,3 +1,5 @@
+#include "AnalyzerObservablePsiBarPsiCorr.h"
+
 AnalyzerObservablePsiBarPsiCorr::AnalyzerObservablePsiBarPsiCorr(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservablePsiBarPsiCorrBase(fOps, aIOcon, SDreader, "PsiBarPsiCorr", "pbpc") { 
   fixGauge = false;
   randomGauge = false;

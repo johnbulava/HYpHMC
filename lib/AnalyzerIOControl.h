@@ -48,6 +48,4 @@ public:
 };
 
 
-#include "AnalyzerIOControl.C"
-
 #endif

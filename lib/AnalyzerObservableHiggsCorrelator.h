@@ -28,6 +28,4 @@ public:
 };
 
 
-#include "AnalyzerObservableHiggsCorrelator.C"
-
 #endif

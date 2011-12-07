@@ -28,6 +28,4 @@ public:
 };
 
 
-#include "EvaluateObservableFermionMatrixSpectrumBase.C"
-
 #endif

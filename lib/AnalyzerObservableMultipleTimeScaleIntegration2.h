@@ -33,6 +33,4 @@ public:
 };
 
 
-#include "AnalyzerObservableMultipleTimeScaleIntegration2.C"
-
 #endif

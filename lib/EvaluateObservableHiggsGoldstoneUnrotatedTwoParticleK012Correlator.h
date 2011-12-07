@@ -42,6 +42,4 @@ public:
 };
 
 
-#include "EvaluateObservableHiggsGoldstoneUnrotatedTwoParticleK012Correlator.C"
-
 #endif

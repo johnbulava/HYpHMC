@@ -20,6 +20,4 @@ public:
 };
 
 
-#include "EvaluateObservableTopBarTopCorrChiralLeftHandedGauged.C"
-
 #endif

@@ -1,3 +1,5 @@
+#include "EvaluateObservableMultipleTimeScaleIntegration3.h"
+
 EvaluateObservableMultipleTimeScaleIntegration3::EvaluateObservableMultipleTimeScaleIntegration3(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, "MultipleTimeScaleIntegration3", "msint3", relStart, relEnd) { 
   MultiplePolynomFlag = false;
   if (SDReader->getSubPolynomCount()>0) MultiplePolynomFlag = true;

@@ -44,6 +44,4 @@ public:
 };
 
 
-#include "AnalyzerObservablePsiBarPsiCorrBase.C"
-
 #endif

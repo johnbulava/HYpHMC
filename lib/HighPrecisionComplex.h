@@ -83,4 +83,8 @@ public:
   HighPrecisionComplex& operator = (HighPrecisionComplex);  
 };
 
+HighPrecisionComplex exp(HighPrecisionComplex c);
+HighPrecisionComplex log(HighPrecisionComplex c);
+HighPrecisionComplex sqrt(HighPrecisionComplex c);
+
 #endif

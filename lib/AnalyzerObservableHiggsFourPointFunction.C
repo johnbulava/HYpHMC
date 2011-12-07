@@ -1,3 +1,5 @@
+#include "AnalyzerObservableHiggsFourPointFunction.h"
+
 AnalyzerObservableHiggsFourPointFunction::AnalyzerObservableHiggsFourPointFunction(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "HiggsPropagator", "hprop") { 
   ini(getAnalyzerResultsCount());
 }

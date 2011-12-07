@@ -1,3 +1,5 @@
+#include "AnalyzerObservablePhiRenormalizedQuarticCoupling.h"
+
 AnalyzerObservablePhiRenormalizedQuarticCoupling::AnalyzerObservablePhiRenormalizedQuarticCoupling(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "PhiRenormalizedQuarticCoupling", "phirlam") { 
   ini(getAnalyzerResultsCount());
 }

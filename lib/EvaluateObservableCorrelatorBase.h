@@ -42,6 +42,4 @@ public:
 };
 
 
-#include "EvaluateObservableCorrelatorBase.C"
-
 #endif

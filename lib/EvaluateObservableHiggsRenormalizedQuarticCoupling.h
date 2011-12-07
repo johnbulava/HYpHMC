@@ -42,6 +42,4 @@ public:
 };
 
 
-#include "EvaluateObservableHiggsRenormalizedQuarticCoupling.C"
-
 #endif

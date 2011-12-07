@@ -1,3 +1,5 @@
+#include "AnalyzerObservableTopBarTopChiralLeftHandedCorrGauged.h"
+
 AnalyzerObservableTopBarTopChiralLeftHandedCorrGauged::AnalyzerObservableTopBarTopChiralLeftHandedCorrGauged(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservablePsiBarPsiCorrBase(fOps, aIOcon, SDreader, "TopBarTopCorrChiralLeftHandedGauged", "tbtcxlg") { 
   fixGauge = true;
   randomGauge = false;

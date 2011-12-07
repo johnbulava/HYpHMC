@@ -1,3 +1,5 @@
+#include "EvaluateObservablePhiRenormalizedUnsymmetricQuarticCoupling.h"
+
 EvaluateObservablePhiRenormalizedUnsymmetricQuarticCoupling::EvaluateObservablePhiRenormalizedUnsymmetricQuarticCoupling(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, "PhiRenormalizedUnsymmetricQuarticCoupling", "phirulam", relStart, relEnd) { 
   int L0 = sdr->getL0();  
   int L1 = sdr->getL1();  

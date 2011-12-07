@@ -23,7 +23,6 @@ nobase_include_HEADERS = AnalyzerHiggs.h AnalyzerIOControl.h \
 												 AnalyzerObservable.h\
 												 AnalyzerObservableHiggsCorrelator.h\
 												 AnalyzerObservableHiggsDefinedOnTimeSliceCorrelator.h\
-												 AnalyzerObservableHiggsFourPointFunction.h\
 												 AnalyzerObservableHiggsGoldstoneUnrotatedCorrelator.h\
 												 AnalyzerObservableHiggsGoldstoneUnrotatedTwoParticleK012Correlator.h\
 												 AnalyzerObservableHiggsGoldstoneUnrotatedTwoParticleK0Correlator.h\
@@ -194,7 +193,6 @@ libhyphmc_a_SOURCES = AnalyzerHiggs.C \
 											AnalyzerObservableGoldstonePropagator.C\
 											AnalyzerObservableHiggsCorrelator.C\
 											AnalyzerObservableHiggsDefinedOnTimeSliceCorrelator.C\
-											AnalyzerObservableHiggsFourPointFunction.C\
 											AnalyzerObservableHiggsGoldstoneUnrotatedCorrelator.C\
 											AnalyzerObservableHiggsGoldstoneUnrotatedTwoParticleK012Correlator.C\
 											AnalyzerObservableHiggsGoldstoneUnrotatedTwoParticleK0Correlator.C\

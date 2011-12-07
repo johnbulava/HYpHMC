@@ -24,6 +24,4 @@ public:
 };
 
 
-#include "EvaluateObservableHiggsCorrelator.C"
-
 #endif

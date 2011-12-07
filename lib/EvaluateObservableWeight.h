@@ -34,6 +34,4 @@ public:
 };
 
 
-#include "EvaluateObservableWeight.C"
-
 #endif

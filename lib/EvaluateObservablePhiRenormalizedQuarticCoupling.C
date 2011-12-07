@@ -1,3 +1,5 @@
+#include "EvaluateObservablePhiRenormalizedQuarticCoupling.h"
+
 EvaluateObservablePhiRenormalizedQuarticCoupling::EvaluateObservablePhiRenormalizedQuarticCoupling(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, "PhiRenormalizedQuarticCoupling", "phirlam", relStart, relEnd) { 
   int L0 = SDReader->getL0();  
   int L1 = SDReader->getL1();  

@@ -79,7 +79,7 @@ public:
   double* LatticeResult_PhysicalEffectiveHiggsMassesSigmas;
 
   
-  int AnalyzerHiggs::getTotalN();
+  int getTotalN();
   void analyzeHiggsField(vector4D* phiField, double weight);
 
   double getLastMagnetization();
@@ -97,7 +97,5 @@ public:
   void plotHiggsGoldstoneMasses();
   void plotHiggsMasses();
 };
-
-#include "AnalyzerHiggs.C"
 
 #endif

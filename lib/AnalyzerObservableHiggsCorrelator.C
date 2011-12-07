@@ -1,3 +1,5 @@
+#include "AnalyzerObservableHiggsCorrelator.h"
+
 AnalyzerObservableHiggsCorrelator::AnalyzerObservableHiggsCorrelator(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "HiggsCorrelator", "hcorr") { 
   ini(getAnalyzerResultsCount());
 }

@@ -1,3 +1,5 @@
+#include "AnalyzerObservablePhiRenormalizedUnsymmetricQuarticCoupling.h"
+
 AnalyzerObservablePhiRenormalizedUnsymmetricQuarticCoupling::AnalyzerObservablePhiRenormalizedUnsymmetricQuarticCoupling(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "PhiRenormalizedUnsymmetricQuarticCoupling", "phirulam") { 
   int L0 = fOps->get1DSizeL0();
   int L1 = fOps->get1DSizeL1();

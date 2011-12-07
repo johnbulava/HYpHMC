@@ -21,6 +21,4 @@ public:
 };
 
 
-#include "EvaluateObservableHiggsPropagator.C"
-
 #endif

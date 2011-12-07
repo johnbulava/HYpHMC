@@ -1,3 +1,5 @@
+#include "AnalyzerObservablePsiBarPsiCorrBase.h"
+
 AnalyzerObservablePsiBarPsiCorrBase::AnalyzerObservablePsiBarPsiCorrBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, char* oName, char* nick) : AnalyzerObservable(fOps, aIOcon, SDreader, oName, nick) { 
   if (fermiOps->get1DSizeLargest() >= 32) {
     analyzeEveryXXXconf = 8;

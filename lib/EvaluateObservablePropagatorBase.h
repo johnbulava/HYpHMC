@@ -133,6 +133,4 @@ public:
 };
 
 
-#include "EvaluateObservablePropagatorBase.C"
-
 #endif

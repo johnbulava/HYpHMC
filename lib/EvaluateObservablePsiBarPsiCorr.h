@@ -20,6 +20,4 @@ public:
 };
 
 
-#include "EvaluateObservablePsiBarPsiCorr.C"
-
 #endif

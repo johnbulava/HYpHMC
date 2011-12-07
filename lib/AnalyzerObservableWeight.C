@@ -1,3 +1,5 @@
+#include "AnalyzerObservableWeight.h"
+
 AnalyzerObservableWeight::AnalyzerObservableWeight(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "Weight", "weight") { 
   ini(getAnalyzerResultsCount());
 }

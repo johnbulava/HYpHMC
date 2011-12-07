@@ -24,6 +24,4 @@ public:
 };
 
 
-#include "AnalyzerObservableBottomBarBottomChiralLeftHandedCorrGauged.C"
-
 #endif

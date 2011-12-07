@@ -61,6 +61,4 @@ public:
 };
 
 
-#include "AnalyzerPhiFieldConfiguration.C"
-
 #endif

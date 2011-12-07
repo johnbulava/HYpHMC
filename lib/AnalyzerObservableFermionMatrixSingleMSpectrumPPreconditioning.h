@@ -27,6 +27,4 @@ public:
 };
 
 
-#include "AnalyzerObservableFermionMatrixSingleMSpectrumPPreconditioning.C"
-
 #endif

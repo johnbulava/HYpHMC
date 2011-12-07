@@ -39,6 +39,4 @@ public:
 };
 
 
-#include "AnalyzerObservableTwoFermionPsiBarPsiChiralCorrBase.C"
-
 #endif

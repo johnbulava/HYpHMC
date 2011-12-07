@@ -1,3 +1,5 @@
+#include "EvaluateObservableMagnetizations.h"
+
 EvaluateObservableMagnetizations::EvaluateObservableMagnetizations(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, "Magnetizations", "mags", relStart, relEnd) { 
   ini(getAnalyzerResultsCount(), obsWeight, obsDetSign);
   autoCorM = new AutoCorrelation(5, 100);

@@ -12,7 +12,8 @@
 #include "AutoCorrelation.h"
 #include "FermionMatrixOperations.h"
 #include "ControlLogger.h"
-#include "Tools.C"
+#include "Tools.h"
+#include "MassCorrelationMatrixAnalyzer.h"
 
 #define AnalyzerTopDataMAX 1000000
 
@@ -58,7 +59,7 @@ public:
   double LatticeResult_PhysicalTopMass;
   double LatticeResult_PhysicalTopMassError;
   
-  int AnalyzerTop::getTotalN();
+  int getTotalN();
   void analyzeHiggsField(vector4D* phiField, double weight, int confNr);
 
   void calcTopTimeSliceCorrelator();
@@ -68,7 +69,5 @@ public:
 void plotTopMasses();
 
 };
-
-#include "AnalyzerTop.C"
 
 #endif

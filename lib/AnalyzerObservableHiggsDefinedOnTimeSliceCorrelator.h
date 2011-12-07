@@ -28,6 +28,4 @@ public:
 };
 
 
-#include "AnalyzerObservableHiggsDefinedOnTimeSliceCorrelator.C"
-
 #endif

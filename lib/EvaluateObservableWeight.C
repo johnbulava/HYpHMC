@@ -1,3 +1,5 @@
+#include "EvaluateObservableWeight.h"
+
 EvaluateObservableWeight::EvaluateObservableWeight(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, "Weight", "weight", relStart, relEnd) { 
   ini(getAnalyzerResultsCount(), obsWeight, obsDetSign);
   averageWeight = NaN;

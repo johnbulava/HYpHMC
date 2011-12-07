@@ -22,6 +22,4 @@ public:
 };
 
 
-#include "EvaluateObservableFermionMatrixSingleMConditionNumberNoPreconditioning.C"
-
 #endif

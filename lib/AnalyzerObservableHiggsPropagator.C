@@ -1,3 +1,5 @@
+#include "AnalyzerObservableHiggsPropagator.h"
+
 AnalyzerObservableHiggsPropagator::AnalyzerObservableHiggsPropagator(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "HiggsPropagator", "hprop") { 
   latticeBins = new LatticeMomentumBins(fermiOps->get1DSizeL0(), fermiOps->get1DSizeL1(), fermiOps->get1DSizeL2(), fermiOps->get1DSizeL3());
   ini(getAnalyzerResultsCount());

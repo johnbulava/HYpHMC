@@ -20,6 +20,4 @@ public:
 };
 
 
-#include "EvaluateObservableTwoFermionPsiBarPsiChiralLeftHandedCorrGauged.C"
-
 #endif

@@ -26,6 +26,4 @@ public:
 };
 
 
-#include "AnalyzerObservableTwoFermionPsiBarPsiChiralLeftHandedCorr.C"
-
 #endif

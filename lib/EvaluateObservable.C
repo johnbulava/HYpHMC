@@ -1,3 +1,5 @@
+#include "EvaluateObservable.h"
+
 EvaluateObservable::EvaluateObservable(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, char* oName, char* nick, double relStart, double relEnd) { 
   if (LogLevel>1) printf("EvaluateObservable %s (%s) initializing with rel. eval-indices (%1.2f/%1.2f)...\n",oName,nick, relStart, relEnd);
   ioControl = aIOcon;

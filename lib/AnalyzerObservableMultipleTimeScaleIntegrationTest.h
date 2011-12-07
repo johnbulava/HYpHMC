@@ -33,6 +33,4 @@ public:
 };
 
 
-#include "AnalyzerObservableMultipleTimeScaleIntegrationTest.C"
-
 #endif

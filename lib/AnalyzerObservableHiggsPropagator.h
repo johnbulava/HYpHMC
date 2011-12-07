@@ -28,6 +28,4 @@ public:
 };
 
 
-#include "AnalyzerObservableHiggsPropagator.C"
-
 #endif

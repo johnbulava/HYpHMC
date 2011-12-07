@@ -49,6 +49,4 @@ public:
 };
 
 
-#include "AnalyzerObservableDetSign.C"
-
 #endif

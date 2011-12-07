@@ -27,6 +27,5 @@ public:
 };
 
 
-#include "AnalyzerObservableHiggsFourPointFunction.C"
 
 #endif

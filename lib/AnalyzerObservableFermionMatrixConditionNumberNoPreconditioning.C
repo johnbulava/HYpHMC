@@ -1,3 +1,5 @@
+#include "AnalyzerObservableFermionMatrixConditionNumberNoPreconditioning.h"
+
 AnalyzerObservableFermionMatrixConditionNumberNoPreconditioning::AnalyzerObservableFermionMatrixConditionNumberNoPreconditioning(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "FermionMatrixConditionNumberNoPreconditioning", "condnp") { 
   if (fermiOps->get1DSizeLargest() >= 32) {
     analyzeEveryXXXconf = 8;

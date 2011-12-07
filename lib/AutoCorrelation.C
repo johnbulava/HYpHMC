@@ -1,3 +1,5 @@
+#include "AutoCorrelation.h"
+
 void AutoCorrelation::ini(int obsCount, int GWmax) {
   observableCount = obsCount;
   GammaWMax = GWmax;

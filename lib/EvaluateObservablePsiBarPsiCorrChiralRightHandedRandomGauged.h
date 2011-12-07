@@ -20,6 +20,4 @@ public:
 };
 
 
-#include "EvaluateObservablePsiBarPsiCorrChiralRightHandedRandomGauged.C"
-
 #endif

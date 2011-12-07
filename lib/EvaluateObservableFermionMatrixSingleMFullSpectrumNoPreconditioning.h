@@ -38,6 +38,4 @@ public:
 };
 
 
-#include "EvaluateObservableFermionMatrixSingleMFullSpectrumNoPreconditioning.C"
-
 #endif

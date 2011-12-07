@@ -1,3 +1,5 @@
+#include "EvaluateObservableTwoFermionPsiBarPsiChiralLeftHandedCorrRandomGauged.h"
+
 EvaluateObservableTwoFermionPsiBarPsiChiralLeftHandedCorrRandomGauged::EvaluateObservableTwoFermionPsiBarPsiChiralLeftHandedCorrRandomGauged(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservablePsiBarPsiCorrBase(aIOcon, sdr, obsWeight, obsDetSign, "TwoFermionPsiBarPsiChiralLeftHandedRandomGauged", "2fpbpcxlrg", relStart, relEnd) { 
   operatorVEVdataAvail = true;
   int LargestL = getLargestL(SDReader);  

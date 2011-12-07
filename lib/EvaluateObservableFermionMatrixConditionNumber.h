@@ -22,6 +22,4 @@ public:
 };
 
 
-#include "EvaluateObservableFermionMatrixConditionNumber.C"
-
 #endif

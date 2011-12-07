@@ -27,6 +27,4 @@ public:
 };
 
 
-#include "AnalyzerObservableFermionMatrixSingleMConditionNumberNoPreconditioning.C"
-
 #endif

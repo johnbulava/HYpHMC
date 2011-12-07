@@ -20,6 +20,4 @@ public:
 };
 
 
-#include "EvaluateObservableGoldstonePropagator.C"
-
 #endif

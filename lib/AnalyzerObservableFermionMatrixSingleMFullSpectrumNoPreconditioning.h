@@ -32,6 +32,4 @@ public:
 };
 
 
-#include "AnalyzerObservableFermionMatrixSingleMFullSpectrumNoPreconditioning.C"
-
 #endif

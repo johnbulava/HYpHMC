@@ -38,6 +38,4 @@ public:
 };
 
 
-#include "EvaluateObservableGaussianWeightEstimate.C"
-
 #endif

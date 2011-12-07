@@ -1,3 +1,5 @@
+#include "AnalyzerObservableMagnetizations.h"
+
 AnalyzerObservableMagnetizations::AnalyzerObservableMagnetizations(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "Magnetizations", "mags") { 
   ini(getAnalyzerResultsCount());
 }

@@ -23,6 +23,4 @@ public:
 };
 
 
-#include "EvaluateObservableFermionMatrixLowHighSpectrumNoPreconditioning.C"
-
 #endif

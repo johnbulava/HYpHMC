@@ -50,6 +50,4 @@ public:
 };
 
 
-#include "AnalyzerObservable.C"
-
 #endif

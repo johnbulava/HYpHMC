@@ -1,3 +1,5 @@
+#include "EvaluateObservableFermionMatrixSingleMFullRanSpectrumNoPreconditioning.h"
+
 EvaluateObservableFermionMatrixSingleMFullRanSpectrumNoPreconditioning::EvaluateObservableFermionMatrixSingleMFullRanSpectrumNoPreconditioning(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, "FermionMatrixSingleMFullRanSpectrumNoPreconditioning", "specsmfrnp", relStart, relEnd) { 
   MaxPhaseExtension = 0;
   MaxPhaseExtensionFac = 1.25;

@@ -1,3 +1,5 @@
+#include "AnalyzerObservableFermionMatrixSingleMSpectrumPPreconditioning.h"
+
 AnalyzerObservableFermionMatrixSingleMSpectrumPPreconditioning::AnalyzerObservableFermionMatrixSingleMSpectrumPPreconditioning(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "FermionMatrixSingleMSpectrumPPreconditioning", "specsmpp") { 
   if (fermiOps->get1DSizeLargest() >= 32) {
     analyzeEveryXXXconf = 8;

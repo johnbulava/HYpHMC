@@ -34,6 +34,4 @@ public:
 };
 
 
-#include "EvaluateObservablePsiBarPsiCorrBase.C"
-
 #endif

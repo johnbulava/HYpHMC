@@ -1,3 +1,5 @@
+#include "EvaluateObservableFermionMatrixSpectrumBase.h"
+
 EvaluateObservableFermionMatrixSpectrumBase::EvaluateObservableFermionMatrixSpectrumBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, char* oName, char* nick, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, oName, nick, relStart, relEnd) { 
 }
 

@@ -1,3 +1,5 @@
+#include "AnalyzerObservableFermionMatrixSingleMFullRanSpectrumNoPreconditioning.h"
+
 AnalyzerObservableFermionMatrixSingleMFullRanSpectrumNoPreconditioning::AnalyzerObservableFermionMatrixSingleMFullRanSpectrumNoPreconditioning(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "FermionMatrixSingleMFullRanSpectrumNoPreconditioning", "specsmfrnp") { 
   L0 = fermiOps->get1DSizeL0(); 
   L1 = fermiOps->get1DSizeL1(); 

@@ -54,6 +54,4 @@ public:
   double estimateAutoCorrelationTime();  
 };
 
-#include "AutoCorrelation.C"
-
 #endif

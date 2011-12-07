@@ -28,6 +28,4 @@ public:
 };
 
 
-#include "AnalyzerObservableHiggsGoldstoneUnrotatedCorrelator.C"
-
 #endif

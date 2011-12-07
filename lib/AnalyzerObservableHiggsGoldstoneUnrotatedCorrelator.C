@@ -1,3 +1,6 @@
+#include "AnalyzerObservableHiggsGoldstoneUnrotatedCorrelator.h"
+
+
 AnalyzerObservableHiggsGoldstoneUnrotatedCorrelator::AnalyzerObservableHiggsGoldstoneUnrotatedCorrelator(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "HiggsGoldstoneUnrotatedCorrelator", "hgucorr") { 
   ini(getAnalyzerResultsCount());
 }

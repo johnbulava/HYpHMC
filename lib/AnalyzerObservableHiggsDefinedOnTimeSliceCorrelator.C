@@ -1,3 +1,5 @@
+#include "AnalyzerObservableHiggsDefinedOnTimeSliceCorrelator.h"
+
 AnalyzerObservableHiggsDefinedOnTimeSliceCorrelator::AnalyzerObservableHiggsDefinedOnTimeSliceCorrelator(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "HiggsDefinedOnTimeSliceCorrelator", "hdtcorr") { 
   ini(getAnalyzerResultsCount());
 }

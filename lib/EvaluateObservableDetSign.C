@@ -1,3 +1,5 @@
+#include "EvaluateObservableDetSign.h"
+
 EvaluateObservableDetSign::EvaluateObservableDetSign(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, "DetSign", "det", relStart, relEnd) { 
   ini(getAnalyzerResultsCount(), obsWeight, obsDetSign);
   neg_det_count = 0;

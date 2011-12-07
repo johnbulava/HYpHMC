@@ -47,6 +47,4 @@ public:
 };
 
 
-#include "EvaluateObservablePhiRenormalizedUnsymmetricQuarticCoupling.C"
-
 #endif

@@ -27,6 +27,4 @@ public:
 };
 
 
-#include "AnalyzerObservableHiggsRenormalizedQuarticCoupling.C"
-
 #endif

@@ -1,3 +1,5 @@
+#include "EvaluateObservableHiggsRenormalizedQuarticCoupling.h"
+
 EvaluateObservableHiggsRenormalizedQuarticCoupling::EvaluateObservableHiggsRenormalizedQuarticCoupling(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, "HiggsRenormalizedQuarticCoupling", "hrlam", relStart, relEnd) { 
   int L0 = SDReader->getL0();  
   int L1 = SDReader->getL1();  

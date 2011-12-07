@@ -1,3 +1,5 @@
+#include "AnalyzerObservableHiggsRenormalizedQuarticCoupling.h"
+
 AnalyzerObservableHiggsRenormalizedQuarticCoupling::AnalyzerObservableHiggsRenormalizedQuarticCoupling(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "HiggsRenormalizedQuarticCoupling", "hrlam") { 
   ini(getAnalyzerResultsCount());
 }

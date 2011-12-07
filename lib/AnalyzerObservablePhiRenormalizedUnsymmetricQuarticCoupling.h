@@ -31,6 +31,4 @@ public:
 };
 
 
-#include "AnalyzerObservablePhiRenormalizedUnsymmetricQuarticCoupling.C"
-
 #endif

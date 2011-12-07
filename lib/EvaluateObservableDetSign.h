@@ -26,6 +26,4 @@ public:
 };
 
 
-#include "EvaluateObservableDetSign.C"
-
 #endif

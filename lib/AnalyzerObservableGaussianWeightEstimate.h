@@ -29,6 +29,4 @@ public:
 };
 
 
-#include "AnalyzerObservableGaussianWeightEstimate.C"
-
 #endif

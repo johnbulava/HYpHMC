@@ -1,3 +1,5 @@
+#include "EvaluateObservableHiggsPropagator.h"
+
 EvaluateObservableHiggsPropagator::EvaluateObservableHiggsPropagator(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservablePropagatorBase(aIOcon, sdr, obsWeight, obsDetSign, "HiggsPropagator", "hprop", relStart, relEnd) { 
   considerZeroMomentum = true;
   

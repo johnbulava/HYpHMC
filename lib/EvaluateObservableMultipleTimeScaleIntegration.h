@@ -30,6 +30,4 @@ public:
 };
 
 
-#include "EvaluateObservableMultipleTimeScaleIntegration.C"
-
 #endif

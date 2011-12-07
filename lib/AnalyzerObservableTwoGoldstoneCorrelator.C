@@ -1,3 +1,5 @@
+#include "AnalyzerObservableTwoGoldstoneCorrelator.h"
+
 AnalyzerObservableTwoGoldstoneCorrelator::AnalyzerObservableTwoGoldstoneCorrelator(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "TwoGoldstoneCorrelator", "twogoldstonecorr") {
 	ini(getAnalyzerResultsCount());
 }
@@ -153,10 +155,4 @@ void AnalyzerObservableTwoGoldstoneCorrelator::performTimeEnergyFourierTransform
 	
 }
 
-inline int AnalyzerObservableTwoGoldstoneCorrelator::transformCoordinatesToIndex(int a, int n0, int n1, int n2, int n3) {
-	int b3 = 4;
-	int b2 = fermiOps->get1DSizeL3()*b3;
-	int b1 = fermiOps->get1DSizeL2()*b2;
-	int b0 = fermiOps->get1DSizeL1()*b1;
-	return (a + b3*n3 + b2*n2 + b1*n1 + b0*n0);	
-}
+

@@ -1,3 +1,5 @@
+#include "AnalyzerObservableGaussianWeightEstimate.h"
+
 AnalyzerObservableGaussianWeightEstimate::AnalyzerObservableGaussianWeightEstimate(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "GaussianWeightEstimate", "gwest") { 
   ini(getAnalyzerResultsCount());
   pHMCProp = NULL;

@@ -1,3 +1,5 @@
+#include "EvaluateObservableGaussianWeightEstimate.h"
+
 EvaluateObservableGaussianWeightEstimate::EvaluateObservableGaussianWeightEstimate(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, "GaussianWeightEstimate", "gwest", relStart, relEnd) { 
   ini(getAnalyzerResultsCount(), obsWeight, obsDetSign);
   averageWeight = NaN;

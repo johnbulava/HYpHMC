@@ -30,6 +30,4 @@ public:
 };
 
 
-#include "EvaluateObservableMultipleTimeScaleIntegrationTest.C"
-
 #endif

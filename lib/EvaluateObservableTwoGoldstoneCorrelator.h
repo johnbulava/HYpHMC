@@ -24,6 +24,4 @@ public:
 };
 
 
-#include "EvaluateObservableTwoGoldstoneCorrelator.C"
-
 #endif

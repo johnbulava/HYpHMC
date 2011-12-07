@@ -1,3 +1,5 @@
+#include "AnalyzerObservableDetSign.h"
+
 AnalyzerObservableDetSign::AnalyzerObservableDetSign(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDReader) : AnalyzerObservable(fOps, aIOcon, SDReader, "DetSign", "det") { 
         ini(getAnalyzerResultsCount());
 	max_iterations = 10;

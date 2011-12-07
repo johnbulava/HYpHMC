@@ -1,3 +1,6 @@
+#include "AnalyzerHiggs.h"
+#include "Tools.h"
+
 void AnalyzerHiggs::ini(int l0, int l1, int l2, int l3, ControlLogger* log, bool FLAG_GFit) {
   totalN = 0;
   L0 = l0;

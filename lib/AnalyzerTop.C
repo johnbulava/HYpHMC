@@ -1,3 +1,5 @@
+#include "AnalyzerTop.h"
+
 void AnalyzerTop::ini(int l0, int l1, int l2, int l3, double y, ControlLogger* log, bool FLAG_GFit, char* fileNameExt, double tol) {
   totalN = 0;
   TOL = tol;

@@ -20,6 +20,4 @@ public:
 };
 
 
-#include "EvaluateObservableBottomBarBottomCorrChiralLeftHandedGauged.C"
-
 #endif

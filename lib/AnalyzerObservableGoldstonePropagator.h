@@ -28,6 +28,4 @@ public:
 };
 
 
-#include "AnalyzerObservableGoldstonePropagator.C"
-
 #endif

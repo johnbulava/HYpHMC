@@ -1,3 +1,5 @@
+#include "AnalyzerObservableFermionMatrixConditionNumber.h"
+
 AnalyzerObservableFermionMatrixConditionNumber::AnalyzerObservableFermionMatrixConditionNumber(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "FermionMatrixConditionNumber", "cond") { 
   if (fermiOps->get1DSizeLargest() >= 32) {
     analyzeEveryXXXconf = 8;

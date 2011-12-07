@@ -1,3 +1,5 @@
+#include "AnalyzerObservableMultipleTimeScaleIntegration4.h"
+
 AnalyzerObservableMultipleTimeScaleIntegration4::AnalyzerObservableMultipleTimeScaleIntegration4(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader) : AnalyzerObservable(fOps, aIOcon, SDreader, "MultipleTimeScaleIntegration4", "msint4") { 
   if (fermiOps->get1DSizeLargest() >= 32) {
     analyzeEveryXXXconf = 8;
