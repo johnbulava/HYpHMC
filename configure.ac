@@ -19,7 +19,6 @@ AC_PROG_MAKE_SET
 # Checks for libraries.
 AC_CHECK_LIB([arpack], [main])
 AC_CHECK_LIB([blas], [main])
-#AC_CHECK_LIB([cblas], [main])
 AC_CHECK_LIB([cln], [main])
 AC_CHECK_LIB([fftw3], [main])
 AC_CHECK_LIB([fftw3_threads], [main])
