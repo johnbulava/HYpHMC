@@ -1,7 +1,6 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.67])
 AC_INIT([HYpHMC], [0.1.0], [john.bulava@cern.ch])
 AC_CONFIG_SRCDIR([lib/AnalyzerObservableGaussianWeightEstimate.C])
 AM_INIT_AUTOMAKE
