@@ -1,0 +1,23 @@
+measure                     : Prefix of filename
+4                           : Length of edge of 4D-space-time volume
+10                          : N_f Flavour number
+1.0                         : rho
+0.5                         : r
+0.01                        : lambda
+0.001                       : yMin
+1.601                       : yMax
+5                           : yTics
+-0.25                       : kappaMin
+0.25                        : kappaMax
+11                          : kappaTics
+2.0                         : Phi change radius
+1.0                         : Phi change angel max
+5                           : Number of Phi hits per sweep (Start value)
+1                           : Flag: Calculate Neuberger Determinant with Xi
+0                           : Flag: Calculate Wilson Determinant without Xi
+0                           : Flag: Calculate Neuberger Determinant without Xi
+0                           : Flag: Calculate Wilson Determinant with Xi
+1                           : Flag: Improved Phi-Dynamics
+30000                       : Number of sweeps before measurement
+1000000                     : Number of thermalizing sweeps
+1                           : Log - Level

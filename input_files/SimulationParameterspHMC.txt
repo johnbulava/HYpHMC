@@ -1,0 +1,92 @@
+level13                     : Suffix of filename
+8                           : L0 - Length of edge 0 of 4D-space-time volume
+8                           : L1 - Length of edge 1 of 4D-space-time volume
+8                           : L2 - Length of edge 2 of 4D-space-time volume
+8                           : L3 - Length of edge 3 of 4D-space-time volume
+1                           : N_f Flavour number
+1.0                         : rho
+0.5                         : r
+0.005                       : lambdaMin
+0.005                       : lambdaMax
+1                           : lambdaTics
+0.0                         : yMin
+0.0                         : yMax
+1                           : yTics
+0.12825                     : kappaMin
+0.12825                     : kappaMax
+1                           : kappaTics
+1.0                         : Mass-Split y_b / y_t
+0                           : Explicit Fermion-Mass m_F
+0.001                       : Explicit Current J
+0.0                         : Model-Extension Parameter c6
+0.0                         : Model-Extension Parameter c8
+0.0                         : Model-Extension Parameter c10
+0.0                         : Model-Extension Parameter lambda6
+0.0                         : Model-Extension Parameter lambda8
+0.0                         : Model-Extension Parameter lambda10
+0.06                        : Lower Bound of Approximation sub-Polynomial P0
+0.00                        : Lower Bound of Approximation sub-Polynomial P1
+0.00                        : Lower Bound of Approximation sub-Polynomial P2
+0.00                        : Lower Bound of Approximation sub-Polynomial P3
+0.00                        : Lower Bound of Approximation sub-Polynomial P4
+1.00                        : Upper Bound for all Approximation Polynomials
+10                          : Degree of Approximation sub-Polynomial P0
+0                           : Degree of Approximation sub-Polynomial P1
+0                           : Degree of Approximation sub-Polynomial P2
+0                           : Degree of Approximation sub-Polynomial P3
+0                           : Degree of Approximation sub-Polynomial P4
+0.5                         : Exponent of function to be approximation: f(x) = 1/x^alpha
+1000                        : Digits for Calculation of Polynomial Roots
+400                         : Maximum polynomial degree per node
+0                           : Flag: Random Gauge (0: deactivated)
+1                           : Exact Reweighing (0: deactivated)
+1                           : Quasi-Hermitean Mode
+1                           : Use P - Preconditioning (only for non-hermitean mode)
+1                           : Use Q - Preconditioning (only for non-hermitean mode)
+1                           : Use R - Preconditioning (only for quasi-hermitean mode)
+0.25                        : Q-Preconditioning: Mu (only for non-hermitean mode)
+0.25                        : Q-Preconditioning: Beta (only for non-hermitean mode)
+1.5                         : Upper EW bound safety factor
+50                          : Number of additional auxiliary vectors (each of omega-Field size)
+1                           : Flag: Direct Sampling of Omega Fields (0: deactivated)
+0.0                         : Start value of Theta
+0                           : Flag: Activate Theta-Scan
+1.0                         : Minimal Theta
+20.0                        : Maximal Theta
+1.50                        : Theta-Adaption Factor
+1                           : Flag: Model Selection (0: Wilson-Model, 1: Neuberger - Model)
+0                           : Flag: Use of xFFT
+1.0                         : Epsilon for molecular dynamics (Initial value)
+2                           : Iterations for sub-Polynom P0 (Initial value)
+0                           : Iterations for sub-Polynom P1 (Initial value)
+0                           : Iterations for sub-Polynom P2 (Initial value)
+0                           : Iterations for sub-Polynom P3 (Initial value)
+0                           : Iterations for sub-Polynom P4 (Initial value)
+6                           : Iterations for Higgs-Dynamics (Initial value)
+2                           : Type of integrator -- P0 --    (0: Leap-Frog, 1: Omelyan with order 2, 2: Omelyan with order 4) (Initial setting)
+1                           : Type of integrator -- P1 --    (0: Leap-Frog, 1: Omelyan with order 2, 2: Omelyan with order 4) (Initial setting)
+1                           : Type of integrator -- P2 --    (0: Leap-Frog, 1: Omelyan with order 2, 2: Omelyan with order 4) (Initial setting)
+0                           : Type of integrator -- P3 --    (0: Leap-Frog, 1: Omelyan with order 2, 2: Omelyan with order 4) (Initial setting)
+0                           : Type of integrator -- P4 --    (0: Leap-Frog, 1: Omelyan with order 2, 2: Omelyan with order 4) (Initial setting)
+1                           : Type of integrator -- Higgs -- (0: Leap-Frog, 1: Omelyan with order 2, 2: Omelyan with order 4) (Initial setting)
+20                          : Measurement attempts before adaption of integrator
+500                         : Automatic Preconditioning iterations
+500                         : Number of successful Metropolis steps for thermalizing
+500                         : Number of total data to be collected
+1                           : Save Phi field every xxx results. (=0: no phi fields are saved)
+1                           : Save State-Descriptor every xxx results. (=0: no State-Descriptors are saved)
+50                          : Determine Eigenvalues every xxx configurations, PREC-phase (0: deactivated)
+0                           : Determine Eigenvalues every xxx configurations, MEASURE-phase (0: deactivated)  
+5                           : Fourier Acceleration type (0: deactivated, 1: Force, 2: mF-boost, 3: Force+mF-boost, 4: Force+boost for low modes, 5: Force+Boost+Max)
+12                          : Fourier Acceleration parameter (e.g. mF, depending on type) 
+0                           : Spherical Higgs-Integration Mode (0: deactivated, 1: activated)
+0.0                         : Zeta-value for Higgs-Integration Mode 
+0                           : Omega Mass Adaption Mode
+10                          : Reversibility check frequency, PREC-phase (0: deactivated)
+30                          : Reversibility check frequency, MEASURE-phase (0: deactivated)
+0                           : Start randseed (0: random start)
+0                           : Multi-Threaded Operation Mode (0: 1 Node, 1: 2 Nodes, 2: 4 Nodes)
+0                           : Number of threads used for each FFTW Transformation
+0                           : Number of threads used for each xFFT Transformation
+2.0                         : Maximal RunTime in hours
+3                           : Log - Level

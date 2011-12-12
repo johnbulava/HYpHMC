@@ -1,0 +1,96 @@
+Higgs-Yukawa Polynomial Hybrid Monte Carlo (HYpHMC) 
+
+A collection of C++ utilities for the investiagtion of the lattice Higgs-Yukawa
+model using Monte-Carlo methods. The bulk of the source code was written by 
+P. Gerhold (arXiv:1002.2569 [hep-lat]) and J. Kallarackal. Changes were made 
+to conform to C++ standards and add the GNU auto-tools framework by J. Bulava. 
+
+1: Obtaining the Code 
+     
+		 We use the GIT revision control system. Before obtaining the package, you 
+install GIT, which is present in basically every package management system, or 
+can be downloaded from http://git-scm.com/. With git installed, do 
+
+     git clone git://github.com/johnbulava/HYpHMC
+
+which will fetch the repository from github. There should now be a 'HYpHMC' 
+directory created where you executed this command. 
+
+
+2: Compiling 
+    
+		 From the 'HYpHMC' directory, you first need to run 
+
+		 aclocal
+		 autoconf 
+		 automake --add-missing 
+
+successfully before proceeding. This will create the (machine-dependent) 
+makefiles on your system. Once this has been completed the standard 
+compilation chain
+
+      ./configure 
+			make 
+			make install 
+
+can be performed. 
+
+3: Running the code 
+
+      The executables are found in the 'mainprogs' directory. To generate 
+scalar field configurations, one must run `pHMC' in a directory that contains 
+the input file `SimulationParameterspHMC.txt'. A sample version of this input 
+file can be found in the `input_files' directory. The directory where pHMC is 
+run must also have a complicated subdirectory structure. This structure can be 
+created with the following commands: 
+
+	mkdir -p dataBase/data/results/pHMC/
+	cd dataBase/data/results/pHMC/
+  mkdir FACC configurations miscellaneous revers analysis measure omegaFields states
+
+Hopefully, this will be fixed in future revisions. The 'pHMC' executable can 
+now be run in the top dir. that contains 'dataBase'. Note: you probably want 
+to make some symbolic link to a central data storage place. 
+
+     Once a simulation has completed and the scalar field configurations have 
+been generated, the 'analyzer' executable must be run in the same directory in
+which 'pHMC' was run, to analyze the data. The input file 
+'AnalyzerToDoList.dat' must be present in this directory. Before running this, 
+create the directories 'data' and 'pics' in this directory, and copy the 
+scripts 'fixbb' and 'makePlot' from the scripts directory. 
+
+     After the analysis has been completed, the measurements can be analyzed 
+using the 'evaluateConfs' executable. This requires the input file 
+'EvaluateConfsToDoList.dat', which is identical to 'AnalyzerToDoList.dat', to
+be created in the directory containing the 'dataBase' directory. 
+
+     Once this has been completed, a latex summary of the results can be 
+obtained by 
+
+    cd dataBase/data/results/pHMC/analysis/subFolder<descriptor> 
+		make 
+  
+4: Adding to the repository. 
+
+   Please don't be afraid to add to the repository! Especially documentation! If you have changed some files (hopefully to add documentation) do 
+
+	 git commit <filename> 
+
+to add these changes to the repository. If you wish to commit all changes, do 
+
+   git commit -a 
+
+If you have created a new file, do 
+   
+	 git add <filename> 
+	
+to add it to the repository. After adding a file, you still need to do a 
+'git commit <filename>' to commit the change. Note: When moving/renaming files,
+'git commit' will delete the old files, but `git add' still must be performed 
+to add the new files. Please do not add machine dependent makefiles 
+(Makefile.in) to the repository. 
+
+If you have made some changes that you wish to be commited to the central 
+repository, please notify me (john.bulava@cern.ch), and I will commit them. 
+
+

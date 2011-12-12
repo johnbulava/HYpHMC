@@ -1,0 +1,33 @@
+test                     : Prefix of filename
+4                           : L0 - Length of edge 0 of 4D-space-time volume
+4                           : L1 - Length of edge 1 of 4D-space-time volume
+4                           : L2 - Length of edge 2 of 4D-space-time volume
+4                           : L3 - Length of edge 3 of 4D-space-time volume
+10                          : N_f Flavour number
+1.0                         : rho
+0.5                         : r
+0.01                       : lambda
+1.0                         : yMin
+1.0                        : yMax
+1                          : yTics
+0.10                       : kappaMin
+0.10                      : kappaMax
+1                          : kappaTics
+1                           : Flag: Calculate Neuberger Determinant with Xi
+0                           : Flag: Calculate Wilson Determinant without Xi
+0                           : Flag: Calculate Neuberger Determinant without Xi
+0                           : Flag: Calculate Wilson Determinant with Xi
+0                           : Flag: Use of xFFT
+0.1                         : Epsilon for molecular dynamics (Initial value)
+1E-3                        : Absolute Precision of Matrix Inversion during propagation
+1E-8                        : Absolute Precision of Matrix Inversion during action evaluation
+2                           : Type of integrator being used (0: Leap-Frog, 1: Omelyan with order 2, 2: Omelyan with order 4) (Initial setting)
+10                          : Iterations between Metropolis steps (Initial value)
+20                          : Measurement attempts before controlling number of iterations
+200                         : Automatic Preconditioning iterations
+800                         : Number of successful Metropolis steps for thermalizing
+10000                       : Number of total collected data to be collected
+0                           : Read/Write State-Descriptor
+1                           : Write Condition-Number
+46                          : Maximal RunTime in hours
+3                           : Log - Level
