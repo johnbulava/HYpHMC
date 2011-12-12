@@ -316,6 +316,7 @@ libhyphmc_a_SOURCES = AnalyzerHiggs.C \
 											PowerPolynomialsOneOverX.C\
 											Propagator.C\
 											Quat.C\
+											SecondOrderBosonicEffectivePotential.C\
 											SimulationParameterSet.C\
 											SSEroutines.C\
 											StateDescriptorReader.C\
