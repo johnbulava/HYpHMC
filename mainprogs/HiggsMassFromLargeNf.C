@@ -29,7 +29,7 @@
 
 #define INTEGRATORACCURACY 1E-10
 
-using namespace std;
+//using namespace std;
 
 struct ParameterType {
   double yt0;
@@ -2275,17 +2275,17 @@ int main(int argc,char **argv) {
 	
 	try {
 	if (argc != 4)
-		throw string("usage: ./<progname> <L> <y> <Lambda>"); 
+		throw std::string("usage: ./<progname> <L> <y> <Lambda>"); 
 
 	if (sscanf(argv[1],"%d",&L)!=1)
-		throw string("couldn't read L");
+		throw std::string("couldn't read L");
 	if (sscanf(argv[2],"%lf",&mt)!=1)
-		throw string("couldn't read y");
+		throw std::string("couldn't read y");
 	if (sscanf(argv[3],"%lf",&cut)!=1)
-		throw string("couldn't read cut");
+		throw std::string("couldn't read cut");
 	} 
-	catch( const string& e) { 
-		cout << "couldn't read input: " << e << endl;
+	catch( const std::string& e) { 
+		std::cout << "couldn't read input: " << e << std::endl;
 		exit(1);
 	}
 

@@ -16,7 +16,7 @@ AM_PROG_AS
 AC_PROG_MAKE_SET
 
 # Checks for libraries.
-AC_CHECK_LIB([arpack], [main],[],AC_MSG_ERROR([Library not Found]))
+AC_CHECK_LIB([arpack], [main],[],AC_CHECK_LIB([arpack_Linux], [main], [], AC_MSG_ERROR([Library not Found])))
 AC_CHECK_LIB([blas], [main],[],AC_MSG_ERROR([Library not Found]))
 AC_CHECK_LIB([cln], [main],[],AC_MSG_ERROR([Library not Found]))
 AC_CHECK_LIB([fftw3], [main],[],AC_MSG_ERROR([Library not Found]))
