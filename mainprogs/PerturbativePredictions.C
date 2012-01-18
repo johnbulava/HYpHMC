@@ -874,40 +874,40 @@ printf("%f %f %f %f %f %f %f %f %f\n", xxx, xxx2, xxx3, xxx4, xxx5, xxx6, xxx7, 
 
   char* fileName = constructFileName(Parameters, "M0Scan");
   startFile(fileName);
-  for (Parameters.m0Sqr=0.115; Parameters.m0Sqr<=0.135; Parameters.m0Sqr+=0.0002) {
+  for (Parameters.m0Sqr=0.115; Parameters.m0Sqr<=0.1154; Parameters.m0Sqr+=0.0002) {
     appendVEVToFile(Parameters, fileName);
   }
   delete[] fileName;
 
   fileName = constructFileName(Parameters, "TopMassScan");
   startFile(fileName);
-  for (Parameters.m0Sqr=0.1246; Parameters.m0Sqr<=0.165; Parameters.m0Sqr+=0.0002) {
+  for (Parameters.m0Sqr=0.1246; Parameters.m0Sqr<=0.1250; Parameters.m0Sqr+=0.0002) {
     appendTopMassToFile(Parameters, fileName, true);
   }
   delete[] fileName;
 
   char* fileNameCorr = constructFileName(Parameters, "FermionCorrelator");
   char* fileNameEffMa = constructFileName(Parameters, "EffectiveMasses");
-//  plotFermionCorrelatorAndEffMasses(Parameters, fileNameCorr, fileNameEffMa, false);
+ plotFermionCorrelatorAndEffMasses(Parameters, fileNameCorr, fileNameEffMa, false);
   delete[] fileNameCorr;
   delete[] fileNameEffMa;
 
   fileNameCorr = constructFileName(Parameters, "FermionCorrelatorRenMode");
   fileNameEffMa = constructFileName(Parameters, "EffectiveMassesRenMode");
-//  plotFermionCorrelatorAndEffMasses(Parameters, fileNameCorr, fileNameEffMa, true);
+  plotFermionCorrelatorAndEffMasses(Parameters, fileNameCorr, fileNameEffMa, true);
   delete[] fileNameCorr;
   delete[] fileNameEffMa;
 
   fileName = constructFileName(Parameters, "SelfEnergyL3Scan");
-//  plotSelfEnergy(Parameters, fileName, 0);
+  plotSelfEnergy(Parameters, fileName, 0);
   delete[] fileName;
 
   fileName = constructFileName(Parameters, "SelfEnergyDiagScan");
-//  plotSelfEnergy(Parameters, fileName, 1);
+  plotSelfEnergy(Parameters, fileName, 1);
   delete[] fileName;
 
   fileName = constructFileName(Parameters, "SelfEnergyCombScan");
-//  plotSelfEnergy(Parameters, fileName, 2);
+  plotSelfEnergy(Parameters, fileName, 2);
   delete[] fileName;
 
 

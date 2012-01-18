@@ -17,7 +17,7 @@
 #include "SecondOrderBosonicEffectivePotential.h"
 
 
-#define USEIMPROVEMENT
+#define USEIMPROVEMENT_NO
 #define USEBOSONICDETERMINANT_NO
 #define BOSONICDETERMINANTPERTORDER 2
 #define BOSONICDETERMINANTM0INDET 1
@@ -27,7 +27,9 @@
 #define INCLUDEZEROMOMENTUM_NO
 #define CALCULATEFERMIONMASSES_NO
 
-#define INTEGRATORACCURACY 1E-5
+#define INTEGRATORACCURACY 1E-10
+
+using namespace std;
 
 struct ParameterType {
   double yt0;
@@ -565,10 +567,12 @@ void calcFermionUContribution(ParameterType p, double &U, double &Uprime, double
             k[3] = 2*pi*i3 / p.L3;
 
             Complex ew = diracOp->analyticalEigenvalue(k);
-	    if ((abs(fac*ew.x-1)>1E-10) || (abs(ew.y)>1E-10)) {
-  	      Complex z = ew / (ComplexUnity - (fac*ew));
+	    //if ((abs(fac*ew.x-1)>1E-14) || (abs(ew.y)>1E-14)) {
+  	     /* 
+				Complex z = ew / (ComplexUnity - (fac*ew));
 	      double nz = z.x*z.x + z.y*z.y;
-	    
+	   
+				//Also disagreement w/ Phillip's thesis here? 
   	      double at = ytSqr*v*v + nz;
 	      double ab = ybSqr*v*v + nz;
 	      U += -2*log(at) -2*log(ab);
@@ -576,7 +580,20 @@ void calcFermionUContribution(ParameterType p, double &U, double &Uprime, double
 	      Uprime += -4*ytSqr*v/at  -4*ybSqr*v/ab;
 	   
 	      Uprimeprime += -4*ytSqr*(nz - ytSqr*v*v) / (at*at)  -4*ybSqr*(nz - ybSqr*v*v) / (ab*ab);
-	    } 
+	   		*/
+				U += calcFermionUContribution_IntegrandU(k[0], k[1], k[2], k[3], 0.0); 
+				Uprime += calcFermionUContribution_IntegrandUprime(k[0], k[1], k[2], k[3], 0.0); 
+				Uprimeprime += calcFermionUContribution_IntegrandUprimeprime(k[0], k[1], k[2], k[3], 0.0); 
+				//Expression from his thesis
+				//Complex tz = (z + p.yt0*v*ComplexUnity)*(ComplexUnity - (fac*ew));
+				//double at2 = tz.x*tz.x + tz.y*tz.y; 
+
+				//std::cout << "at = " << at << std::endl
+				//std::cout << "at2 = " << at2 << std::endl; 
+				//std::cout << "at - 2at2 = " << at - 2*at2 << std::endl<<std::endl; 
+
+			
+		//	} 
    	  }
         }
       }
@@ -1023,6 +1040,7 @@ void calcHiggsMasses(ParameterType p, double &m0Sqr, double &mSqr) {
             - 2*p.lam0*SelfCouplingCorrection
 	    - p.lam6*(lam6prime/v) - p.lam8*(lam8prime/v) - p.lam10*(lam10prime/v);
 
+			//Discrepancy with the factor here. Phillips thesis says 8 rather than 12. 
       mSqr = m0Sqr + 12*(p.lam0-p.lam0*p.lam0*SelfCouplingV4Correction)*v*v 
            + FUprimeprime + 2*p.lam0*SelfCouplingCorrection
 	   + p.lam6*(lam6primeprime) + p.lam8*(lam8primeprime) + p.lam10*(lam10primeprime);
@@ -1873,7 +1891,7 @@ void printParametersToScreen() {
   printf("\n   *** Parameters ***\n");
   printf("LatVol   = %dx%dx%dx%d\n",Parameters.L0, Parameters.L1, Parameters.L2, Parameters.L3);    
   printf("Cutoff   = %1.1f\n",Parameters.CutoffInGev);    
-  printf("mSqr     = %1.5f,   --> m        = %1.2f GeVf\n",mSqr,sqrt(mSqr)*Parameters.CutoffInGev);  
+  printf("mSqr     = %1.5f,   --> m        = %1.2f GeV\n",mSqr,sqrt(mSqr)*Parameters.CutoffInGev);  
   printf("m0Sqr    = %1.5f,   --> kappa    = %1.8f\n",m0Sqr,simPara->getKappaN());
   printf("y        = %1.5f,   --> y        = %1.8f\n",Parameters.yt0, simPara->getYN());
   printf("lambda   = %1.5f,   --> lambda   = %1.8f\n",Parameters.lam0, simPara->getLambdaN());
@@ -1980,7 +1998,7 @@ void calcCoefficientsOfCouplingTermRecursion(int n, int N, int* facLine, int &re
 
 
 void calcCoefficientsOfCouplingTerm(int N) {
-  printf("Calculating coefficients for coupling term Phi^%d...\n",N);
+  //printf("Calculating coefficients for coupling term Phi^%d...\n",N);
   int* facLine = new int[N];
   int* resultStore = new int[2000];
   int resultCount = 0;
@@ -1995,12 +2013,12 @@ void calcCoefficientsOfCouplingTerm(int N) {
     expCode /= 100;
     int expG = expCode % 100;
     
-    printf("  ");
+   /* printf("  ");
     if (expV>0) printf(" v^%d ", expV); else printf("     ");
     if (expH>0) printf(" h^%d ", expH); else printf("     ");
     if (expG>0) printf(" g^%d ", expG); else printf("     ");
     printf(" * %d\n",resultStore[2*I+1]);  
-    
+   */ 
     CouplingTermCoeffcients[N][I][0][0] = expV;      
     CouplingTermCoeffcients[N][I][0][1] = expH;      
     CouplingTermCoeffcients[N][I][0][2] = expG;      
@@ -2251,19 +2269,39 @@ int main(int argc,char **argv) {
   fftw_init_threads();
   fftw_plan_with_nthreads(1); 
 
-  iniTools(5517);
-  Parameters.L0 = 32;
-  Parameters.L1 = 32;
-  Parameters.L2 = 32;
-  Parameters.L3 = 32;
+	int L; 
+	double mt;
+	double cut; 
+	
+	try {
+	if (argc != 4)
+		throw string("usage: ./<progname> <L> <y> <Lambda>"); 
 
-  Parameters.yt0 = 175.0 / Physical_VEV_GeV;
-  Parameters.yb0 = 175.0 / Physical_VEV_GeV;
+	if (sscanf(argv[1],"%d",&L)!=1)
+		throw string("couldn't read L");
+	if (sscanf(argv[2],"%lf",&mt)!=1)
+		throw string("couldn't read y");
+	if (sscanf(argv[3],"%lf",&cut)!=1)
+		throw string("couldn't read cut");
+	} 
+	catch( const string& e) { 
+		cout << "couldn't read input: " << e << endl;
+		exit(1);
+	}
+
+  iniTools(5517);
+  Parameters.L0 = L;
+  Parameters.L1 = L;
+  Parameters.L2 = L;
+  Parameters.L3 = 2*L;
+
+  Parameters.yt0 = mt / Physical_VEV_GeV;
+  Parameters.yb0 = mt / Physical_VEV_GeV;
   Parameters.lam0 = 0.00;//1.84492e-02;//5.90109e-03  ;//1E-3;//-0.012943;//-0.010793   ;//1.000000e-03;//-0.004951642465726;//0.00466
   Parameters.lam6 = 0.00;//-8.29066e-03;//-2.90575e-03  ;//0E-3;//-0.001397;// -0.002700;//0.000316605203278;
   Parameters.lam8 = 0.00;//1.00000e-03;//3.00000e-04  ;//0E-3;//0.000743;// 0.000948;
   Parameters.lam10 = 0.00;
-  Parameters.CutoffInGev = 400; //400.0;
+  Parameters.CutoffInGev = cut; //400.0;
   Parameters.Nf = 1;
   Parameters.rho = 1.0;
   Parameters.r = 0.5; 
