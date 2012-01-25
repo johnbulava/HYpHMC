@@ -1,13 +1,10 @@
 Higgs-Yukawa Polynomial Hybrid Monte Carlo (HYpHMC) 
 
-A collection of C++ utilities for the investiagtion of the lattice Higgs-Yukawa
-model using Monte-Carlo methods. The bulk of the source code was written by 
-P. Gerhold (arXiv:1002.2569 [hep-lat]) and J. Kallarackal. Changes were made 
-to conform to C++ standards and add the GNU auto-tools framework by J. Bulava. 
+    A collection of C++ utilities for the investiagtion of the lattice Higgs-Yukawa model using Monte-Carlo methods. The bulk of the source code was written by P. Gerhold (arXiv:1002.2569 [hep-lat]) and J. Kallarackal. Changes were made to conform to C++ standards and add the GNU auto-tools framework by J. Bulava. 
 
-1: Obtaining the Code 
-     
-		 We use the GIT revision control system. Before obtaining the package, you 
+1: Obtaining the Code
+
+   We use the GIT revision control system. Before obtaining the package, you 
 install GIT, which is present in basically every package management system, or 
 can be downloaded from http://git-scm.com/. With git installed, do 
 
@@ -18,8 +15,8 @@ directory created where you executed this command.
 
 
 2: Compiling 
-    
-		 From the 'HYpHMC' directory, you first need to run 
+
+     From the 'HYpHMC' directory, you first need to run 
 
 		 aclocal
 		 autoconf 
@@ -29,9 +26,9 @@ successfully before proceeding. This will create the (machine-dependent)
 makefiles on your system. Once this has been completed the standard 
 compilation chain
 
-      ./configure 
-			make 
-			make install 
+                  ./configure 
+	          make 
+	          make install 
 
 can be performed. 
 
@@ -46,7 +43,7 @@ created with the following commands:
 
 	mkdir -p dataBase/data/results/pHMC/
 	cd dataBase/data/results/pHMC/
-  mkdir FACC configurations miscellaneous revers analysis measure omegaFields states
+        mkdir FACC configurations miscellaneous revers analysis measure     omegaFields states
 
 Hopefully, this will be fixed in future revisions. The 'pHMC' executable can 
 now be run in the top dir. that contains 'dataBase'. Note: you probably want 
@@ -68,7 +65,7 @@ be created in the directory containing the 'dataBase' directory.
 obtained by 
 
     cd dataBase/data/results/pHMC/analysis/subFolder<descriptor> 
-		make 
+    make 
   
 4: Adding to the repository. 
 
@@ -93,4 +90,7 @@ to add the new files. Please do not add machine dependent makefiles
 If you have made some changes that you wish to be commited to the central 
 repository, please notify me (john.bulava@cern.ch), and I will commit them. 
 
+If you want the latest changes from the central repository do 
+
+        git pull git://github.com/johnbulava/HYpHMC
 

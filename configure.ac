@@ -16,7 +16,7 @@ AM_PROG_AS
 AC_PROG_MAKE_SET
 
 # Checks for libraries.
-AC_CHECK_LIB([arpack], [main],[],AC_CHECK_LIB([arpack_Linux], [main], [], AC_MSG_ERROR([Library not Found])))
+AC_CHECK_LIB([arpack], [main],[],[AC_CHECK_LIB([arpack_Linux],[main], [], AC_MSG_ERROR([Library not Found]))])
 AC_CHECK_LIB([blas], [main],[],AC_MSG_ERROR([Library not Found]))
 AC_CHECK_LIB([cln], [main],[],AC_MSG_ERROR([Library not Found]))
 AC_CHECK_LIB([fftw3], [main],[],AC_MSG_ERROR([Library not Found]))
@@ -24,7 +24,7 @@ AC_CHECK_LIB([fftw3_threads], [main],[],AC_MSG_ERROR([Library not Found]))
 AC_CHECK_LIB([gfortran], [main],[],AC_MSG_ERROR([Library not Found]))
 AC_CHECK_LIB([gomp], [main],[],AC_MSG_ERROR([Library not Found]))
 AC_CHECK_LIB([gslcblas], [main],[],AC_MSG_ERROR([Library not Found]))
-AC_CHECK_LIB([lapack], [main],[],AC_MSG_ERROR([Library not Found]))
+AC_CHECK_LIB([lapack], [main],[],[AC_CHECK_LIB([atlas],[main], [], AC_MSG_ERROR([Library not Found]))])
 AC_CHECK_LIB([m], [main],[],AC_MSG_ERROR([Library not Found]))
 AC_CHECK_LIB([numa], [main],[],AC_MSG_ERROR([Library not Found]))
 AC_CHECK_LIB([pthread], [main],[],AC_MSG_ERROR([Library not Found]))
