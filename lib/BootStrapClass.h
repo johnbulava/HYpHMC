@@ -2,7 +2,7 @@
 #define BootStrapClass_included
 
 #include "Global.h"
-#include "Tools.C"
+#include "Tools.h"
 
 class BootStrapClass {
 private:

@@ -28,7 +28,7 @@ pHMCForce::pHMCForce(FermionMatrixOperations* fOps, bool loc, double tht, int id
   chebyApproxOfInverseSQRTofPolynomial = NULL;
   fastEvalVectors = NULL;
   fastEvalVectorsCount = 0; 
-  
+
   Distributed_Phi = NULL;
   Distributed_dSdPhiDummy = NULL;
   Distributed_dSdPhiSum = NULL;
@@ -37,9 +37,10 @@ pHMCForce::pHMCForce(FermionMatrixOperations* fOps, bool loc, double tht, int id
   Distributed_fastEvalVectors = NULL;
   Distributed_AdditionalAuxVectors = NULL;
   Distributed_VectorCollection = NULL;
-  
+
   quasiHermiteanMode = true;
-  
+  bMatFactorizationMode = false;
+
   iniAdditionalFields();
 }
 
@@ -1570,9 +1571,7 @@ void pHMCForce::setTheta(double tht) {
 
 
 void pHMCForce::plotApproxPoly(int polynomSlot, double eps, double lam, char* filename) {
-	printf("trying to open file\n");
   FILE* file = fopen(filename,"w");
-	printf("opened file\n");
   double p = 0;
   int I2;
   for (I2=0; I2<=1000; I2++) {
@@ -1832,6 +1831,12 @@ void pHMCForce::setQuasiHermiteanMode(bool qHM) {
 }
 
 
+void pHMCForce::setBMatFactorizationMode(bool bMatFac) {
+  bMatFactorizationMode = bMatFac;
+  if (LogLevel>2) printf("B-Matrix Factorization Mode set to %d on force %d on node %d.\n",bMatFactorizationMode,ID,ownNodeID);
+}
+
+
 void pHMCForce::setTuneMode(bool tuneM) {
   tuneMode = tuneM;
   if (LogLevel>2) printf("Tune-Mode set to %d on force %d on node %d.\n",tuneMode,ID,ownNodeID);  
@@ -1878,7 +1883,6 @@ void pHMCForce::setChebyApproxOfInverseSQRTofPolynomial(int polynomSlot) {
   double TOL = pHMCForceDirectOmegaSamplingRelAccuracy;
   chebyApproxOfInverseSQRTofPolynomial[polynomSlot] = new GeneralChebyshevApproximation();
   chebyApproxOfInverseSQRTofPolynomial[polynomSlot]->calcApproximation(&pHMCForce_applyInverseSQRTPolynomial_HelperFunction, 0.0, pHMCForce_applyInverseSQRTPolynomial_HelperFunction_PolyLambda, TOL, 10000);
-	printf("Finished Approximation for poly %d\n", polynomSlot);
 }
 
 

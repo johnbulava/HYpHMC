@@ -1,8 +1,8 @@
 #include "pHMCPropagator.h"
 #include "Tools.h"
 
+
 pHMCPropagator::pHMCPropagator(FermionMatrixOperations* fOps, double lam, double kap, double current, double c6, double c8, double c10, double lam6, double lam8, double lam10, int nf, double gam, bool sphMode, double sphZeta, double tht, int subPolCnt, double* polEps, double* polLam, int* polDeg, int precMCnt, double* precMss, int digit, double alpha, int maxPolDegPerNod, int addAuxVecsCount):Propagator(fOps, lam, kap, current, c6, c8, c10, lam6, lam8, lam10, nf, gam, sphMode, sphZeta) {
-  fileNameIdentifier = NULL;
   if (LogLevel>2) printf("Initializing pHMC-Propagator with lambda = %1.3f, kappa = %1.3f, current = %1.3e, c6 = %1.3e, c8 = %1.3e, c10 = %1.3e, lam6 = %1.3e, lam8 = %1.3e, lam10 = %1.3e, Nf = %d, gamma = %1.3f, SphericalMode = %d, SphericalZeta = %1.3e, theta = %1.3f, SubPolCount = %d, PrecMassCount = %d, Poly.Digit = %d, Poly.Alpha = %1.3f, max.Poly.Deg. Per Node = %d, addAuxVecsCount=%d\n", lam, kap, current, c6, c8, c10, lam6, lam8, lam10, nf, gam, sphMode, sphZeta, tht, subPolCnt, precMCnt, digit, alpha, maxPolDegPerNod, addAuxVecsCount);
   int I,I2;
   for (I=0; I<precMCnt; I++) {
@@ -65,7 +65,8 @@ pHMCPropagator::pHMCPropagator(FermionMatrixOperations* fOps, double lam, double
 
   syncRandom = NaN;
   nodesReady = false;
-  quasiHermiteanMode = true;  
+  quasiHermiteanMode = true;
+  bMatFactorizationMode = false;
   
   setPolyData();
   ini(fOps, lam, kap, current, c6, c8, c10, lam6, lam8, lam10, nf, gam, sphMode, sphZeta);
@@ -94,14 +95,8 @@ pHMCPropagator::~pHMCPropagator() {
   delete[] polyLambda;
   delete[] polyDegree;
   delete[] precMasses;
-  delete[] fileNameIdentifier;
 }
 
-void pHMCPropagator::setFileNameIdentifier(char* identifier) {
-  int n = strlen(identifier)+1;
-  fileNameIdentifier = new char[n];
-  strncpy(fileNameIdentifier, identifier, n);
-}
 
 void pHMCPropagator::iniAdditionalFields() {
 }
@@ -118,7 +113,7 @@ int pHMCPropagator::getFermionForceSubCategoryCount() {
 
 
 int pHMCPropagator::getFermionForceSubCategory(double x) {
-  return roundToInt(fabs(x));
+  return roundToInt(abs(x));
 }
 
 
@@ -128,17 +123,11 @@ void pHMCPropagator::ThreadController(int nr, int mode, int& para_int, double& p
   if (mode == pHMCPropagator_SETPOLYROOTS) {  
     pHMCforces[nr]->setApproxPolyRoots(roundToInt(data[0]), (Complex*) &(data[2]), para_int, para_double, data[1]);
     char* filename = new char[1000];
-		printf ("Printing db dir\n");
-		printf("Db dir = %s\n", DataBaseDirectory);
-		printf("Done Printing it\n");
     snprintf(filename,1000,"%s/data/results/pHMC/miscellaneous/partPolynom_SubPoly%d_Force%d_Node%d.dat",DataBaseDirectory,roundToInt(data[0]),nr,ownNodeID);
-		printf("filename = %s\n", filename);
     pHMCforces[nr]->plotApproxPoly(roundToInt(data[0]), 0, data[1], filename);
     snprintf(filename,1000,"%s/data/results/pHMC/miscellaneous/partPolynom_Roots_SubPoly%d_Force%d_Node%d.dat",DataBaseDirectory,roundToInt(data[0]), nr,ownNodeID);    
-		printf("filename = %s\n", filename);
     pHMCforces[nr]->plotApproxPolyRoots(roundToInt(data[0]), filename);    
     snprintf(filename,1000,"%s/data/results/pHMC/miscellaneous/chebyApproxOfInversePolynomialSQRT_SubPoly%d_Force%d_Node%d.dat",DataBaseDirectory,roundToInt(data[0]), nr,ownNodeID);    
-		printf("filename = %s\n", filename);
     pHMCforces[nr]->plotChebyApproxOfInversePolynomialSQRT(roundToInt(data[0]), 0, data[1], filename);    
     delete[] filename;
   }
@@ -167,7 +156,15 @@ void pHMCPropagator::ThreadController(int nr, int mode, int& para_int, double& p
     quasiHermiteanMode = (bool) para_int;
     if (LogLevel>2) printf("Quasi-Hermitean-Mode set to %d on Propagator on node %d.\n",quasiHermiteanMode,ownNodeID);    
   }
-  
+
+  if (mode == pHMCPropagator_SETBMATFACTORIZATIONMODE) {  
+    for (int I=0; I<forceCount; I++) {    
+      pHMCforces[I]->setBMatFactorizationMode((bool) para_int);
+    }
+    bMatFactorizationMode = (bool) para_int;
+    if (LogLevel>2) printf("BMatrix-Factorization set to %d on Propagator on node %d.\n",bMatFactorizationMode,ownNodeID);
+  }
+
   if (mode == pHMCPropagator_SETTUNEMODE) {  
     for (int I=0; I<forceCount; I++) {    
       pHMCforces[I]->setTuneMode((bool) para_int);
@@ -500,7 +497,13 @@ void pHMCPropagator::threadedExecutePROP(int mode, double eps) {
       para_int[I] = (int) eps;
     }    
   }
-  
+
+  if (mode == pHMCPropagator_SETBMATFACTORIZATIONMODE) {
+    for (I=0; I<nodeCount; I++) {
+      para_int[I] = (int) eps;
+    }    
+  }
+
   if (mode == pHMCPropagator_SETTUNEMODE) {
     for (I=0; I<nodeCount; I++) {
       para_int[I] = (int) eps;
@@ -766,7 +769,7 @@ void pHMCPropagator::threadedExecuteFORCE(int mode, double eps) {
   
   if (mode == pHMCPropagator_CALCOMEGAACTION) {
     for (I=0; I<forceCount; I++) {
-      para_double[I] = roundToInt(fabs(eps));
+      para_double[I] = roundToInt(abs(eps));
       para_int[I] = (int)false;
       if (eps<-1E-9) para_int[I] = (int)true;
     }    
@@ -879,7 +882,7 @@ void pHMCPropagator::threadedExecuteFORCE(int mode, double eps) {
         int VL = fermiOps->getVectorLength();
         double* dSdPhi = (double*) pHMCforces[I]->getdSdPhi();
         MPI_Recv(dSdPhi, VL/2, MPI_DOUBLE, remoteNode, 15, MPI_COMM_WORLD, status);      
-        int polNr = roundToInt(fabs(eps));
+        int polNr = roundToInt(abs(eps));
         pHMCforces[I]->setActOmegaAction(polNr, para_double[I]);
       }
       if (mode == pHMCPropagator_GETAVERAGEPRECSUBPOL0OMEGAFORCESTRENGTH) {
@@ -889,7 +892,7 @@ void pHMCPropagator::threadedExecuteFORCE(int mode, double eps) {
       }  
 
       if (modes[I] == pHMCPropagator_CALCOMEGAACTION) {
-        int polNr = roundToInt(fabs(eps));
+        int polNr = roundToInt(abs(eps));
         pHMCforces[I]->setActOmegaAction(polNr, para_double[I]);
       }
       if (modes[I] == pHMCPropagator_CALCOMEGAMOMENTUMACTION) {
@@ -1076,7 +1079,6 @@ void pHMCPropagator::setNf(int nf) {
     forces[I] = pHMCforces[I];
   }  
   distributeMonomialsToForces();
-	printf ("Exciting setNf");
 }
 
 
@@ -1206,7 +1208,7 @@ void pHMCPropagator::improveRPreconditioningParameters(int thermStepID, int Para
     int eligibleCount = 0;
 
     for (int I=5; I<upperEWboundLogCount; I++) {
-      if ((fabs(upperEWboundLog[I][0]-thermStepID)<150) && (fabs((upperEWboundLog[I][1]-RprecM)/RprecM)<0.15) && (upperEWboundLog[I][0] > 0)) {
+      if ((abs(upperEWboundLog[I][0]-thermStepID)<150) && (abs((upperEWboundLog[I][1]-RprecM)/RprecM)<0.15) && (upperEWboundLog[I][0] > 0)) {
         eligibleCount++;
         double upEW = upperEWboundLog[I][3]/sqr(upperEWboundLog[I][2]);
         if (upEW > largestEW) largestEW = upEW;
@@ -1215,7 +1217,7 @@ void pHMCPropagator::improveRPreconditioningParameters(int thermStepID, int Para
     if (eligibleCount<50) {
       eligibleCount = 0;
       for (int I=5; I<upperEWboundLogCount; I++) {
-        if ((fabs(upperEWboundLog[I][0]-thermStepID)<150) && (upperEWboundLog[I][0] > 0)) {
+        if ((abs(upperEWboundLog[I][0]-thermStepID)<150) && (upperEWboundLog[I][0] > 0)) {
           eligibleCount++;
           double upEW = upperEWboundLog[I][3]/sqr(upperEWboundLog[I][2]);
           if (upEW > largestEW) largestEW = upEW;
@@ -1225,7 +1227,7 @@ void pHMCPropagator::improveRPreconditioningParameters(int thermStepID, int Para
     if (eligibleCount<30) {
       eligibleCount = 0;
       for (int I=5; I<upperEWboundLogCount; I++) {
-        if (fabs(upperEWboundLog[I][0]-thermStepID)<150) {
+        if (abs(upperEWboundLog[I][0]-thermStepID)<150) {
           eligibleCount++;
           double upEW = upperEWboundLog[I][3]/sqr(upperEWboundLog[I][2]);
           if (upEW > largestEW) largestEW = upEW;
@@ -1303,10 +1305,10 @@ void pHMCPropagator::improvePreconditioningParameters(int iterGrob, int iterFein
   }
   
   for (I=0; I<iterFein; I++) {
-/*    m[I] = 0.001 + fabs(bestM + 2*(AdvancedZufall(AdvancedSeed)-0.5)*0.1*avgPhi);
-    s[I] = fabs(bestS + 2*(AdvancedZufall(AdvancedSeed)-0.5)*0.1*avgStagPhi);
+/*    m[I] = 0.001 + abs(bestM + 2*(AdvancedZufall(AdvancedSeed)-0.5)*0.1*avgPhi);
+    s[I] = abs(bestS + 2*(AdvancedZufall(AdvancedSeed)-0.5)*0.1*avgStagPhi);
     randomCount += 2;*/    
-    m[I] = 0.001 + fabs(bestM + 2*(AdvancedZufall(AdvancedSeed)-0.5)*0.1*avgNorm);
+    m[I] = 0.001 + abs(bestM + 2*(AdvancedZufall(AdvancedSeed)-0.5)*0.1*avgNorm);
     s[I] = 0;
     randomCount += 1;
   }
@@ -1384,18 +1386,12 @@ double pHMCPropagator::getSyncSingleRandom() {
 void pHMCPropagator::getNodesReady() {
   int I;
   threadedExecute(pHMCPropagator_SETRANDOMSEED,0);
-	printf("getNodesReady: randomseed set\n");
-  printf("NPol = %d\n", 1+2*subPolyCount);
-	for (I=0; I<1+2*subPolyCount; I++) {
-		printf("i = %d\n",I); 
+  for (I=0; I<1+2*subPolyCount; I++) {
     threadedExecute(pHMCPropagator_SETPOLYROOTS,I);
   }
   threadedExecute(pHMCPropagator_SETPHI,0);
-	printf("getNodesReady: phi set\n");
   threadedExecute(pHMCPropagator_SYNCQPRECDATA, 0);
-	printf("getNodesReady: sync done\n");
   threadedExecute(pHMCPropagator_SYNCRPRECDATA, 0);
-	printf("getNodesReady: done\n");
   nodesReady = true;
 }
 
@@ -1687,15 +1683,9 @@ char* pHMCPropagator::buildForceOmegaFieldSaveFileName(int nr) {
   double y = fermiOps->getYN();
   double rho,r;
   fermiOps->getDiracParameters(rho, r);
-
-  if (fileNameIdentifier == NULL) {
-   snprintf(fileName,1000,"%s/data/results/pHMC/omegaFields/omegaFieldL%dx%dx%dx%dNf%dKap%1.5fLam%1.5fY%1.5fRho%1.3fR%1.3fPolDeg%dPolAl%1.3f_%d.dat",
-      DataBaseDirectory,L0, L1, L2, L3, Nf, kappa, lambda, y, rho, r, polyDegree[0], polyAlpha, nr);
-  }
-  else {
-   snprintf(fileName,1000,"%s/data/results/pHMC/omegaFields/omegaField%s_%d.dat",
-      DataBaseDirectory,fileNameIdentifier, nr);
-  }
+ 
+  snprintf(fileName,1000,"%s/data/results/pHMC/omegaFields/omegaFieldL%dx%dx%dx%dNf%dKap%1.5fLam%1.5fY%1.5fRho%1.3fR%1.3fPolDeg%dPolAl%1.3f_%d.dat",
+   DataBaseDirectory,L0, L1, L2, L3, Nf, kappa, lambda, y, rho, r, polyDegree[0], polyAlpha, nr);	 
    
    return fileName;
 }  
@@ -1713,23 +1703,11 @@ char* pHMCPropagator::buildOmegaForceStrengthSaveFileName(bool PREC) {
   fermiOps->getDiracParameters(rho, r);
  
   if (PREC) {
-    if (fileNameIdentifier == NULL) {
-      snprintf(fileName,1000,"%s/data/results/pHMC/FACC/omegaForceStrengthPRECL%dx%dx%dx%dNf%dKap%1.5fLam%1.5fY%1.5fRho%1.3fR%1.3fPolDeg%dPolAl%1.3f",
-	 DataBaseDirectory,L0, L1, L2, L3, Nf, kappa, lambda, y, rho, r, polyDegree[0], polyAlpha);
-    }
-    else {
-      snprintf(fileName,1000,"%s/data/results/pHMC/FACC/omegaForceStrengthPREC%s",
-	 DataBaseDirectory, fileNameIdentifier);
-    }
+    snprintf(fileName,1000,"%s/data/results/pHMC/FACC/omegaForceStrengthPRECL%dx%dx%dx%dNf%dKap%1.5fLam%1.5fY%1.5fRho%1.3fR%1.3fPolDeg%dPolAl%1.3f",
+     DataBaseDirectory,L0, L1, L2, L3, Nf, kappa, lambda, y, rho, r, polyDegree[0], polyAlpha);	 
   } else {
-    if (fileNameIdentifier == NULL) {
-      snprintf(fileName,1000,"%s/data/results/pHMC/FACC/omegaForceStrengthGLOBALL%dx%dx%dx%dNf%dKap%1.5fLam%1.5fY%1.5fRho%1.3fR%1.3fPolDeg%dPolAl%1.3f",
-	 DataBaseDirectory,L0, L1, L2, L3, Nf, kappa, lambda, y, rho, r, polyDegree[0], polyAlpha);
-    }
-    else {
-      snprintf(fileName,1000,"%s/data/results/pHMC/FACC/omegaForceStrengthGLOBAL%s",
-	 DataBaseDirectory, fileNameIdentifier);
-    }
+    snprintf(fileName,1000,"%s/data/results/pHMC/FACC/omegaForceStrengthGLOBALL%dx%dx%dx%dNf%dKap%1.5fLam%1.5fY%1.5fRho%1.3fR%1.3fPolDeg%dPolAl%1.3f",
+     DataBaseDirectory,L0, L1, L2, L3, Nf, kappa, lambda, y, rho, r, polyDegree[0], polyAlpha);	 
   }
    
   return fileName;
@@ -1923,6 +1901,11 @@ double pHMCPropagator::getExactReweighingFactorFromMMdagInverseSQRTOmegaAction()
   
 void pHMCPropagator::synchronizedChangeOfQuasiHermiteanMode(bool qHM) {
   threadedExecute(pHMCPropagator_SETQUASIHERMITEANMODE, (int) qHM);
+}
+
+
+void pHMCPropagator::synchronizedChangeOfBMatrixFactorizationMode(bool BMatFac) {
+  threadedExecute(pHMCPropagator_SETBMATFACTORIZATIONMODE, (int) BMatFac);
 }
 
 

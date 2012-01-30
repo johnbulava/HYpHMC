@@ -64,20 +64,18 @@
 #define pHMCPropagator_SYNCQPRECDATA 59
 #define pHMCPropagator_SYNCRPRECDATA 60
 #define pHMCPropagator_SETQUASIHERMITEANMODE 61
-#define pHMCPropagator_SETMODELSELECTION 62
-#define pHMCPropagator_SETTUNEMODE 63
+#define pHMCPropagator_SETBMATFACTORIZATIONMODE 62
+#define pHMCPropagator_SETMODELSELECTION 63
+#define pHMCPropagator_SETTUNEMODE 64
 
 
 
 
 class pHMCPropagator: public Propagator  {
 private:
-
-  char* fileNameIdentifier;
-  
   pHMCForce** pHMCforces;
   Complex*** polyRoots;
-  PolynomialApproximation** approxPoly;  
+  PolynomialApproximation** approxPoly;
   
   int subPolyCount;
   double* polyEpsilon;
@@ -92,6 +90,7 @@ private:
   double syncRandom;
   bool nodesReady;
   bool quasiHermiteanMode;
+  bool bMatFactorizationMode;
   int AdditionalAuxVectorsCount;
   int upperEWboundLogCount;
   double** upperEWboundLog;
@@ -121,11 +120,9 @@ private:
   void clearForceStorage();
   void changeOfFACCtype();
 public:
-  
   pHMCPropagator(FermionMatrixOperations* fOps, double lam, double kap, double current, double c6, double c8, double c10, double lam6, double lam8, double lam10, int nf, double gam, bool sphMode, double sphZeta, double tht, int subPolCnt, double* polEps, double* polLam, int* polDeg, int precMCnt, double* precMss, int digit, double alpha, int maxPolDegPerNod, int addAuxVecsCount); 
   ~pHMCPropagator();
 
-  void setFileNameIdentifier(char* identifier);
   void improvePreconditioningParameters(int iterGrob, int iterFein, double testTOL);
   void improveRPreconditioningParameters(int thermStepID, int ParameterAdaptionMode, double PolLambda, double upperEWsafetyFac);  
   double calcTotalAction(double finalTOL);
@@ -157,11 +154,11 @@ public:
   double getExactReweighingFactorFromMMdagInverseSQRTOmegaAction();
   void synchronizedChangeOfQuasiHermiteanMode(bool qHM);
   void synchronizedChangeOfModelSelection(int modelSel);
+  void synchronizedChangeOfBMatrixFactorizationMode(bool BMatFac);
   void synchronizedChangeOfTuneMode(bool tM);
   void saveUpperEWboundLogToDisk(char* fileName);
   void loadUpperEWboundLogFromDisk(char* fileName);
   pHMCForce* getForce(int forceNr);
 };
-
 
 #endif

@@ -70,6 +70,7 @@ protected:
   double* MomentaMasses;
   double* avgOmegaForces;
   bool quasiHermiteanMode;
+  bool bMatFactorizationMode;
   bool tuneMode;
   
   
@@ -132,6 +133,7 @@ public:
   void setNu(int polynomSlot, double n);
   double getNu(int polynomSlot);
   void setQuasiHermiteanMode(bool qHM);
+  void setBMatFactorizationMode(bool bMatFac);
   double getTheta();
   void setTheta(double tht);
   void plotApproxPoly(int polynomSlot, double eps, double lam, char* filename);
@@ -151,6 +153,5 @@ public:
   void calcAverageOmegaForceStrengthPREC(int polynomSlot);  
   double* getAverageOmegaForceStrengthPREC();
 };
-
-
+ 
 #endif
