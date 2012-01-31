@@ -5,7 +5,7 @@
 #include <iostream>
 #include <pthread.h>
 
-#include "Tools.h"
+#include "Tools.C"
 
 
 #define GammaHFac 20
@@ -164,8 +164,10 @@ double fitFunction(double k, double lambdaRenGammaH, double mH) {
     if (delta<0) delta += pi;
   } else if (FitMode==2) {
     lambdaRenGammaH /= GammaHFac;
-    double A = mHSqr*sqr(lambdaRenGammaH) / (mHSqr-2*mGSqr);
-    delta = asin(sqrt(A*(WSqr-2*mGSqr) / (sqr(WSqr-mHSqr) + mHSqr*sqr(lambdaRenGammaH)) ));
+//    double A = mHSqr*sqr(lambdaRenGammaH) / (mHSqr-2*mGSqr);
+    double A = mHSqr*sqr(lambdaRenGammaH) / (mHSqr-4*mGSqr);
+//    delta = asin(sqrt(A*(WSqr-2*mGSqr) / (sqr(WSqr-mHSqr) + mHSqr*sqr(lambdaRenGammaH)) ));
+    delta = asin(sqrt(A*(WSqr-4*mGSqr) / (sqr(WSqr-mHSqr) + mHSqr*sqr(lambdaRenGammaH)) ));
     if (isNaN(delta)) delta = 0.5*pi;
     if (W>mH) delta = pi-delta;
   }
@@ -341,6 +343,14 @@ int main(int argc, char **argv) {
   plotFit(2.0*GammaH, mH, "FitScatteringPhases2Mul2.dat");
   plotFit(3.0*GammaH, mH, "FitScatteringPhases2Mul3.dat");
   plotFit(4.0*GammaH, mH, "FitScatteringPhases2Mul4.dat");
+
+
+  plotFit(GammaH, mH+1*mHError, "FitScatteringPhases2MassPlus1Sigma.dat");  
+  plotFit(GammaH, mH+2*mHError, "FitScatteringPhases2MassPlus2Sigma.dat");  
+  plotFit(GammaH, mH+3*mHError, "FitScatteringPhases2MassPlus3Sigma.dat");  
+  plotFit(GammaH, mH-1*mHError, "FitScatteringPhases2MassMinus1Sigma.dat");  
+  plotFit(GammaH, mH-2*mHError, "FitScatteringPhases2MassMinus2Sigma.dat");  
+  plotFit(GammaH, mH-3*mHError, "FitScatteringPhases2MassMinus3Sigma.dat");  
   
   delete[] fileName;
   delete[] dataX;

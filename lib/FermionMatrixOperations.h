@@ -26,14 +26,14 @@ protected:
   void ini();
   void desini();
 
-  Complex* InputVectorFourierTransform;
-  Complex* InterimVectorFourierTransform;
+  Complex* InputVectorFourierTransform;  
+  Complex* InterimVectorFourierTransform;    
   Complex* Inverse_rest;
   Complex* Inverse_b;
   Complex* Inverse_p;
   Complex* Inverse_s;
-  DistributedMemoryObject* DistributedInputVectorFourierTransform;
-  DistributedMemoryObject* DistributedInterimVectorFourierTransform;
+  DistributedMemoryObject* DistributedInputVectorFourierTransform;  
+  DistributedMemoryObject* DistributedInterimVectorFourierTransform;    
   DistributedMemoryObject* DistributedInverse_rest;
   DistributedMemoryObject* DistributedInverse_b;
   DistributedMemoryObject* DistributedInverse_p;
@@ -43,7 +43,7 @@ protected:
   Complex* OutputVectorDataBase[FFTPlanDBMax];
   bool BackwardForwardDataBase[FFTPlanDBMax];
   int FFTDataBaseCounter;
-
+  
   ExtremeFFT4D* xFFT;
   MultiThreadedOperations* threadedOps;
 
@@ -58,15 +58,15 @@ protected:
   int oneDimSizeL0;
   int oneDimSizeL1;
   int oneDimSizeL2;
-  int oneDimSizeL3;
+  int oneDimSizeL3;  
   int oneDimSizeLargest;
   int timeDirection;
   int vectorLength;
   int vectorLengthXtrSize;
-
+  
   void generateOpApplicationData();
   void generateDistributedOpApplicationData();
-  void setSizeDistributed(int sizeL0, int sizeL1, int sizeL2, int sizeL3);
+  void setSizeDistributed(int sizeL0, int sizeL1, int sizeL2, int sizeL3);  
 
   double Preconditioner_M;
   double Preconditioner_S;
@@ -76,10 +76,10 @@ protected:
   bool QPreconditioner_Usage;
   double RPreconditioner_m;
   double RPreconditioner_f;
-  bool RPreconditioner_Usage;
+  bool RPreconditioner_Usage;  
   bool xFFTusage;
   int xFFT_DistributedFFT_ThreadCount;
-
+  
 public:
   Complex* NeubergerDiracOpApplicationEWData;
   Complex* NeubergerDiracOpApplicationEWDataRescaled;
@@ -88,7 +88,7 @@ public:
   Complex* NeubergerDiracUnityMinusDiracQuasiInverseOpApplicationEWData;
   Complex* NeubergerDiracUnityMinusDiracQuasiInverseOpApplicationEWDataRescaled;
   Complex* NeubergerDiracOpApplicationSinPStdData;
-  Complex* NeubergerDiracOpApplicationSinPDagData;
+  Complex* NeubergerDiracOpApplicationSinPDagData;  
   Complex* NeubergerWithChiStaticFermionInverseOpApplicationMainDiagonalData;
   Complex* NeubergerWithChiStaticFermionInverseOpApplicationSubDiagonalData;
   Complex* NeubergerWithChiStaticMdagMFermionInverseOpApplicationMainDiagonalData;
@@ -101,14 +101,14 @@ public:
   Complex* RPreconditionerDiagonalData;
   Complex* RPreconditionerDiagonalDataNormalized;
   Complex* inverseRPreconditionerDiagonalData;
-  Complex* inverseRPreconditionerDiagonalDataNormalized;
+  Complex* inverseRPreconditionerDiagonalDataNormalized;  
   Complex* RSQRPreconditionerDiagonalData;
   Complex* RSQRPreconditionerDiagonalDataNormalized;
   Complex* inverseRSQRPreconditionerDiagonalData;
   Complex* inverseRSQRPreconditionerDiagonalDataNormalized;
   Complex* halfMomentumForwardFFTfactors;
   Complex* halfMomentumBackwardFFTfactors;
-
+  
 
   long int* Index_PlusPiPiPiPi;
   long int* Index_PlusPiPiPiPiXtrSize;
@@ -121,7 +121,7 @@ public:
   DistributedMemoryObject* Distributed_NeubergerDiracUnityMinusDiracQuasiInverseOpApplicationEWData;
   DistributedMemoryObject* Distributed_NeubergerDiracUnityMinusDiracQuasiInverseOpApplicationEWDataRescaled;
   DistributedMemoryObject* Distributed_NeubergerDiracOpApplicationSinPStdData;
-  DistributedMemoryObject* Distributed_NeubergerDiracOpApplicationSinPDagData;
+  DistributedMemoryObject* Distributed_NeubergerDiracOpApplicationSinPDagData;  
   DistributedMemoryObject* Distributed_NeubergerWithChiStaticFermionInverseOpApplicationMainDiagonalData;
   DistributedMemoryObject* Distributed_NeubergerWithChiStaticFermionInverseOpApplicationSubDiagonalData;
   DistributedMemoryObject* Distributed_NeubergerWithChiStaticMdagMFermionInverseOpApplicationMainDiagonalData;
@@ -134,11 +134,11 @@ public:
   DistributedMemoryObject* Distributed_RPreconditionerDiagonalData;
   DistributedMemoryObject* Distributed_RPreconditionerDiagonalDataNormalized;
   DistributedMemoryObject* Distributed_inverseRPreconditionerDiagonalData;
-  DistributedMemoryObject* Distributed_inverseRPreconditionerDiagonalDataNormalized;
+  DistributedMemoryObject* Distributed_inverseRPreconditionerDiagonalDataNormalized;  
   DistributedMemoryObject* Distributed_RSQRPreconditionerDiagonalData;
   DistributedMemoryObject* Distributed_RSQRPreconditionerDiagonalDataNormalized;
   DistributedMemoryObject* Distributed_inverseRSQRPreconditionerDiagonalData;
-  DistributedMemoryObject* Distributed_inverseRSQRPreconditionerDiagonalDataNormalized;
+  DistributedMemoryObject* Distributed_inverseRSQRPreconditionerDiagonalDataNormalized;  
   DistributedMemoryObject* Distributed_halfMomentumForwardFFTfactors;
   DistributedMemoryObject* Distributed_halfMomentumBackwardFFTfactors;
 
@@ -164,24 +164,24 @@ public:
   void setAntiPeriodicBoundaryConditionsInTime(bool aPerBCinTime);
   double getMassSplitRatio();
   double getExplicitMass();
-  void activateMultiThreadedOps(int OpMode, bool enforceCoreTie);
-  void deactivateMultiThreadedOps();
-  bool isMultiThreadedOpsActivated();
+  void activateMultiThreadedOps(int OpMode, bool enforceCoreTie);  
+  void deactivateMultiThreadedOps();  
+  bool isMultiThreadedOpsActivated();  
   MultiThreadedOperations* getMultiThreadedOps();
-
-
+  
+  
   Complex* createFermionVector();
-  Complex* createFermionVector(int localSize);
+  Complex* createFermionVector(int localSize); 
   void destroyFermionVector(Complex* &v);
   DistributedMemoryObject* createDistributedFermionVector();
-  DistributedMemoryObject* createDistributedUniformLatticeComplexVector(int localSize);
+  DistributedMemoryObject* createDistributedUniformLatticeComplexVector(int localSize); 
   void destroyDistributedComplexVector(DistributedMemoryObject* &v);
   void copyFermionVectorToDistributedFermionVector(Complex* vec, DistributedMemoryObject* memObj);
   void copyDistributedFermionVectorToFermionVector(DistributedMemoryObject* memObj, Complex* vec);
   void copyPhiFieldUniformlyToDistributedPhiField(double* phiField, DistributedMemoryObject* memObj);
   void zeroFermionVector(Complex* v);
   void zeroDistributedFermionVector(DistributedMemoryObject* v);
-
+  
   void planeWaveFermionVector(Complex* v, double p0, double p1, double p2, double p3);
   void fillGaussRandomVector(Complex* v, int count);
 
@@ -205,17 +205,19 @@ public:
   void executeDiracUnityMinusDiracQuasiInverseDaggerMatrixMultiplication(Complex* input, Complex* output, bool inFourierSpace);
   void executeDistributedDiracUnityMinusDiracQuasiInverseDaggerMatrixMultiplication(DistributedMemoryObject* input, DistributedMemoryObject* output, bool inFourierSpace);
   void executeDistributedMultiCombinedOperator_VA1_RorCopy_VAc_RorCopy_D_MatrixMultiplication(DistributedMemoryObject* v1, DistributedMemoryObject* v2, DistributedMemoryObject* v3, DistributedMemoryObject* v4, Complex alpha2, bool Ddag, bool inFourierSpace);
-
+  
   void executeProjectorHatMultiplication(Complex* input, Complex* output, bool projPlus, bool daggered); //OHNE Faktor 0.5
+  void executeProjectorMultiplication(Complex* input, Complex* output, bool projPlus); //OHNE Faktor 0.5
 
-
+  
+  
   void executeFermionMatrixStaticInverseMultiplication(Complex* input, Complex* output, bool dob, bool inFourierSpace);
   void executeQPreconditionerMatrixMultiplication(Complex* input, Complex* output, bool inverse, bool inFourierSpace);
   void executeRPreconditionerMatrixMultiplication(Complex* input, Complex* output, bool dob, bool inverse, bool inFourierSpace);
   void executeDistributedRPreconditionerMatrixMultiplication(DistributedMemoryObject* input, DistributedMemoryObject* output, bool dob, bool inverse, bool inFourierSpace);
 
-
-  double checkLGSsolutionAccuracy(Complex* solution, Complex* result, double* phiField);
+  
+  double checkLGSsolutionAccuracy(Complex* solution, Complex* result, double* phiField);  
   bool solveFermionMatrixLGS(Complex* input, Complex* output, double* phiField, double TOL, bool doubleFermionMatrix, bool quasiHermiteanMode, int maxIter, int& neededIter);
   bool executeFermionMatrixDaggerInverseMatrixMultiplication(Complex* input, Complex* output, double* phiField, double TOL, bool quasiHermiteanMode, int maxIter, int& neededIter);
 
@@ -243,7 +245,7 @@ public:
   void constructNeubergerWithXiFermionMatrix(ComplexMatrix& FermionMatrix, vector4D* phiField);
   void constructNeubergerWithXiFermionMatrix(ComplexMatrix& FermionMatrix, vector4D* phiField, double massSplitF);
   void constructWilsonWithOutXiFermionMatrix(ComplexMatrix& FermionMatrix, vector4D* phiField);
-  void constructNeubergerWithOutXiFermionMatrix(ComplexMatrix& FermionMatrix, vector4D* phiField, double massSplitF);
+  void constructNeubergerWithOutXiFermionMatrix(ComplexMatrix& FermionMatrix, vector4D* phiField, double massSplitF);  
   void constructNeubergerWithOutXiFermionMatrix(ComplexMatrix& FermionMatrix, vector4D* phiField);
   void constructWilsonWithXiFermionMatrix(ComplexMatrix& FermionMatrix, vector4D* phiField);
   void exactFermionMatrixConditionNumber(double* phiField, double &eigMin, double &eigMax, double &invCond, bool doubleM, int probeCount, bool quasiHermiteanMode);
@@ -252,19 +254,19 @@ public:
   int get1DSizeL0();
   int get1DSizeL1();
   int get1DSizeL2();
-  int get1DSizeL3();
-  int get1DSizeLargest();
-  int getTimeDirection();
+  int get1DSizeL3();  
+  int get1DSizeLargest(); 
+  int getTimeDirection(); 
   double getYN();
   void clearTrafoPlans();
   fftw_plan getFFTPlan(Complex* input, Complex* output, bool forw);
   void performFFT(Complex* input, Complex* output, bool forw);
-  void performDistributedFFT(DistributedMemoryObject* input, DistributedMemoryObject* output, bool forw);
+  void performDistributedFFT(DistributedMemoryObject* input, DistributedMemoryObject* output, bool forw);  
   void getPreconditionerParameter(bool& use, double& m, double& s);
-  void getQPreconditionerParameter(bool& use, double& mu, double& beta);
-  void getRPreconditionerParameter(bool& use, double& m, double& f);
+  void getQPreconditionerParameter(bool& use, double& mu, double& beta);  
+  void getRPreconditionerParameter(bool& use, double& m, double& f);    
   void printPreconditionerParameter();
-  void transformToXtraSizeArray(Complex* input, Complex* output);
+  void transformToXtraSizeArray(Complex* input, Complex* output);  
   void transformFromXtraSizeArray(Complex* input, Complex* output);
   void setxFFTusage(bool xFFTu);
   bool getxFFTusage();
@@ -274,10 +276,10 @@ public:
   void tuneDistributedFFT(DistributedMemoryObject* input, DistributedMemoryObject* output, int tuneLevel);
   void tuneDistributedFFT(DistributedMemoryObject* input, DistributedMemoryObject* output, int tuneLevel, char* &fftPlanDescriptor);
   bool setDistributedFFTPlan(char* fftPlanDescriptor);
-
-
-  void testFourierTrafo(bool forw);
-  void testDistributedFourierTrafo(bool forw);
+  
+  
+  void testFourierTrafo(bool forw);  
+  void testDistributedFourierTrafo(bool forw);  
   Complex* calcFermionMatrixARPACKEigenValues(int what, int nev,  double* phiField, double TOL, bool doubleFermionMatrix, Complex** rightEigenVectors, bool quasiHermiteanMode, bool inFourierSpace);
 };
 

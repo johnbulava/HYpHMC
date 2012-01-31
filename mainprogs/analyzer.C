@@ -9,7 +9,7 @@
 
 
 #include "Global.h"
-#include "Tools.h"
+#include "Tools.C"
 #include "FermionMatrixOperations.h"
 #include "AnalyzerIOControl.h"
 #include "StateDescriptorReader.h"
@@ -59,7 +59,15 @@
 #include "AnalyzerObservableMultipleTimeScaleIntegration3.h"
 #include "AnalyzerObservableMultipleTimeScaleIntegration4.h"
 #include "AnalyzerObservableMultipleTimeScaleIntegrationTest.h"
-
+#include "AnalyzerObservableHiggsTopBarTopChiralLeftHandedVertexGauged.h"
+#include "AnalyzerObservableScalarCondensate.h"
+#include "AnalyzerObservableTopBarTopChiralLeftHandedCondensateStochasticSourceGauged.h"
+#include "AnalyzerObservableTopBarTopChiralLeftHandedCondensatePointSourceGauged.h"
+#include "AnalyzerObservableTopBarTopChiralLeftHandedCondensatePointSource.h"
+#include "AnalyzerObservableTopBarTopChiralLeftHandedCondensateStochasticSource.h"
+#include "AnalyzerObservableFermionMatrixSingleMFullNoXiSpectrumNoPreconditioning.h"
+#include "AnalyzerObservableTopBarTopChiralLeftHandedPropagator.h"
+#include "AnalyzerObservablePsiBarPhiPsiChiralLeftHandedCondensate.h"
 
 
 //Variables
@@ -149,6 +157,7 @@ void loadCommandLineParameters(int argc,char **argv) {
   
 #ifdef UseMPI
   Parameter_Job_ID = 1000*Parameter_Job_ID + ownNodeID;
+  if (Parameter_Job_ID<0) Parameter_Job_ID = -Parameter_Job_ID;
   Parameter_SD_Selector = nodeCount*Parameter_SD_Selector + ownNodeID;
 
   if (LogLevel>1) printf("Rescaled Parameters for Parallel-Mode: \n");
@@ -212,7 +221,7 @@ void loadDataFromAnalyzerToDoList() {
 
 
 void iniAnalyzerObs() {
-  analyzerObsCount = 44;
+  analyzerObsCount = 53;
   analyzerObs = new AnalyzerObservable*[analyzerObsCount];
   analyzerObs[0] = new AnalyzerObservableDetSign(fermiOps, ioControl, SDReader); 
   analyzerObs[1] = new AnalyzerObservableWeight(fermiOps, ioControl, SDReader);
@@ -258,6 +267,15 @@ void iniAnalyzerObs() {
   analyzerObs[41] = new AnalyzerObservableMultipleTimeScaleIntegration3(fermiOps, ioControl, SDReader); 
   analyzerObs[42] = new AnalyzerObservableMultipleTimeScaleIntegration4(fermiOps, ioControl, SDReader); 
   analyzerObs[43] = new AnalyzerObservableMultipleTimeScaleIntegrationTest(fermiOps, ioControl, SDReader); 
+  analyzerObs[44] = new AnalyzerObservableTopBarTopChiralLeftHandedPropagator(fermiOps, ioControl, SDReader);
+  analyzerObs[45] = new AnalyzerObservableScalarCondensate(fermiOps, ioControl, SDReader);
+  analyzerObs[46] = new AnalyzerObservableTopBarTopChiralLeftHandedCondensateStochasticSourceGauged(fermiOps, ioControl, SDReader);
+  analyzerObs[47] = new AnalyzerObservableTopBarTopChiralLeftHandedCondensatePointSourceGauged(fermiOps, ioControl, SDReader);
+  analyzerObs[48] = new AnalyzerObservableTopBarTopChiralLeftHandedCondensatePointSource(fermiOps, ioControl, SDReader);
+  analyzerObs[49] = new AnalyzerObservableTopBarTopChiralLeftHandedCondensateStochasticSource(fermiOps, ioControl, SDReader);
+  analyzerObs[50] = new AnalyzerObservableFermionMatrixSingleMFullNoXiSpectrumNoPreconditioning(fermiOps, ioControl, SDReader);
+  analyzerObs[51] = new AnalyzerObservableHiggsTopBarTopChiralLeftHandedVertexGauged(fermiOps, ioControl, SDReader);
+  analyzerObs[52] = new AnalyzerObservablePsiBarPhiPsiChiralLeftHandedCondensate(fermiOps, ioControl, SDReader);
 }
 
 
@@ -334,17 +352,13 @@ int main(int argc,char **argv) {
   fftw_init_threads();
   fftw_plan_with_nthreads(1);  
 
-	printf("ini done\n");
   loadCommandLineParameters(argc,argv);
-	printf("loaded command line params\n");
   loadDataFromAnalyzerToDoList();
-	printf("loaded data from analyzer\n");
 
   iniTools(537*Parameter_Job_ID);
   startTimer();
   if (Parameter_Job_ID>0) randomDelay(1000);
-	 
-	
+  
   SDReader = new StateDescriptorReader(Parameter_SD_FileName); 
   int threadCountPerNode = 1;
   int ParaOpMode = 0;
@@ -358,18 +372,18 @@ int main(int argc,char **argv) {
   delete[] fileNameExtension;
   fermiOps = new FermionMatrixOperations(SDReader->getL0(), SDReader->getL1(), SDReader->getL2(), SDReader->getL3(), SDReader->getRho(), SDReader->getR(), SDReader->getYN());  
   fermiOps->setMassSplitRatio(SDReader->getMassSplit());
-  
+  fermiOps->setAntiPeriodicBoundaryConditionsInTime(SDReader->useAntiPeriodicBoundaryConditionsInTimeDirection());
+
   iniAnalyzerObs();
   iniAuxVecs();
   createFolders();
-  ioControl->removeDeprecatedInProgressFiles(24.0);
+  ioControl->removeDeprecatedInProgressFiles(48.0);
 
   if (LogLevel>2) printf("\nEntering main Analyzer-Loop.\n");
   int confID = -1;
   while (((confID=getNextConfIDforAnalysis())>=0) && (timePassed()<3600*Parameter_MaxRunTime)) {
     ioControl->markAsInProgress(confID);
     bool keepMarked = false;
-    printf("\033[31mSTARTING WITH CONF ID=%d\033[0m\n", confID);
     char* confFileName = ioControl->getPhiConfFileName(confID);
     AnalyzerPhiFieldConfiguration* phiFieldConf = new AnalyzerPhiFieldConfiguration(confFileName, fermiOps); 
     delete[] confFileName;

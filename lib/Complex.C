@@ -6,7 +6,7 @@ Complex ComplexUnity;
 Complex ComplexZero;
 
 
-Complex::Complex() { }
+//Complex::Complex() { }
 
 
 Complex::Complex(double r, double i) {
@@ -15,7 +15,7 @@ Complex::Complex(double r, double i) {
 }
 
 
-Complex::~Complex() { }
+//Complex::~Complex() { }
 
 
 void Complex::setValues(double r, double i) {

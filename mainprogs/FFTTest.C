@@ -9,9 +9,9 @@
 #include "Complex.h"
 #include "ComplexVector.h"
 #include "ExtremeFFT4D.h"
-#include "Tools.C"
+#include "Tools.h"
 #include "xSSE.h"
-#include "SSEroutines.C"
+#include "SSEroutines.h"
 #include "MultiThreadedOperations.h"
 
 

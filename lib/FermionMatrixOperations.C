@@ -2073,6 +2073,20 @@ void FermionMatrixOperations::executeProjectorHatMultiplication(Complex* input, 
 }
 
 
+//Berechne Projector P_\pm angewendet auf input  ==> OHNE Faktor 0.5
+void FermionMatrixOperations::executeProjectorMultiplication(Complex* input, Complex* output, bool projPlus) {
+  Complex alphaPsign(-1, 0);
+  if (projPlus) alphaPsign.x = 1;
+
+  executeGamma5(input, Inverse_p);
+
+  if (input != output) {
+    SSE_ZCopy(vectorLengthXtrSize, input, 1, output, 1);
+  }
+  SSE_ComplexVectorAddition(oneDimSizeL0, oneDimSizeL1, oneDimSizeL2, oneDimSizeL3, xtraSize1, xtraSize2, xtraSize3, alphaPsign, Inverse_p, output);
+}
+
+
 void FermionMatrixOperations::executeDiracMatrixMultiplication(Complex* input, Complex* output, bool inFourierSpace) {
   Complex* source;
   Complex* target;

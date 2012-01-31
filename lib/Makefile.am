@@ -12,7 +12,8 @@ nobase_include_HEADERS = AnalyzerHiggs.h AnalyzerIOControl.h \
                          AnalyzerObservableFermionMatrixConditionNumberQHMPreconditioning.h \
                          AnalyzerObservableFermionMatrixSingleMConditionNumberNoPreconditioning.h \
                          AnalyzerObservableFermionMatrixSingleMConditionNumberPPreconditioning.h\
-                         AnalyzerObservableFermionMatrixSingleMFullRanSpectrumNoPreconditioning.h\
+                         AnalyzerObservableFermionMatrixSingleMFullNoXiSpectrumNoPreconditioning.h\
+												 AnalyzerObservableFermionMatrixSingleMFullRanSpectrumNoPreconditioning.h\
                          AnalyzerObservableFermionMatrixSingleMFullSpectrumNoPreconditioning.h\
                          AnalyzerObservableFermionMatrixSingleMLowHighSpectrumNoPreconditioning.h\
 												 AnalyzerObservableFermionMatrixSingleMLowHighSpectrumPPreconditioning.h\
@@ -28,6 +29,7 @@ nobase_include_HEADERS = AnalyzerHiggs.h AnalyzerIOControl.h \
 												 AnalyzerObservableHiggsGoldstoneUnrotatedTwoParticleK0Correlator.h\
 												 AnalyzerObservableHiggsPropagator.h\
 												 AnalyzerObservableHiggsRenormalizedQuarticCoupling.h\
+												 AnalyzerObservableHiggsTopBarTopChiralLeftHandedVertexGauged.h\
 												 AnalyzerObservableMagnetizations.h\
 												 AnalyzerObservableMultipleTimeScaleIntegration2.h\
 												 AnalyzerObservableMultipleTimeScaleIntegration3.h\
@@ -54,6 +56,18 @@ nobase_include_HEADERS = AnalyzerHiggs.h AnalyzerIOControl.h \
 												 AnalyzerObservableWeight.h\
 												 AnalyzerPhiFieldConfiguration.h\
 												 AnalyzerTop.h\
+												 AnalyzerObservablePsiBarPhiPsiChiralLeftHandedCondensate.h\
+												 AnalyzerObservablePsiBarPhiPsiCondensateBase.h\
+												 AnalyzerObservablePsiBarPsiCondensateBase.h\
+												 AnalyzerObservablePsiBarPsiPropagatorBase.h\
+												 AnalyzerObservableScalarCondensate.h\
+												 AnalyzerObservableScalarPsiBarPsiVertexBase.h\
+												 AnalyzerObservableTopBarTopChiralLeftHandedCondensatePointSource.h\
+												 AnalyzerObservableTopBarTopChiralLeftHandedCondensatePointSourceGauged.h\
+												 AnalyzerObservableTopBarTopChiralLeftHandedCondensateStochasticSource.h\
+                         AnalyzerObservableTopBarTopChiralLeftHandedCondensateStochasticSourceGauged.h\
+                         AnalyzerObservableTopBarTopChiralLeftHandedCorr.h\
+												 AnalyzerObservableTopBarTopChiralLeftHandedPropagator.h\
 												 AutoCorrelation.h\
 												 BootStrapClass.h\
 												 CacheSimulator.h\
@@ -117,6 +131,18 @@ nobase_include_HEADERS = AnalyzerHiggs.h AnalyzerIOControl.h \
 												 EvaluateObservableTwoFermionPsiBarPsiChiralLeftHandedCorrRandomGauged.h\
 												 EvaluateObservableTwoGoldstoneCorrelator.h\
 												 EvaluateObservableWeight.h\
+												 EvaluateObservableFermionMatrixSingleMFullNoXiSpectrumNoPreconditioning.h\
+												 EvaluateObservableHiggsTopBarTopChiralLeftHandedVertexGauged.h\
+												 EvaluateObservablePsiBarPhiPsiChiralLeftHandedCondensate.h\
+												 EvaluateObservablePsiBarPsiCondensateBase.h\
+												 EvaluateObservablePsiBarPsiPropagatorBase.h\
+												 EvaluateObservableScalarCondensate.h\
+												 EvaluateObservableScalarPsiBarPsiVertexBase.h\
+												 EvaluateObservableTopBarTopChiralLeftHandedCondensatePointSource.h\
+												 EvaluateObservableTopBarTopChiralLeftHandedCondensatePointSourceGauged.h\
+												 EvaluateObservableTopBarTopChiralLeftHandedCondensateStochasticSource.h\
+												 EvaluateObservableTopBarTopChiralLeftHandedCondensateStochasticSourceGauged.h\
+												 EvaluateObservableTopBarTopPropagatorChiralLeftHandedGauged.h\
 												 ExtremeFFT4D_FFTstep_DoFirstSecondAndThird1DD1FFTStepBase2.h\
                          ExtremeFFT4D_FFTstep_DoTwo2DFFTStepsBase2.h\
                          ExtremeFFT4D_FFTstep.h\
@@ -223,6 +249,20 @@ libhyphmc_a_SOURCES = AnalyzerHiggs.C \
 											AnalyzerObservableTwoGoldstoneCorrelator.C\
 											AnalyzerObservableWeight.C\
 											AnalyzerPhiFieldConfiguration.C\
+											AnalyzerObservableFermionMatrixSingleMFullNoXiSpectrumNoPreconditioning.C\
+											AnalyzerObservableHiggsTopBarTopChiralLeftHandedVertexGauged.C\
+											AnalyzerObservablePsiBarPhiPsiChiralLeftHandedCondensate.C\
+											AnalyzerObservablePsiBarPhiPsiCondensateBase.C\
+											AnalyzerObservablePsiBarPsiCondensateBase.C\
+											AnalyzerObservablePsiBarPsiPropagatorBase.C\
+											AnalyzerObservableScalarCondensate.C\
+											AnalyzerObservableScalarPsiBarPsiVertexBase.C\
+											AnalyzerObservableTopBarTopChiralLeftHandedCondensatePointSource.C\
+											AnalyzerObservableTopBarTopChiralLeftHandedCondensatePointSourceGauged.C\
+											AnalyzerObservableTopBarTopChiralLeftHandedCondensateStochasticSource.C\
+											AnalyzerObservableTopBarTopChiralLeftHandedCondensateStochasticSourceGauged.C\
+											AnalyzerObservableTopBarTopChiralLeftHandedCorr.C\
+											AnalyzerObservableTopBarTopChiralLeftHandedPropagator.C\
 											AnalyzerTop.C\
 											AutoCorrelation.C\
                       CacheSimulator.C\
@@ -286,6 +326,18 @@ libhyphmc_a_SOURCES = AnalyzerHiggs.C \
 											EvaluateObservableTwoFermionPsiBarPsiChiralLeftHandedCorrRandomGauged.C\
 											EvaluateObservableTwoGoldstoneCorrelator.C\
 											EvaluateObservableWeight.C\
+											EvaluateObservableFermionMatrixSingleMFullNoXiSpectrumNoPreconditioning.C\
+											EvaluateObservableHiggsTopBarTopChiralLeftHandedVertexGauged.C\
+											EvaluateObservablePsiBarPhiPsiChiralLeftHandedCondensate.C\
+											EvaluateObservablePsiBarPsiCondensateBase.C\
+											EvaluateObservablePsiBarPsiPropagatorBase.C\
+											EvaluateObservableScalarCondensate.C\
+											EvaluateObservableScalarPsiBarPsiVertexBase.C\
+											EvaluateObservableTopBarTopChiralLeftHandedCondensatePointSource.C\
+											EvaluateObservableTopBarTopChiralLeftHandedCondensatePointSourceGauged.C\
+											EvaluateObservableTopBarTopChiralLeftHandedCondensateStochasticSource.C\
+											EvaluateObservableTopBarTopChiralLeftHandedCondensateStochasticSourceGauged.C\
+											EvaluateObservableTopBarTopPropagatorChiralLeftHandedGauged.C\
 											ExtremeFFT4D.C \
 											ExtremeFFT4D_FFTstep.C\
 											ExtremeFFT4D_FFTstep_DoFirstSecondAndThird1DD1FFTStepBase2.C\

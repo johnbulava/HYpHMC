@@ -33,4 +33,8 @@ public:
    
 };
 
+ComplexVector operator * (double A, ComplexVector B);
+ComplexVector operator * (Complex A, ComplexVector B);
+
+
 #endif

@@ -33,6 +33,90 @@ DiracMatrix::DiracMatrix(int N) : ComplexMatrix(N) {
 }
 
 
+/*void DiracMatrix::constructOperator() {
+  int I0,I1,I2,I3,s0,s1,s2,s3,z0,z1,z2,z3;
+  vector4D p;
+  Complex nup, num;
+  ComplexVector v[4];
+  ComplexMatrix dummy(4);
+  double expNorm;
+  int posS, posZ, C;
+  double scalar;
+
+  v[0].resize(4);
+  v[1].resize(4);
+  v[2].resize(4);
+  v[3].resize(4);
+  
+  expNorm = OneDimLatticeSizeL0*OneDimLatticeSizeL1*OneDimLatticeSizeL2*OneDimLatticeSizeL3;
+
+  for (I0=0; I0<OneDimLatticeSizeL0; I0++) {
+    p[0] = 2*I0*pi/OneDimLatticeSizeL0;
+
+//p[0]+= pi/OneDimLatticeSizeL0;
+
+    for (I1=0; I1<OneDimLatticeSizeL1; I1++) {
+      p[1] = 2*I1*pi/OneDimLatticeSizeL1;
+//p[1]+= pi/OneDimLatticeSizeL1;
+      for (I2=0; I2<OneDimLatticeSizeL2; I2++) {
+        p[2] = 2*I2*pi/OneDimLatticeSizeL2;
+//p[2]+= pi/OneDimLatticeSizeL2;
+        for (I3=0; I3<OneDimLatticeSizeL3; I3++) {
+          p[3] = 2*I3*pi/OneDimLatticeSizeL3;
+p[3]+= pi/OneDimLatticeSizeL3;
+
+          nup = analyticalEigenvalue(p);
+          num = adj(nup);
+          analyticalEigenvectors(p,v);
+
+          ComplexMatrix proj = nup*ComplexMatrix(v[0]);
+          proj = (nup*ComplexMatrix(v[1])) + proj;
+          proj = (num*ComplexMatrix(v[2])) + proj;
+          proj = (num*ComplexMatrix(v[3])) + proj;
+
+
+
+            posZ = 0;
+            for (z0=0; z0<OneDimLatticeSizeL0; z0++) {
+              for (z1=0; z1<OneDimLatticeSizeL1; z1++) {
+                for (z2=0; z2<OneDimLatticeSizeL2; z2++) {
+                  for (z3=0; z3<OneDimLatticeSizeL3; z3++) {
+                    posS = 0;
+                    for (s0=0; s0<OneDimLatticeSizeL0; s0++) {
+                      for (s1=0; s1<OneDimLatticeSizeL1; s1++) {
+                        for (s2=0; s2<OneDimLatticeSizeL2; s2++) {
+                          for (s3=0; s3<OneDimLatticeSizeL3; s3++) {
+                        
+                            scalar  = p[0]*(z0-s0);
+                            scalar += p[1]*(z1-s1);
+                            scalar += p[2]*(z2-s2);
+                            scalar += p[3]*(z3-s3);
+          
+                            dummy = (exp(scalar*ComplexI)/expNorm) * proj;
+
+                            for (C = 0; C<NestedCopies; C++) {
+                                addMatrix(dummy,posZ,posS);
+                                posS += 4;
+                                posZ += 4; 
+                            }
+                            posZ -= NestedCopies*4;
+                          } 
+                        }
+                      }
+                    }
+                    posZ += NestedCopies*4;
+
+                  }
+                }
+              }
+            }
+        }
+      }
+    }
+  }  
+}*/
+
+
 void DiracMatrix::constructOperator() {
   int I0,I1,I2,I3,s0,s1,s2,s3,z0,z1,z2,z3,phaseInt;
   vector4D p;
@@ -146,7 +230,7 @@ void DiracMatrix::analyticalEigenvectors(vector4D p, ComplexVector v[4]) {
         v[count].vectorElements[1] = xi.vectorElements[1] / root2;
         v[count].vectorElements[2] = I2*dummy.vectorElements[0] / (root2*pThetaBARNorm);
         v[count].vectorElements[3] = I2*dummy.vectorElements[1] / (root2*pThetaBARNorm);
-		  count++;
+        count++;
       } 
     }
   } else {

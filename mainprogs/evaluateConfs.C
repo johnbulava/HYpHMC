@@ -57,6 +57,16 @@
 #include "EvaluateObservableMultipleTimeScaleIntegration3.h"
 #include "EvaluateObservableMultipleTimeScaleIntegration4.h"
 #include "EvaluateObservableMultipleTimeScaleIntegrationTest.h"
+#include "EvaluateObservableHiggsTopBarTopChiralLeftHandedVertexGauged.h"
+#include "EvaluateObservableScalarCondensate.h"
+#include "EvaluateObservableTopBarTopChiralLeftHandedCondensateStochasticSourceGauged.h"
+#include "EvaluateObservableTopBarTopChiralLeftHandedCondensatePointSourceGauged.h"
+#include "EvaluateObservableTopBarTopChiralLeftHandedCondensatePointSource.h"
+#include "EvaluateObservableTopBarTopChiralLeftHandedCondensateStochasticSource.h"
+#include "EvaluateObservableFermionMatrixSingleMFullNoXiSpectrumNoPreconditioning.h"
+#include "EvaluateObservableTopBarTopPropagatorChiralLeftHandedGauged.h"
+#include "EvaluateObservablePsiBarPhiPsiChiralLeftHandedCondensate.h"
+
 
 
 
@@ -203,7 +213,7 @@ void ini() {
 
 
 void iniEvaluateObs() {
-  evaluateObsCount = 44;
+  evaluateObsCount = 53;
   EvaluateObservable* evalWeight = NULL;
   EvaluateObservable* evalDetSign = NULL;  
   evaluateObs = new EvaluateObservable*[evaluateObsCount];
@@ -261,6 +271,15 @@ void iniEvaluateObs() {
   evaluateObs[41] = new EvaluateObservableMultipleTimeScaleIntegration3(ioControl, SDReader, evalWeight, evalDetSign, Parameter_EvalRelativeStartPosition, Parameter_EvalRelativeEndPosition);   
   evaluateObs[42] = new EvaluateObservableMultipleTimeScaleIntegration4(ioControl, SDReader, evalWeight, evalDetSign, Parameter_EvalRelativeStartPosition, Parameter_EvalRelativeEndPosition);   
   evaluateObs[43] = new EvaluateObservableMultipleTimeScaleIntegrationTest(ioControl, SDReader, evalWeight, evalDetSign, Parameter_EvalRelativeStartPosition, Parameter_EvalRelativeEndPosition);   
+  evaluateObs[44] = new EvaluateObservableTopBarTopPropagatorChiralLeftHandedGauged(ioControl, SDReader, evalWeight, evalDetSign, Parameter_EvalRelativeStartPosition, Parameter_EvalRelativeEndPosition);
+  evaluateObs[45] = new EvaluateObservableScalarCondensate(ioControl, SDReader, evalWeight, evalDetSign, Parameter_EvalRelativeStartPosition, Parameter_EvalRelativeEndPosition);
+  evaluateObs[46] = new EvaluateObservableTopBarTopChiralLeftHandedCondensateStochasticSourceGauged(ioControl, SDReader, evalWeight, evalDetSign, Parameter_EvalRelativeStartPosition, Parameter_EvalRelativeEndPosition);
+  evaluateObs[47] = new EvaluateObservableTopBarTopChiralLeftHandedCondensatePointSourceGauged(ioControl, SDReader, evalWeight, evalDetSign, Parameter_EvalRelativeStartPosition, Parameter_EvalRelativeEndPosition);
+  evaluateObs[48] = new EvaluateObservableTopBarTopChiralLeftHandedCondensatePointSource(ioControl, SDReader, evalWeight, evalDetSign, Parameter_EvalRelativeStartPosition, Parameter_EvalRelativeEndPosition);
+  evaluateObs[49] = new EvaluateObservableTopBarTopChiralLeftHandedCondensateStochasticSource(ioControl, SDReader, evalWeight, evalDetSign, Parameter_EvalRelativeStartPosition, Parameter_EvalRelativeEndPosition);
+  evaluateObs[50] = new EvaluateObservableFermionMatrixSingleMFullNoXiSpectrumNoPreconditioning(ioControl, SDReader, evalWeight, evalDetSign, Parameter_EvalRelativeStartPosition, Parameter_EvalRelativeEndPosition);
+  evaluateObs[51] = new EvaluateObservableHiggsTopBarTopChiralLeftHandedVertexGauged(ioControl, SDReader, evalWeight, evalDetSign, Parameter_EvalRelativeStartPosition, Parameter_EvalRelativeEndPosition);
+  evaluateObs[52] = new EvaluateObservablePsiBarPhiPsiChiralLeftHandedCondensate(ioControl, SDReader, evalWeight, evalDetSign, Parameter_EvalRelativeStartPosition, Parameter_EvalRelativeEndPosition);
 
     
   for (int I=0; I<evaluateObsCount; I++) {
@@ -504,7 +523,9 @@ void composeGeneralSummaryInfo() {
   addXML_And_LatexSummaryInfoTableLine("ModExtLam6", "Model Extension Parameter Lambda6","", SDReader->getModelParameterLambda6(), 0, NULL, "%1.6f");
   addXML_And_LatexSummaryInfoTableLine("ModExtLam8", "Model Extension Parameter Lambda8","", SDReader->getModelParameterLambda8(), 0, NULL, "%1.6f");
   addXML_And_LatexSummaryInfoTableLine("ModExtLam10", "Model Extension Parameter Lambda10","", SDReader->getModelParameterLambda10(), 0, NULL, "%1.6f");
-  
+ 
+  addXML_And_LatexSummaryInfoTableLine("AntiPeriodicT", "Anti-Periodic Boundary Conditions in time","", SDReader->useAntiPeriodicBoundaryConditionsInTimeDirection(), 0, NULL, "%1.0f");
+
   latexSummary->addDirectTextBeforeIncludes("\\end{tabular}\n");
   latexSummary->addDirectTextBeforeIncludes("\\end{center}\n");
  

@@ -354,19 +354,13 @@ void loadParameters(int MultiProcessNr, bool ll) {
 
   if (fscanf(file,"%d",&Parameter_FLAG_FactorizationOfMatrixB)==1) {
     if (LogLevel>0) printf(" -> FLAG: Parameter_FLAG_FactorizationOfMatrixB: %d\n",Parameter_FLAG_FactorizationOfMatrixB);
-  } else {
-		Parameter_FLAG_FactorizationOfMatrixB = 0; 
-		if (LogLevel>0) printf(" -> FLAG: Parameter_FLAG_FactorizationOfMatrixB: %d\n",Parameter_FLAG_FactorizationOfMatrixB);
-	}
+  } else error = true; 
 		
   fgets(Comment, 500, file);
 
   if (fscanf(file,"%d",&Parameter_FLAG_AntiPeriodicBoundaryConditionsInTime)==1) {
     if (LogLevel>0) printf(" -> FLAG: Parameter_FLAG_AntiPeriodicBoundaryConditionsInTime: %d\n",Parameter_FLAG_AntiPeriodicBoundaryConditionsInTime);
-  } else {
-		Parameter_FLAG_AntiPeriodicBoundaryConditionsInTime = 0;
-		if (LogLevel>0) printf(" -> FLAG: Parameter_FLAG_AntiPeriodicBoundaryConditionsInTime: %d\n",Parameter_FLAG_AntiPeriodicBoundaryConditionsInTime);
-	}
+  } else error = true;  
 
   fgets(Comment, 500, file);
 

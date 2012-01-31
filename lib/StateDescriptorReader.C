@@ -1,6 +1,5 @@
 #include "StateDescriptorReader.h"
-#include <string.h>
-
+#include <cstring>
 
 StateDescriptorReader::StateDescriptorReader(const char* stateDescriptorPath) { 
 	fileName = NULL;
@@ -433,8 +432,20 @@ double StateDescriptorReader::getAverageStaggeredPhi() {
 double StateDescriptorReader::getExplicitFermionMass() {
 	double res = 0.0;
 	char* fileNameSuffix = getFileNameSuffix();
-	if (strcmp(fileNameSuffix, "level10") == 0) 
-		res = getDoubleParameter(2, "Explicit Fermion-Mass", " m_F");
+	if ((strcmp(fileNameSuffix, "level1") == 0) ||
+	    (strcmp(fileNameSuffix, "level2") == 0) ||
+	    (strcmp(fileNameSuffix, "level3") == 0) ||
+	    (strcmp(fileNameSuffix, "level4") == 0) ||
+	    (strcmp(fileNameSuffix, "level5") == 0) ||
+	    (strcmp(fileNameSuffix, "level6") == 0) ||
+	    (strcmp(fileNameSuffix, "level7") == 0) ||
+	    (strcmp(fileNameSuffix, "level8") == 0) ||
+	    (strcmp(fileNameSuffix, "level9") == 0)) {
+  	      delete[] fileNameSuffix;
+	      return res;
+	}
+
+	res = getDoubleParameter(2, "Explicit Fermion-Mass", " m_F");
 		
 	delete[] fileNameSuffix;
 	return res;
@@ -599,6 +610,15 @@ bool StateDescriptorReader::useModelSelection() {
 	delete[] fileNameSuffix;	
 	return res;
 }
+
+bool StateDescriptorReader::useAntiPeriodicBoundaryConditionsInTimeDirection() {
+        bool res = false;
+
+        res = (bool)getIntParameter(0, 1, " Flag: Anti-Periodic Boundary Conditions in time direction");
+
+        return res;
+}
+
 
 bool StateDescriptorReader::useXFFT() {
 	bool res = (bool)getIntParameter(1, " Flag: Use of xFFT");

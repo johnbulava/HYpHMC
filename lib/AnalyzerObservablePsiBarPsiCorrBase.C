@@ -175,6 +175,11 @@ void AnalyzerObservablePsiBarPsiCorrBase::sampleFermioncScanVector(Complex* v, i
 }
 
 
+/****
+* This routine computes <LeftVector | \hat P_\pm (\D+B(1-(1/\rho)\D))^-1 P_\pm | RightVector>
+* where LeftVector and RightVector are sampled according to the function sampleFermioncScanVector.
+* All factors are already included.
+*/
 bool AnalyzerObservablePsiBarPsiCorrBase::calcPsiPsiBarMatrixForPhiField(double* phiField, Complex**** PsiPsiBarMatrix, double TOL, int LargestL, int timeDirection, int projMode, int fInd1Start, int fInd1End, int fInd2Start, int fInd2End) {
   int L0 = fermiOps->get1DSizeL0();
   int L1 = fermiOps->get1DSizeL1();
@@ -187,14 +192,14 @@ bool AnalyzerObservablePsiBarPsiCorrBase::calcPsiPsiBarMatrixForPhiField(double*
   double rho, r;
   fermiOps->getDiracParameters(rho, r);
   double fac = -1.0 / (2.0*rho);
-  if (projMode != 0) fac *= 0.5;
+  if (projMode != 0) fac *= 0.5;  //Missing factor 0.5 in projector \hat P_\pm compensated with this factor 0.5. 
 
   for (int t1=0; t1<LargestL; t1++) {
     for (int fInd1=fInd1Start; fInd1<=fInd1End; fInd1++) {
       if (LogLevel>2) printf("Psi-PsiBar-Matrix for t1 = %d, fInd1 = %d\n", t1, fInd1);          
       sampleFermioncScanVector(LeftVector, t1, fInd1, timeDirection);
       
-      //Berechne Projector \hat P_\pm angewendet auf LeftVector  ==> Faktor 0.5 fehlt
+      //Berechne daggered Projector \hat P_\pm angewendet auf LeftVector  ==> Faktor 0.5 fehlt
       if (projMode != 0) {
         fermiOps->executeGamma5(LeftVector, SolutionVector);
 	fermiOps->executeDiracDaggerMatrixMultiplication(SolutionVector, RightVector, false);

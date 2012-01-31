@@ -82,6 +82,7 @@ class StateDescriptorReader {
 		double getThetaMax();
 		double getThetaAdaptionFactor();
 		bool useModelSelection();
+                bool useAntiPeriodicBoundaryConditionsInTimeDirection();
 		bool useXFFT();
 		double getMolecularDynamicsEpsilon();
 		int getSubPolynomCount();
@@ -119,5 +120,6 @@ class StateDescriptorReader {
 		double getModelParameterLambda8();
 		double getModelParameterLambda10();		
 };
+
 
 #endif

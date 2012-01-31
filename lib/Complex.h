@@ -10,9 +10,9 @@ private:
 public:
   double x;
   double y;
-  Complex(); 
+  Complex() {} 
   Complex(double r, double i);
-  ~Complex();
+  ~Complex() {}
   
   void setValues(double r, double i);
 

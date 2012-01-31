@@ -17,7 +17,7 @@
 
 #define Critical_Nu 0.5
 #define Critical_Gamma 1.2  
-#define AutoCorrAnalysisLength 100
+#define AutoCorrAnalysisLength 4000
 
 class ParameterSelectorType {
 public:
@@ -252,7 +252,7 @@ public:
   }
 
   void print() {
-    printf("Kap: %1.3f, Lam: %2.3f, Y: %1.3f, Rho: %1.1f, R: %1.1f, L: %2dx%2dx%2dx%2d, Nf: %2d, Stat: %5d, Phi: %1.3f+-%1.3f, St.Phi: %1.3f+-%1.3f, DSL: %1.0f, Cut: %1.1f GeV\n", kappa,lambda,Y,rho,r,L0,L1,L2,L3,Nf,count,averagePhiNorm,sigmaPhiNorm,averageStaggeredPhiNorm,sigmaStaggeredPhiNorm,DSL/log(10), Physical_VEV_GeV/(sqrt(2.0*kappa)*averagePhiNorm));
+    printf("Kap: %1.3f, Lam: %2.3f, Y: %1.3f, Rho: %1.1f, R: %1.1f, L: %2dx%2dx%2dx%2d, Nf: %2d, Stat: %5d, Phi: %1.4f+-%1.4f, St.Phi: %1.3f+-%1.3f, DSL: %1.0f, Cut: %1.1f GeV\n", kappa,lambda,Y,rho,r,L0,L1,L2,L3,Nf,count,averagePhiNorm,sigmaPhiNorm,averageStaggeredPhiNorm,sigmaStaggeredPhiNorm,DSL/log(10), Physical_VEV_GeV/(sqrt(2.0*kappa)*averagePhiNorm));
   }
   
 };

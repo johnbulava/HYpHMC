@@ -17,7 +17,7 @@
 #include "ChebyshevOneOverXPlusOne.h"
 #include "PowerPolynomialsOneOverX.h"
 #include "ChebyshevOneOverXPlusOneRelError.h"
-#include "SSEroutines.C"
+#include "SSEroutines.h"
 #include "HMCPropagator.h"
 #include "ExtremeFFT4D.h"
 #include "PolynomialApproximation.h"

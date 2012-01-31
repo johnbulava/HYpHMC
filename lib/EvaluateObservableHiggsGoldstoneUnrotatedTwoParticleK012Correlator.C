@@ -7,7 +7,7 @@ EvaluateObservableHiggsGoldstoneUnrotatedTwoParticleK012Correlator::EvaluateObse
   int NrOfIndependentVariablesK01 = 5;
   int NrOfIndependentVariablesK012 = 7;
   int LargestL = getLargestL(SDReader);  
-  bool genEWmode = true;
+  bool genEWmode = false;
   bool iterEValign = true;
   massAnalyzerCombinedGoldstone = new MassCorrelationMatrixAnalyzer(3, LargestL, false, false, iterEValign, true, false, 0, 100000, "CombinedCorrGold"); 
   massAnalyzerCombinedK01 = new MassCorrelationMatrixAnalyzer(NrOfIndependentVariablesK01, LargestL, false, genEWmode, iterEValign, true, false, 0, 100000,"CombinedCorrK01");
