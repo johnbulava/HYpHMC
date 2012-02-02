@@ -1,4 +1,5 @@
 #include "HMCPropagator.h"
+#include <iostream> 
 
 HMCPropagator::HMCPropagator(FermionMatrixOperations* fOps, double lam, double kap, int nf , double gam): Propagator(fOps, lam, kap, 0, 0, 0, 0, 0, 0, 0, nf, gam, isNaN(lam), 0.0) {
   if (LogLevel>2) printf("Initializing HMC-Propagator with lambda = %1.3f, kappa = %1.3f, Nf = %d, gamma = %1.3f\n", lam, kap, nf, gam);
@@ -108,7 +109,8 @@ void HMCPropagator::SlaveController() {
 
 
 void HMCPropagator::threadedExecute(int mode, double TOL) {
-  if (forceCount <= 0) return;
+	std::cout << "entering the RIGHT func" << std::endl; 
+	if (forceCount <= 0) return;
   int* numbers = new int[forceCount];
   int* modes = new int[forceCount];
   int* para_int = new int[forceCount];
@@ -440,8 +442,8 @@ void HMCPropagator::improvePreconditioningParameters(int iterGrob, int iterFein,
   }
   
   for (I=0; I<iterFein; I++) {
-    m[I] = abs(bestM + 2*(AdvancedZufall(AdvancedSeed)-0.5)*0.1*avgPhi);
-    s[I] = abs(bestS + 2*(AdvancedZufall(AdvancedSeed)-0.5)*0.1*avgStagPhi);
+    m[I] = fabs(bestM + 2*(AdvancedZufall(AdvancedSeed)-0.5)*0.1*avgPhi);
+    s[I] = fabs(bestS + 2*(AdvancedZufall(AdvancedSeed)-0.5)*0.1*avgStagPhi);
   }
 
   for (I=0; I<iterFein; I++) {

@@ -227,7 +227,7 @@ int AnalyzerHiggs::getTotalN() {
 int AnalyzerHiggs::findMomentumSqrSlot(double momSqr) {
   int I;
   for(I=0; I<MomentumSqrSlotCount; I++) {
-    if (abs(MomentumSqrSlotLocations[I]-momSqr) < AnalyzerHiggsMomentumSqrSlotSize) {
+    if (fabs(MomentumSqrSlotLocations[I]-momSqr) < AnalyzerHiggsMomentumSqrSlotSize) {
       return I;    
     }  
   }

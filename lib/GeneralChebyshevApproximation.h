@@ -34,4 +34,6 @@ public:
   double evaluatePolynomial(double x);
 };
 
+
+
 #endif

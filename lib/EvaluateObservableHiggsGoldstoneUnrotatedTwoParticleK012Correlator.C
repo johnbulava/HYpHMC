@@ -324,7 +324,7 @@ void EvaluateObservableHiggsGoldstoneUnrotatedTwoParticleK012Correlator::generat
       double q = k*L0/(2*pi);
       double qError = kError*L0/(2*pi);
       double phiQ = calcLuescherPhiFunction(q, 1E-5);
-      double phiQError = abs(qError * calcLuescherPhiDerivative(q, 1E-5));
+      double phiQError = fabs(qError * calcLuescherPhiDerivative(q, 1E-5));
 
       snprintf(tag,2000,"PhiQValComAK01_%d",kCount);
       addXML_And_LatexOutputSummaryTableLine(tag, "Phi(q) in lattice units", "$\\phi(q)$", phiQ, phiQError, NULL, "%1.4f");

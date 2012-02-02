@@ -155,8 +155,8 @@ double ChebyshevOneOverXPlusOne::calcControlPlot() {
 
   FILE* file = fopen("data/ChebyshevOneOverXPlusOneControlPlot.dat","w");
   for (I=0; I<interP*p; I++) {
-    if (abs((val[I]-(1/(1+epsilon+zeroes[I]))) * (1+epsilon+zeroes[I])) > maxRelDiff) {
-      maxRelDiff = abs((val[I]-(1/(1+epsilon+zeroes[I]))) * (1+epsilon+zeroes[I]));
+    if (fabs((val[I]-(1/(1+epsilon+zeroes[I]))) * (1+epsilon+zeroes[I])) > maxRelDiff) {
+      maxRelDiff = fabs((val[I]-(1/(1+epsilon+zeroes[I]))) * (1+epsilon+zeroes[I]));
     }
     fprintf(file,"%1.15f %1.15f %1.15f %1.15f %1.15f %1.15f\n",zeroes[I],val[I],1/(1+epsilon+zeroes[I]),(val[I]-1/(1+epsilon+zeroes[I])), (val[I]-1/(1+epsilon+zeroes[I]))*(1+epsilon+zeroes[I]), (val[I]-1/(1+epsilon+zeroes[I]))*sqr(1+epsilon+zeroes[I]));    
   }

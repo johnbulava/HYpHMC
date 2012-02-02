@@ -307,17 +307,17 @@ double calcBosonicGapTerm(ParameterType p, double kappa, double lam) {
 
 
 double findKappa(ParameterType p, double minK, double maxK, double TOL) {  
-  if ((abs(p.m)>1E-10) && (abs(p.s)>1E-10)) return NaN;
+  if ((fabs(p.m)>1E-10) && (fabs(p.s)>1E-10)) return NaN;
 //printf("Min %f, max %f\n",minK,maxK);
   double U, UprimeM, UprimeS;
   calcFermionUContribution(p, U, UprimeM, UprimeS);
   double k0 = 0.5*(minK+maxK);
-  if (abs(minK-maxK)<TOL) return k0;
+  if (fabs(minK-maxK)<TOL) return k0;
   
   double minKlam = (-UprimeM + 8*minK*2*p.m) / (2*p.m);
   double maxKlam = (-UprimeM + 8*maxK*2*p.m) / (2*p.m);
   double k0lam = (-UprimeM + 8*k0*2*p.m) / (2*p.m);
-  if (abs(p.s)>1E-10) {
+  if (fabs(p.s)>1E-10) {
     minKlam = (-UprimeS - 8*minK*2*p.s) / (2*p.s);
     maxKlam = (-UprimeS - 8*maxK*2*p.s) / (2*p.s);
     k0lam = (-UprimeS - 8*k0*2*p.s) / (2*p.s);
@@ -329,9 +329,9 @@ double findKappa(ParameterType p, double minK, double maxK, double TOL) {
 //printf("res: %f %f %f\n", minKres, maxKres, k0res);  
   
   if (minKres*maxKres > 0) return NaN;
-  if (abs(minKres)<TOL) return minK;
-  if (abs(maxKres)<TOL) return maxK;
-  if (abs(k0res)<TOL) return k0;
+  if (fabs(minKres)<TOL) return minK;
+  if (fabs(maxKres)<TOL) return maxK;
+  if (fabs(k0res)<TOL) return k0;
 
   if (k0res*minKres > 0) return findKappa(p, k0, maxK, TOL);
   if (k0res*maxKres > 0) return findKappa(p, minK, k0, TOL);

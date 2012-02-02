@@ -69,7 +69,7 @@ int main(int argc,char **argv) {
     int d0 = (I/(8*N*N*N)) % N;
     if (d0>N/2) d0 -= N; 
 
-    double dt = abs(d0)+abs(d1)+abs(d2)+abs(d3);
+    double dt = fabs(d0)+fabs(d1)+fabs(d2)+fabs(d3);
     double dd = sqrt(d0*d0+d1*d1+d2*d2+d3*d3);
     
     fprintf(outFile,"%1.15f %1.15f %1.15f %1.15f %1.15f %1.15f\n",dt,dd,avg[I].x,avg[I].y,sigma[I].x,sigma[I].y);

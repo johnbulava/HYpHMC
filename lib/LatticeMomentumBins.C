@@ -99,7 +99,7 @@ LatticeMomentumBins::~LatticeMomentumBins() {
 int LatticeMomentumBins::findMomentumSqrSlot(double momSqr) {
   int I;
   for(I=0; I<MomentumSqrSlotCount; I++) {
-    if (abs(MomentumSqrSlotLocations[I]-momSqr) < LatticeMomentumBinsMomentumSqrSlotSize) {
+    if (fabs(MomentumSqrSlotLocations[I]-momSqr) < LatticeMomentumBinsMomentumSqrSlotSize) {
       return I;    
     }  
   }

@@ -311,7 +311,7 @@ int main(int argc,char **argv) {
     if (sscanf(argv[1],"%d",&ParaSelect)!=1)  ParaSelect = -1;
   }
   printf("Parameter-Selector is %d\n",ParaSelect);
-  if ((abs(ParaSelect) >4) || (ParaSelect==0)) {
+  if ((fabs(ParaSelect) >4) || (ParaSelect==0)) {
     printf("Invalid Parameter Selector!!!\n");
     exit(0);
   }
@@ -328,7 +328,7 @@ int main(int argc,char **argv) {
 //  }
   
 
-  if (abs(ParaSelect) == 1) {
+  if (fabs(ParaSelect) == 1) {
     printf("Chosen Parameter SET: 1\n");
     Parameter_L0 = 4;
     Parameter_L1 = 4;
@@ -349,7 +349,7 @@ int main(int argc,char **argv) {
     Parameter_TopCorrTOL = 1E-7;
   }
   
-  if (abs(ParaSelect) == 2) {
+  if (fabs(ParaSelect) == 2) {
     printf("Chosen Parameter SET: 2\n");
     Parameter_L0 = 8;
     Parameter_L1 = 8;
@@ -370,7 +370,7 @@ int main(int argc,char **argv) {
     Parameter_TopCorrTOL = 1E-7;
   }
   
-  if (abs(ParaSelect) == 3) {
+  if (fabs(ParaSelect) == 3) {
     printf("Chosen Parameter SET: 3\n");
     Parameter_L0 = 16;
     Parameter_L1 = 16;
@@ -388,7 +388,7 @@ int main(int argc,char **argv) {
     Parameter_TopCorrTOL = 1E-7;
   }
 
-  if (abs(ParaSelect) == 4) {
+  if (fabs(ParaSelect) == 4) {
     printf("Chosen Parameter SET: 4\n");
     Parameter_L0 = 20;
     Parameter_L1 = 20;

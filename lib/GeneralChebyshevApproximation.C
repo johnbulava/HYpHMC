@@ -1,6 +1,5 @@
 #include "GeneralChebyshevApproximation.h"
 #include "Tools.h"
-#include <stdio.h>
 
 GeneralChebyshevApproximation::GeneralChebyshevApproximation() { 
   coeffCount = 0;
@@ -112,7 +111,7 @@ void GeneralChebyshevApproximation::calcApproximation(double (*func)(double x), 
   int maxCoeffCount = 4000;
   bool b = calcApproximationRemez(func, minX, maxX, relAcc, scanPoints, maxCoeffCount);
   if (b && (maxCoeffCount>0)) {
-    if (LogLevel > 2) printf("Oh yeah! Final polynom constructed via Remez-Algorithm.\n");  
+    if (LogLevel > 2) printf("Final polynom constructed via Remez-Algorithm.\n");  
   } else {
     clearData();
     maxCoeffCount = 2000;

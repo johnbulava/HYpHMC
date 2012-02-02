@@ -66,7 +66,7 @@ protected:
   
   void generateOpApplicationData();
   void generateDistributedOpApplicationData();
-  void setSizeDistributed(int sizeL0, int sizeL1, int sizeL2, int sizeL3);  
+  void setSizeDistributed(int sizeL0, int sizeL3, int sizeL2, int sizeL3);  
 
   double Preconditioner_M;
   double Preconditioner_S;
@@ -151,7 +151,7 @@ public:
   FermionMatrixOperations(int sizeL0, int sizeL1, int sizeL2, int sizeL3, double rho, double r, double yN);
   ~FermionMatrixOperations();
 
-  void setSize(int sizeL0, int sizeL1, int sizeL2, int sizeL3);
+  void setSize(int sizeL0, int sizeL3, int sizeL2, int sizeL3);
   void setDiracParameters(double rho, double r);
   void getDiracParameters(double& rho, double& r);
   void setYukawaCoupling(double yN);

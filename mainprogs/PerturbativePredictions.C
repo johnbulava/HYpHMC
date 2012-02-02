@@ -360,7 +360,7 @@ double calcExpectationOfHiggsField(ParameterType p, double v) {
 double findVEV(ParameterType p) {
   double v = 1.0;
   double vOLD = 0;
-  while (abs((v-vOLD)/v)>1E-10) {
+  while (fabs((v-vOLD)/v)>1E-10) {
     vOLD = v;
     double h = calcExpectationOfHiggsField(p, v);
     v -= h;    
@@ -457,7 +457,7 @@ void plotSelfEnergy(ParameterType p, char* fileName, int scanMode) {
 
       bool found = false;
       for (int I=0; I<resCount; I++) {
-        if (abs(pHatSqr-results[2*I])<1E-10) found = true;
+        if (fabs(pHatSqr-results[2*I])<1E-10) found = true;
       }
       if (!found) {
         double selfEnergy = calcSelfEnergy(p, vev, exP0, exP1, exP2, exP3);
@@ -481,7 +481,7 @@ void plotSelfEnergy(ParameterType p, char* fileName, int scanMode) {
   	      if (pHatSqr<=1.1) {
 	        bool found = false;
                 for (int I=0; I<resCount; I++) {
-		  if (abs(pHatSqr-results[2*I])<1E-10) found = true;
+		  if (fabs(pHatSqr-results[2*I])<1E-10) found = true;
 		}
 		
 		if (!found) {

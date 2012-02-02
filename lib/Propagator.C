@@ -231,7 +231,7 @@ void Propagator::setLambda(double lam) {
 
 void Propagator::setSphericalMode(bool sphMode, double sphZeta) {
   SphericalMode = sphMode;
-  SphericalZeta = abs(sphZeta);  
+  SphericalZeta = fabs(sphZeta);  
   if (LogLevel>2) printf("Spherical-Mode is set to %d with Zeta = %1.3e\n",SphericalMode,SphericalZeta);
 }
 

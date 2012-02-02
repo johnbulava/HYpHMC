@@ -313,7 +313,7 @@ int roundToInt(double x) {
 }
 
 /*
-inline double abs(double x) {
+inline double fabs(double x) {
   if (x>=0) return x;
   return -x;
 }
@@ -322,7 +322,7 @@ inline double abs(double x) {
 bool isInteger(double x) {
   if (x==0) return true;
   int r = roundToInt(x);
-  if ((abs(r-x)/r)<1E-14) return true;
+  if ((fabs(r-x)/r)<1E-14) return true;
   return false;
 }
 
@@ -510,11 +510,11 @@ double calcLogDetScaledAbsNorm(ComplexMatrix& mat, int removeSmallestModesCount,
     double nuNorm = sqrt(sqr(nu.x) + sqr(nu.y))/scaleFac;
     
     logDeterminant += log(nuNorm);    
-//    if (abs((double)(logDeterminant/log(10)))>1500) {
+//    if (fabs((double)(logDeterminant/log(10)))>1500) {
 //      printf("ERROR: Determinant: (%lf) exceeds maximal scale!!!\n",logDeterminant/log(10));
 //      exit(0);
 //    }
-//    if (abs((double)(logDeterminant/log(10)))<-1500) {
+//    if (fabs((double)(logDeterminant/log(10)))<-1500) {
 //      printf("ERROR: Determinant: (%lf) exceeds minimal scale!!!\n",logDeterminant/log(10));
 //      exit(0);
 //    }
@@ -1459,9 +1459,9 @@ double calcFiniteVolumeEffectiveAction(int Nf, int L0, int L1, int L2, int L3, d
   S += -8.0*kappaTilde * (m*m - s*s);
   S += m*m + s*s;
   S += lambdaTilde * (m*m*m*m + s*s*s*s + 6*m*m*s*s - 2*(m*m+s*s));
-  S += -4.0* log(abs(m*m-s*s));
-  S +=  (-8.0/(L0*L1*L2*L3)) * log(abs(m/(m*m-s*s)));
-  S += (-56.0/(L0*L1*L2*L3)) * log(abs(1/(m*m-s*s)));
+  S += -4.0* log(fabs(m*m-s*s));
+  S +=  (-8.0/(L0*L1*L2*L3)) * log(fabs(m/(m*m-s*s)));
+  S += (-56.0/(L0*L1*L2*L3)) * log(fabs(1/(m*m-s*s)));
 
   S *= Nf*L0*L1*L2*L3;
    
@@ -1881,7 +1881,7 @@ double integrate(double (*func)(double p0, double p1, double p2, double p3, doub
 	}
       }
     }
-    if ((abs((estimate[2]-estimate[0])) < accuracy) && (abs((estimate[2]-estimate[1])) < accuracy)) {
+    if ((fabs((estimate[2]-estimate[0])) < accuracy) && (fabs((estimate[2]-estimate[1])) < accuracy)) {
       return estimate[2];
     }
 
@@ -1940,7 +1940,7 @@ double integrate(double (*func)(double p0, double p1, double p2, double p3, doub
       }
     }
     estimate2 /= 6*6*6*6;
-    if (abs((estimate2-estimate1) / estimate2) < accuracy) {    
+    if (fabs((estimate2-estimate1) / estimate2) < accuracy) {    
       return estimate2;
     }
   }
@@ -1988,7 +1988,7 @@ double integrate(double (*func)(double p, double para), double Parameter, double
         estimate[es] += vFac * smallBoxVol * ((*func)(p, Parameter));
       }
     }
-    if ((abs((estimate[2]-estimate[0])) < accuracy) && (abs((estimate[2]-estimate[1])) < accuracy)) {
+    if ((fabs((estimate[2]-estimate[0])) < accuracy) && (fabs((estimate[2]-estimate[1])) < accuracy)) {
       return estimate[2];
     }
 
@@ -2025,7 +2025,7 @@ double integrate(double (*func)(double p, double para), double Parameter, double
       estimate2 += dummyBoxVol*fff * ((*func)(p, Parameter));
     }
     estimate2 /= 6;
-    if (abs((estimate2-estimate1) / estimate2) < accuracy) {    
+    if (fabs((estimate2-estimate1) / estimate2) < accuracy) {    
       return estimate2;
     }
   }
@@ -2072,10 +2072,10 @@ double inverseStandardErrorFunction(double p, double accuracy, double accuracy2)
   
   //Locate x
   double x = NaN;
-  while (abs(lowBoundx - upBoundx)>accuracy2) {
+  while (fabs(lowBoundx - upBoundx)>accuracy2) {
     x = 0.5 * (lowBoundx + upBoundx);
     double val = StandardErrorFunction(x, accuracy); 
-    if (abs(val-p)<accuracy) return x;
+    if (fabs(val-p)<accuracy) return x;
     if (val>p) {
       upBoundx = x;
       upBoundProb = val;
@@ -2119,7 +2119,7 @@ double calcLuescherZetaFunction(double qSqr, double accuracy) {
   double sum1 = NaN;
   double lastSum1 = NaN;
   int box1 = 5;
-  while ((isNaN(lastSum1)) || (abs(sum1-lastSum1) > abs(accuracy * sum1))) {
+  while ((isNaN(lastSum1)) || (fabs(sum1-lastSum1) > fabs(accuracy * sum1))) {
     lastSum1 = sum1;
     sum1 = 0;
     for (int n1=-box1; n1<=box1; n1++) {
@@ -2144,7 +2144,7 @@ double calcLuescherZetaFunction(double qSqr, double accuracy) {
   double sum2 = NaN;
   double lastSum2 = NaN;
   int box2 = 5;
-  while ((isNaN(lastSum2)) || (abs(sum2-lastSum2) > abs(accuracy * sum2))) {
+  while ((isNaN(lastSum2)) || (fabs(sum2-lastSum2) > fabs(accuracy * sum2))) {
     lastSum2 = sum2;
     sum2 = 0;
     for (int n1=-box2; n1<=box2; n1++) {
@@ -2199,7 +2199,7 @@ double calcLuescherDerivativeOfZetaFunction_dZdqSqr(double qSqr, double accuracy
   double sum1 = NaN;
   double lastSum1 = NaN;
   int box1 = 5;
-  while ((isNaN(lastSum1)) || (abs(sum1-lastSum1) > abs(accuracy * sum1))) {
+  while ((isNaN(lastSum1)) || (fabs(sum1-lastSum1) > fabs(accuracy * sum1))) {
     lastSum1 = sum1;
     sum1 = 0;
     for (int n1=-box1; n1<=box1; n1++) {
@@ -2224,7 +2224,7 @@ double calcLuescherDerivativeOfZetaFunction_dZdqSqr(double qSqr, double accuracy
   double sum2 = NaN;
   double lastSum2 = NaN;
   int box2 = 5;
-  while ((isNaN(lastSum2)) || (abs(sum2-lastSum2) > abs(accuracy * sum2))) {
+  while ((isNaN(lastSum2)) || (fabs(sum2-lastSum2) > fabs(accuracy * sum2))) {
     lastSum2 = sum2;
     sum2 = 0;
     for (int n1=-box2; n1<=box2; n1++) {
@@ -2355,8 +2355,8 @@ Complex calcBosonic1LoopContributionOnSecondSheet(Complex p, double m0) {
   if (norm(p)==0) return Complex(0,0);
   double fac = sqrt(norm(p*p / (p*p + 4*m0*m0)));
   Complex res = fac*calcBosonic1LoopContribution(p, m0);  
-  if ((p.y>=2*abs(m0)) && (p.x>=0)) res.y -= pi;
-  if ((p.y<=-2*abs(m0)) && (p.x<=0)) res.y -= pi;
+  if ((p.y>=2*fabs(m0)) && (p.x>=0)) res.y -= pi;
+  if ((p.y<=-2*fabs(m0)) && (p.x<=0)) res.y -= pi;
   
   return (1.0/fac) * res;
 }
@@ -2394,7 +2394,7 @@ Complex findPoleOfBosonic1LoopPropagatorFromRenPT(double mH, double mG, double l
       pole.x = Gamma/2;
       double im = calcBosonic1LoopInvPropagatorFromRenPT(zero, pole, mG, lamRen, vren, n).y;    
             
-      if ((!isNaN(GammaOld)) && (abs((Gamma-GammaOld)/GammaOld)<1E-10)) break;
+      if ((!isNaN(GammaOld)) && (fabs((Gamma-GammaOld)/GammaOld)<1E-10)) break;
       GammaOld = Gamma;   
       Gamma += im / mH; 
     }
@@ -2591,7 +2591,7 @@ void calcAverageAndStandardDeviationWithDataSelection(int N, double* data, doubl
     while (sortChange) {
       sortChange = false;
       for (int I=0; I<N-1; I++) {
-        if (abs(data[I]-avg) > abs(data[I+1]-avg)) {
+        if (fabs(data[I]-avg) > fabs(data[I+1]-avg)) {
 	  double dummy = data[I];
 	  data[I] = data[I+1];
 	  data[I+1] = dummy;
@@ -2603,7 +2603,7 @@ void calcAverageAndStandardDeviationWithDataSelection(int N, double* data, doubl
 //fprintf(file, "%f %f %f \n",avg, sig, sig*cutSigma);
 //fclose(file);
     for (int I=0; I<N; I++) {
-      if (abs(data[I]-avg)/sig > cutSigma) {
+      if (fabs(data[I]-avg)/sig > cutSigma) {
         change = true;
         N = I;
 	break;

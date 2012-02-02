@@ -53,7 +53,7 @@ Complex PiModeBoosterMatrix::analyticalEigenvalue(vector4D p) {
   int I;
   for (I=0; I<4; I++) {
     i[I] = (int)(p[I] / pi);
-    if (abs(p[I]-i[I]*pi)>delta) return Complex(1.0, 0.0);
+    if (fabs(p[I]-i[I]*pi)>delta) return Complex(1.0, 0.0);
     if (i[I] < 0) i[I] = -i[I];
     i[I] = i[I] % 2;
   }

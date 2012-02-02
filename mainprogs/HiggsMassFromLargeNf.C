@@ -101,7 +101,7 @@ double LambdaFunctionLuescher(double x, double para) {
   while (count>0) {
     double res = J3 + integrate(&LambdaFunctionLuescherHelperK3, x, pos, pos+1, 1E-12);
     J3 = res;
-    if (abs((res-oldRes)/res)<1E-12) count--;
+    if (fabs((res-oldRes)/res)<1E-12) count--;
     oldRes = res;
     pos++;
   }
@@ -112,7 +112,7 @@ double LambdaFunctionLuescher(double x, double para) {
   while (count>0) {
     double res = J5 + integrate(&LambdaFunctionLuescherHelperK5, x, pos, pos+1, 1E-12);
     J5 = res;
-    if (abs((res-oldRes)/res)<1E-12) count--;
+    if (fabs((res-oldRes)/res)<1E-12) count--;
     oldRes = res;
     pos++;
   }
@@ -123,7 +123,7 @@ double LambdaFunctionLuescher(double x, double para) {
   while (count>0) {
     double res = J7 + integrate(&LambdaFunctionLuescherHelperK7, x, pos, pos+1, 1E-12);
     J7 = res;
-    if (abs((res-oldRes)/res)<1E-12) count--;
+    if (fabs((res-oldRes)/res)<1E-12) count--;
     oldRes = res;
     pos++;
   }
@@ -567,7 +567,7 @@ void calcFermionUContribution(ParameterType p, double &U, double &Uprime, double
             k[3] = 2*pi*i3 / p.L3;
 
             Complex ew = diracOp->analyticalEigenvalue(k);
-	    //if ((abs(fac*ew.x-1)>1E-14) || (abs(ew.y)>1E-14)) {
+	    //if ((fabs(fac*ew.x-1)>1E-14) || (fabs(ew.y)>1E-14)) {
   	     /* 
 				Complex z = ew / (ComplexUnity - (fac*ew));
 	      double nz = z.x*z.x + z.y*z.y;
@@ -995,7 +995,7 @@ void calcHiggsMasses(ParameterType p, double &m0Sqr, double &mSqr) {
       mSqr = FUprimeprime + secondOrderBosonicPotential->calcEffectivePotDn(2);
       m0Sqr = -(FUprime + secondOrderBosonicPotential->calcEffectivePotDn(1) - m0Sqr*v)/v;
       
-      if ((abs((m0Sqr-m0SqrOld)/m0Sqr))<1E-10) break;
+      if ((fabs((m0Sqr-m0SqrOld)/m0Sqr))<1E-10) break;
       m0SqrOld = m0Sqr;
       count++;
       if (count>countMAX) {
@@ -1049,7 +1049,7 @@ void calcHiggsMasses(ParameterType p, double &m0Sqr, double &mSqr) {
         SelfCouplingCorrection = calcSelfCouplingCorrectionCoefficientForEffectivePotential(p, mSqr);      
         SelfCouplingV4Correction = calcSelfCouplingV4CorrectionCoefficientForEffectivePotential(p, mSqr);
 	calcPropagatorSums(p, mSqr, hPropSum, gPropSum);	
-        if ((!isNaN(oldCorr)) && ((abs(oldCorr-SelfCouplingCorrection)/SelfCouplingCorrection)<1E-10) && (!isNaN(oldV4Corr)) && ((abs(oldV4Corr-SelfCouplingV4Correction)/SelfCouplingV4Correction)<1E-10)) break;
+        if ((!isNaN(oldCorr)) && ((fabs(oldCorr-SelfCouplingCorrection)/SelfCouplingCorrection)<1E-10) && (!isNaN(oldV4Corr)) && ((fabs(oldV4Corr-SelfCouplingV4Correction)/SelfCouplingV4Correction)<1E-10)) break;
       #else
         break;
       #endif
@@ -1343,7 +1343,7 @@ Parameters.lam8 = targetL8;
             SelfCouplingCorrection = calcSelfCouplingCorrectionCoefficientForEffectivePotential(Parameters, mSqr);      
             SelfCouplingV4Correction = calcSelfCouplingV4CorrectionCoefficientForEffectivePotential(Parameters, mSqr);
    	    calcPropagatorSums(Parameters, mSqr, hPropSum, gPropSum);
-            if ((!isNaN(oldCorr)) && ((abs(oldCorr-SelfCouplingCorrection)/SelfCouplingCorrection)<1E-10) && (!isNaN(oldV4Corr)) && ((abs(oldV4Corr-SelfCouplingV4Correction)/SelfCouplingV4Correction)<1E-10)) break;
+            if ((!isNaN(oldCorr)) && ((fabs(oldCorr-SelfCouplingCorrection)/SelfCouplingCorrection)<1E-10) && (!isNaN(oldV4Corr)) && ((fabs(oldV4Corr-SelfCouplingV4Correction)/SelfCouplingV4Correction)<1E-10)) break;
             oldCorr = SelfCouplingCorrection;
             oldV4Corr = SelfCouplingV4Correction;
 	    count++;
@@ -1360,7 +1360,7 @@ Parameters.lam8 = targetL8;
       printf("\nReal Minimum is v=%f, mSqr=%f\n",realMin,mSqr);
 
       if ((!isNaN(mSqr)) && (mSqr>=0)) {
-        if ((!isNaN(realMin)) && ((abs(realMin-v)/v)<0.05)) {
+        if ((!isNaN(realMin)) && ((fabs(realMin-v)/v)<0.05)) {
           if (isNaN(smallestMass)) smallestMass = mSqr;
           if (mSqr<smallestMass) smallestMass = mSqr;  
         }
@@ -2152,7 +2152,7 @@ void integrateMomentsOfV(ParameterType p, double start, double end, double Tol, 
       v2 += h*sqr(deriveData[I][0])*deriveData[I][1];
     }
 
-    if ((!isNaN(v0Old)) && (!isNaN(v1Old)) && (!isNaN(v2Old)) && (abs((v0Old-v0)/v0)<Tol) && (abs((v1Old-v1)/v1)<Tol) && (abs((v2Old-v2)/v2)<Tol)) {
+    if ((!isNaN(v0Old)) && (!isNaN(v1Old)) && (!isNaN(v2Old)) && (fabs((v0Old-v0)/v0)<Tol) && (fabs((v1Old-v1)/v1)<Tol) && (fabs((v2Old-v2)/v2)<Tol)) {
       break;
     }
 

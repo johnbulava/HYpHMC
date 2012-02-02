@@ -1,5 +1,6 @@
 #include "FermionMatrixOperations.h"
 
+
 void FermionMatrixOperations::ini() {
   InputVectorFourierTransform = NULL;
   InterimVectorFourierTransform = NULL;
@@ -345,8 +346,8 @@ void FermionMatrixOperations::getDiracParameters(double& rho, double& r) {
 
 
 void FermionMatrixOperations::setPreconditioner(bool usePrecon, double m, double s) {
-  m = abs(m);
-  s = abs(s);
+  m = fabs(m);
+  s = fabs(s);
   if (m<0.01) m = 0.01;
   if ((Preconditioner_Usage != usePrecon) || (Preconditioner_M != m) || (Preconditioner_S != s)) {
     if ((LogLevel>1) && (usePrecon)) printf("Setting P - Preconditioning on with m= %1.3f and s= %1.3f\n",m,s);
@@ -360,8 +361,8 @@ void FermionMatrixOperations::setPreconditioner(bool usePrecon, double m, double
 
 
 void FermionMatrixOperations::setQPreconditioner(bool useqPrecon, double mu, double beta) {
-  mu = abs(mu);
-  beta = abs(beta);
+  mu = fabs(mu);
+  beta = fabs(beta);
   if (mu<0.01) mu = 0.01;
   if (beta<0.01) beta = 0.01;
   if ((QPreconditioner_Usage != useqPrecon) || (QPreconditioner_mu != mu) || (QPreconditioner_beta != beta)) {
@@ -376,8 +377,8 @@ void FermionMatrixOperations::setQPreconditioner(bool useqPrecon, double mu, dou
 
 
 void FermionMatrixOperations::setRPreconditioner(bool userPrecon, double m, double f) {
-  m = abs(m);
-  f = abs(f);
+  m = fabs(m);
+  f = fabs(f);
   if (m<0.01) m = 0.01;
   if (f<0.01) f = 0.01;
   if ((RPreconditioner_Usage != userPrecon) || (RPreconditioner_m != m) || (RPreconditioner_f != f)) {
@@ -927,14 +928,14 @@ void FermionMatrixOperations::generateOpApplicationData() {
 
           Complex ewp(1.0,0);
           if (Parameter_ExplicitMass != 0) {
-            if (abs(nup.x-twoRho)>10000*eps) {
+            if (fabs(nup.x-twoRho)>10000*eps) {
               ewp = ewp - ((1/twoRho)*nup);
               ewp = (nup+Parameter_ExplicitMass) / ewp;
             } else {
               ewp = nup+Parameter_ExplicitMass;
 	    }
           } else {
-            if (abs(nup.x-twoRho)>10000*eps) {
+            if (fabs(nup.x-twoRho)>10000*eps) {
               ewp = ewp - ((1/twoRho)*nup);
               ewp = nup / ewp;
             } else {
@@ -949,7 +950,7 @@ void FermionMatrixOperations::generateOpApplicationData() {
 	  if ((!isNaN(RPreconditioner_m)) && (!isNaN(RPreconditioner_f))) {
 	    Complex e1 = ewp;
 	    Complex e2 = ewp;
-            if (abs(nup.x-twoRho)>10000*eps) {
+            if (fabs(nup.x-twoRho)>10000*eps) {
               e1.x += Parameter_yN * RPreconditioner_m;
               e2.x += Parameter_MassSplit * Parameter_yN * RPreconditioner_m;	      
 	    }
@@ -3231,7 +3232,7 @@ bool FermionMatrixOperations::applyDistributedFermionMatrixMMDaggerFunction(Dist
 
     r[neededIter+1] = -(r[neededIter]*alpha[neededIter] + r[neededIter-1]*beta[neededIter-1]) / beta[neededIter];
 
-    error = abs(r[1]) / abs(r[neededIter+1]);
+    error = fabs(r[1]) / fabs(r[neededIter+1]);
 
     if (LogLevel>4) printf("...ERROR: %f\n", error);
 
@@ -3443,7 +3444,7 @@ bool FermionMatrixOperations::applyFermionMatrixMMDaggerFunction(Complex* input,
 
     r[neededIter+1] = -(r[neededIter]*alpha[neededIter] + r[neededIter-1]*beta[neededIter-1]) / beta[neededIter];
 
-    error = abs(r[1]) / abs(r[neededIter+1]);
+    error = fabs(r[1]) / fabs(r[neededIter+1]);
 
     if (LogLevel>4) printf("...ERROR: %f\n", error);
 

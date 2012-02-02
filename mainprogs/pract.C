@@ -101,7 +101,7 @@ HighPrecisionComplexPolynom getAnalyticalContinuationOfPropagatoFit(double A1, d
 bool loadPhiconfiguration(char* fileName, double* phiField, double &weight, bool &weightAvail) {
   if (LogLevel>2) printf("Loading Configuration: %s...",fileName);  
 
-double f = abs(-1);
+double f = fabs(-1);
 printf("%f\n",f);
 
   std::fstream confFile;
@@ -266,10 +266,10 @@ exit(0);
     m[1] += phiField[4*I+1];
     m[2] += phiField[4*I+2];
     m[3] += phiField[4*I+3];    
-    if (abs(phiField[4*I+0]) > max) max = abs(phiField[4*I+0]);
-    if (abs(phiField[4*I+1]) > max) max = abs(phiField[4*I+1]);
-    if (abs(phiField[4*I+2]) > max) max = abs(phiField[4*I+2]);
-    if (abs(phiField[4*I+3]) > max) max = abs(phiField[4*I+3]);
+    if (fabs(phiField[4*I+0]) > max) max = fabs(phiField[4*I+0]);
+    if (fabs(phiField[4*I+1]) > max) max = fabs(phiField[4*I+1]);
+    if (fabs(phiField[4*I+2]) > max) max = fabs(phiField[4*I+2]);
+    if (fabs(phiField[4*I+3]) > max) max = fabs(phiField[4*I+3]);
     
   }
   double mag = sqrt(sqr(m[0])+sqr(m[1])+sqr(m[2])+sqr(m[3])) / (16*16*16*32);

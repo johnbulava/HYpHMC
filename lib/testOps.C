@@ -1207,7 +1207,7 @@ void testSSEVectorAddition() {
   }
   printf("SSE-Improved: %d iterations (vector add with scalar product) within %1.2f seconds.\n",count,timePassed());
 #ifdef useBLAS
-  printf("Difference between results = %1.15f  %1.15f \n",diff2, abs((double)(n2-n1)));
+  printf("Difference between results = %1.15f  %1.15f \n",diff2, fabs((double)(n2-n1)));
 #else
   printf("Difference between results = %1.15f \n",diff2);
 #endif  
@@ -2759,7 +2759,7 @@ void testDistributedPHMCPolynomialMMdagInverseSQRTomegaAction(int OpMode, bool e
   double polS2 = pHMCforce2->getActOmegaAction(0);
 
 
-  double diff = abs(polS2 - polS1);
+  double diff = fabs(polS2 - polS1);
   printf("Difference between exact actions: %1.15f (relative %1.15e)\n", diff, diff/polS1);
 
   delete pHMCforce2;
@@ -2827,7 +2827,7 @@ void testDistributedPHMCExactMMdagInverseSQRTomegaAction(int OpMode, bool enforc
   double exactS2 = pHMCforce2->getExactOmegaMMdagInverseSQRTAction();
 
 
-  double diff = abs(exactS2 - exactS1);
+  double diff = fabs(exactS2 - exactS1);
   printf("Difference between exact actions: %1.15f (relative %1.15e)\n", diff, diff/exactS1);
 
   delete pHMCforce2;
@@ -2980,10 +2980,10 @@ void testDistributedPHMCForcesNeubergerWithChi(int OpMode, bool enforceCoreTie, 
   printf(" ==> For %d roots (Distributed): %d iterations within %1.2f seconds.\n",2*rootCount, count,timePassed());
 
   double diff = 0;
-  diff = abs(S1-S2);
+  diff = fabs(S1-S2);
   printf("Difference of actions (a): %1.15f\n", diff);
   diff = 0;
-  diff = abs(S1b-S2b);
+  diff = fabs(S1b-S2b);
   printf("Difference of actions (b): %1.15f\n", diff);
   diff = 0;
   fOps->transformFromXtraSizeArray(dSdOmega1, dSdOmega1);

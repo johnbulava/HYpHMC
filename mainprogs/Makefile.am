@@ -4,7 +4,8 @@ AM_LDFLAGS = -L@top_builddir@/lib -L@top_builddir@/asmCode64
 LDADD = -lhyphmc @LIBS@
 
 bin_PROGRAMS = pHMC analyzer evaluateConfs PerturbativePredictions \
-							 HiggsMassFromLargeNf PhaseDiagramAtLargeLambda
+							 HiggsMassFromLargeNf PhaseDiagramAtLargeLambda FFTTest \
+							 testOps
 
 pHMC_SOURCES= pHMC.C
 
@@ -17,3 +18,7 @@ PerturbativePredictions_SOURCES = PerturbativePredictions.C
 HiggsMassFromLargeNf_SOURCES = HiggsMassFromLargeNf.C
 
 PhaseDiagramAtLargeLambda_SOURCES = PhaseDiagramAtLargeLambda.C
+
+FFTTest_SOURCES = FFTTest.C
+
+testOps_SOURCES = testOps.C
