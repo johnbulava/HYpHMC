@@ -193,9 +193,6 @@ nobase_include_HEADERS = AnalyzerHiggs.h AnalyzerIOControl.h \
 												 WilsonMatrix.h\
 												 xSSE.h\
 												 objfunctor.h\
-												 typelist.h\
-												 typetraits.h\
-												 typemanip.h\
 												 @top_srcdir@/asmCode64/xSSE_Global.h
 ##----------------------------------------------------------
 
