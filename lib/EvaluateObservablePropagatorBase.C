@@ -12,7 +12,7 @@ EvaluateObservablePropagatorBase::EvaluateObservablePropagatorBase(AnalyzerIOCon
   autoCorrelationTime = new double[latticeBins->getMomentumSqrSlotCount()];
   pSqr = new double[latticeBins->getMomentumSqrSlotCount()]; 
   kappaZeroMode = false;
-  if (abs(SDReader->getKappa()) < 1E-8) kappaZeroMode = true;
+  if (fabs(SDReader->getKappa()) < 1E-8) kappaZeroMode = true;
   
   PropagatorEuclideanZFactor = NaN;
   PropagatorEuclideanZFactorError = NaN;
@@ -240,7 +240,7 @@ void EvaluateObservablePropagatorBase::calcProp(int ignoreStart, int ignoreEnd, 
     }
     
     y[I] = 1.0 / avgProp[I];
-    yerr[I] = abs(sigmaProp[I] / sqr(avgProp[I]));
+    yerr[I] = fabs(sigmaProp[I] / sqr(avgProp[I]));
   }
   delete[] data;
   delete[] dataDet;
@@ -267,8 +267,8 @@ void EvaluateObservablePropagatorBase::calcProp(int ignoreStart, int ignoreEnd, 
   b = b & performGnuplotFit(functionBody, &(pSqr[startP]), &(y[startP]), &(yerr[startP]), latticeBins->getMomentumSqrSlotCount()-startP, 4, fitRes, fitErr, redChiSqr);
 
   EucZ = fitRes[0];
-  if (abs(fitRes[2]) > 1E-10) EucZ = fitRes[0]*fitRes[3] / (fitRes[2] + fitRes[3]);
-  Eucmass = sqrt(EucZ) * abs(fitRes[1]) / sqrt(fitRes[0]);
+  if (fabs(fitRes[2]) > 1E-10) EucZ = fitRes[0]*fitRes[3] / (fitRes[2] + fitRes[3]);
+  Eucmass = sqrt(EucZ) * fabs(fitRes[1]) / sqrt(fitRes[0]);
   fC0 = fitRes[0];
   fC1 = fitRes[2];
   fC2 = fitRes[3];
@@ -338,8 +338,8 @@ void EvaluateObservablePropagatorBase::calcProp(int ignoreStart, int ignoreEnd, 
 //  b = b & performGnuplotFit(functionBody, reducedDataPSqr, reducedDataY, reducedDataYerr, reducedDataCount, 4, fitRes, fitErr, redChiSqrReduced);
 
   EucZReduced = fitRes[0];
-  if (abs(fitRes[2]) > 1E-10) EucZReduced = fitRes[0]*fitRes[3] / (fitRes[2] + fitRes[3]);
-  EucmassReduced = sqrt(EucZReduced) * abs(fitRes[1]) / sqrt(fitRes[0]);
+  if (fabs(fitRes[2]) > 1E-10) EucZReduced = fitRes[0]*fitRes[3] / (fitRes[2] + fitRes[3]);
+  EucmassReduced = sqrt(EucZReduced) * fabs(fitRes[1]) / sqrt(fitRes[0]);
   fC0Reduced = fitRes[0];
   fC1Reduced = fitRes[2];
   fC2Reduced = fitRes[3];
@@ -431,7 +431,7 @@ void EvaluateObservablePropagatorBase::calcProp(int ignoreStart, int ignoreEnd, 
       Z0 /= h*h;
       Z0 = 1.0 / Z0;
       
-      mprop0 = sqrt(Z0) * abs(fitRes[1]) / sqrt(fitRes[0]);
+      mprop0 = sqrt(Z0) * fabs(fitRes[1]) / sqrt(fitRes[0]);
 
       bound1=0;
       bound2=2;
@@ -518,7 +518,7 @@ void EvaluateObservablePropagatorBase::calcProp(int ignoreStart, int ignoreEnd, 
       fitRes[4] = 96*fitRes[2];
       fitRes[2] = 288*fitRes[2];
       fitRes[5] = mG;
-      double m0 = abs(fitRes[1]);
+      double m0 = fabs(fitRes[1]);
 
       b = b & findZeroOfBosonic1LoopInvPropagatorOnSecondSheetFit(pole, poleVal, m0, fitRes[0], 2, &(fitRes[2]), 1.2*m0); 
     
@@ -528,7 +528,7 @@ void EvaluateObservablePropagatorBase::calcProp(int ignoreStart, int ignoreEnd, 
       Z0 /= h*h;
       Z0 = 1.0 / Z0;
 
-      mprop0 = sqrt(Z0) * abs(fitRes[1]) / sqrt(fitRes[0]);
+      mprop0 = sqrt(Z0) * fabs(fitRes[1]) / sqrt(fitRes[0]);
 
       bound1=0;
       bound2=2;
@@ -712,9 +712,9 @@ bool EvaluateObservablePropagatorBase::evaluate() {
     PropagatorMinkowskiMass += MinkM;
     PropagatorMinkowskiMassError += MinkM*MinkM;
     
-    PropagatorPoleMass += abs(pole.y);
+    PropagatorPoleMass += fabs(pole.y);
     PropagatorPoleMassError += pole.y*pole.y;  
-    PropagatorPoleDecayWidth += 2*abs(pole.x);
+    PropagatorPoleDecayWidth += 2*fabs(pole.x);
     PropagatorPoleDecayWidthError += 4*pole.x*pole.x;  
     PropagatorPoleValue += norm(poleVal);
     PropagatorPoleValueError += sqr(norm(poleVal));
@@ -799,8 +799,8 @@ bool EvaluateObservablePropagatorBase::evaluate() {
             PropagatorZFactor, PropagatorZ0Factor, PropagatorMProp, PropagatorMProp0, pole, poleVal, PropagatorFitConst0ReducedPole, PropagatorFitConst1ReducedPole,
 	    PropagatorFitConst2ReducedPole, PropagatorFitConst3ReducedPole, PropagatorFitReducedChiSquare, PropagatorFitReducedChiSquareReduced, PropagatorFitReducedChiSquarePole);
 
-  PropagatorPoleMass = abs(pole.y);
-  PropagatorPoleDecayWidth = 2*abs(pole.x);
+  PropagatorPoleMass = fabs(pole.y);
+  PropagatorPoleDecayWidth = 2*fabs(pole.x);
   PropagatorPoleValue = norm(poleVal);
 
 /*
@@ -825,7 +825,7 @@ bool EvaluateObservablePropagatorBase::evaluate() {
     double LJ = 0;
     
     for (int I=4; I<reps-1; I++) {
-      double diff = abs(dataBuffer[I][28] - dataBuffer[I+1][28]);
+      double diff = fabs(dataBuffer[I][28] - dataBuffer[I+1][28]);
       if (diff>LJ) {
         LJpos = I;
 	LJ = diff;
@@ -903,7 +903,7 @@ LAPsystemPlot* EvaluateObservablePropagatorBase::createPlot1(double maxP) {
     plotData[I-startP] = new double[3];
     plotData[I-startP][0] = pSqr[I];
     plotData[I-startP][1] = 1.0 / avgProp[I];
-    plotData[I-startP][2] = abs(sigmaProp[I] / sqr(avgProp[I]));
+    plotData[I-startP][2] = fabs(sigmaProp[I] / sqr(avgProp[I]));
   }
   plot->setPlotData(latticeBins->getMomentumSqrSlotCount()-startP, 3, plotData);
   plot->setXLabel("$\\\\hat p^2$");

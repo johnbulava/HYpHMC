@@ -128,7 +128,7 @@ LAPsystemPlot* EvaluateObservableScalarPsiBarPsiVertexBase::createPlot1() {
 //  plot->setLineType(0);  
   plot->plotData("1:2:3");
   
-  if (abs(SimParaSet->getKappaN()) > 1E-10) {
+  if (fabs(SimParaSet->getKappaN()) > 1E-10) {
     char* fitString = new char[1000];
     snprintf(fitString,1000,"replot %1.3e", SimParaSet->getY0());
     plot->plotDirect(fitString);  
@@ -158,10 +158,10 @@ void EvaluateObservableScalarPsiBarPsiVertexBase::generateLatexAndPlotsAndXML() 
   startLatexOutputSummaryTable();
 
   double yrp0 = sqrt(ZG)*ZPsi*yr[0];
-  double yrp0_Error = abs(yrp0*sqrt(sqr(yrError[0]/yr[0]) + sqr(0.5*ZG_Error/ZG) + sqr(ZPsi_Error/ZPsi)));
+  double yrp0_Error = fabs(yrp0*sqrt(sqr(yrError[0]/yr[0]) + sqr(0.5*ZG_Error/ZG) + sqr(ZPsi_Error/ZPsi)));
   addXML_And_LatexOutputSummaryTableLine("Yrp0", "Renormalized Yukawa coupling at $\\Delta p=0$", "$y_r(\\Delta p=0)$",yrp0, yrp0_Error, NULL, "%1.3f");
   double yrp1 = sqrt(ZG)*ZPsi*yr[1];
-  double yrp1_Error = abs(yrp1*sqrt(sqr(yrError[1]/yr[1]) + sqr(0.5*ZG_Error/ZG) + sqr(ZPsi_Error/ZPsi)));
+  double yrp1_Error = fabs(yrp1*sqrt(sqr(yrError[1]/yr[1]) + sqr(0.5*ZG_Error/ZG) + sqr(ZPsi_Error/ZPsi)));
   addXML_And_LatexOutputSummaryTableLine("Yrp1", "Renormalized Yukawa coupling at $\\Delta p=1$", "$y_r(\\Delta p=1)$",yrp1, yrp1_Error, NULL, "%1.3f");
   
   endLatexOutputSummaryTable();

@@ -139,7 +139,7 @@ int AnalyzerObservableDetSign::getSignOfDeterminant (FermionMatrixOperations& fe
 	double re_old = 1.0;
 	double re = 1.0;
 	double im = 0.0;
-	double abs_det = 0.0;
+	double fabs_det = 0.0;
 	double det_error = 0.0;
 	
 	int counter = 0;
@@ -151,8 +151,8 @@ int AnalyzerObservableDetSign::getSignOfDeterminant (FermionMatrixOperations& fe
 		im = re_old * ew[i].y + im * (factor * ew[i].x);
 			
 		// error
-		abs_det = sqrt(re*re + im*im);
-		det_error = abs_det * tol * sqrt(counter);
+		fabs_det = sqrt(re*re + im*im);
+		det_error = fabs_det * tol * sqrt(counter);
 		rel_error = sqrt(ew[i].x*ew[i].x + ew[i].y*ew[i].y) * tol;
 		
 		println(3, "Partial product is : %+1.15f %+1.15f i (error: %1.8f)", re, im, det_error);
@@ -248,7 +248,7 @@ int AnalyzerObservableDetSign::getDeterminant_old (FermionMatrixOperations& ferm
 	re = 1.0;
 	im = 0.0;
 	int real_axis_ev_count = 0;
-	double abs_det = 1.0;
+	double fabs_det = 1.0;
 	double det_error = 0.0;
 	double det_sign = 1.0;
 	
@@ -265,8 +265,8 @@ int AnalyzerObservableDetSign::getDeterminant_old (FermionMatrixOperations& ferm
 			
 			det_sign *= ew[i].x;
 			
-			abs_det = sqrt(re*re + im*im);
-			det_error = abs_det * eVPrec * sqrt(real_axis_ev_count);
+			fabs_det = sqrt(re*re + im*im);
+			det_error = fabs_det * eVPrec * sqrt(real_axis_ev_count);
 			println(3, "Eigenvalue along real axis: %+1.8f %+1.8f i, curr partial product: (%+1.8f %1.8f i error: %1.8f)", ew[i].x, ew[i].y, re, im, det_error);			
 		}
 		else

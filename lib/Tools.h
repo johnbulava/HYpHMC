@@ -220,12 +220,10 @@ double round(double x);
 
 int roundToInt(double x); 
 
-/*
-inline double abs(double x) {
+inline double fabs(double x) {
   if (x>=0) return x;
   return -x;
 }
-*/
 
 bool isInteger(double x); 
 

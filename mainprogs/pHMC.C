@@ -355,13 +355,13 @@ void loadParameters(int MultiProcessNr, bool ll) {
   if (fscanf(file,"%d",&Parameter_FLAG_FactorizationOfMatrixB)==1) {
     if (LogLevel>0) printf(" -> FLAG: Parameter_FLAG_FactorizationOfMatrixB: %d\n",Parameter_FLAG_FactorizationOfMatrixB);
   } else error = true; 
-		
+	
   fgets(Comment, 500, file);
 
   if (fscanf(file,"%d",&Parameter_FLAG_AntiPeriodicBoundaryConditionsInTime)==1) {
     if (LogLevel>0) printf(" -> FLAG: Parameter_FLAG_AntiPeriodicBoundaryConditionsInTime: %d\n",Parameter_FLAG_AntiPeriodicBoundaryConditionsInTime);
   } else error = true;  
-
+	
   fgets(Comment, 500, file);
 
   if (fscanf(file,"%d",&Parameter_FLAG_Use_P_Preconditioner)==1) {
@@ -797,14 +797,21 @@ void writePhiConfigurationToDisk(double weight) {
   delete[] fileName;
 }
 
-
 void buildOutputFileNameExtension() {
-  outputFileNameExtension = new char[300];
-  
-  snprintf(outputFileNameExtension,300,"L%dx%dx%dx%dNf%dKap%1.5fLam%1.5fY%1.5fRho%1.3fR%1.3fPolDeg%dPolAl%1.3f_%s",
-   Parameter_L0,Parameter_L1,Parameter_L2,Parameter_L3,Parameter_Nf,Parameter_Kappa,Parameter_Lambda,Parameter_Y,Parameter_RHO,Parameter_R,Parameter_PolyDegree[0],Parameter_PolyAlpha,Parameter_filenameSuffix);	 
-}  
+	outputFileNameExtension = new char[300];
 
+	char* ptr = strstr(Parameter_filenameSuffix, "level14");
+	if (ptr != NULL) {
+		snprintf(outputFileNameExtension,300,"L%dx%dx%dx%dNf%dKap%1.5fLam%1.5fY%1.5fRho%1.3fR%1.3fPolDeg%dPolAl%1.3fJ%1.5f_%s",\
+				Parameter_L0,Parameter_L1,Parameter_L2,Parameter_L3,Parameter_Nf,Parameter_Kappa,Parameter_Lambda,Parameter_Y,\
+				Parameter_RHO,Parameter_R,Parameter_PolyDegree[0],Parameter_PolyAlpha, Parameter_ExplicitCurrent, Parameter_filenameSuffix);
+	}
+	else {
+		snprintf(outputFileNameExtension,300,"L%dx%dx%dx%dNf%dKap%1.5fLam%1.5fY%1.5fRho%1.3fR%1.3fPolDeg%dPolAl%1.3f_%s",\
+				Parameter_L0,Parameter_L1,Parameter_L2,Parameter_L3,Parameter_Nf,Parameter_Kappa,Parameter_Lambda,Parameter_Y,\
+				Parameter_RHO,Parameter_R,Parameter_PolyDegree[0],Parameter_PolyAlpha,Parameter_filenameSuffix);
+	}
+}
 
 void measureAndWrite(double weight) {
   double measurePhiNorm, measureStaggeredPhiNorm, avgNorm, sigmaNorm;
@@ -892,8 +899,10 @@ bool markovStep() {
   double* propTOL = NULL;
   double finalTOL = 0;
 
+	cout << "about to do step"<< endl;
   bool b = pHMCProp->multiTimeScaleMarkovStep(LevelCount, iterations, Parameter_Epsilon, integrators, subPolNr, propTOL, finalTOL);
 
+	cout << "did step"<< endl;
   return b;
 }
 
@@ -982,10 +991,10 @@ void tuneIntegrators(double allowedDis, bool afterMassDet) {
         printf("Setting:  theta = %f, eps=%f, iter= ", Parameter_Theta, Parameter_Epsilon);  
         for (int I2=0; I2<1+Parameter_SubPolyCount; I2++) printf("%d, ",Parameter_Iterations[I2]);
         printf("%d (Higgs) ",Parameter_Iterations[1+SubPolynomMAX]);
-        printf("tried with DeltaDeltaS = %f\n",abs(deltaS0-deltaS1));
+        printf("tried with DeltaDeltaS = %f\n",fabs(deltaS0-deltaS1));
       }
       
-      if ((isNaN(deltaS0-deltaS1)) || (abs(deltaS0-deltaS1) > allowedDis)) {
+      if ((isNaN(deltaS0-deltaS1)) || (fabs(deltaS0-deltaS1) > allowedDis)) {
         Parameter_Iterations[I] += deltaI;
         Parameter_Iterations[Ip1] = itMerker;
 	Parameter_Epsilon = epsMerker;
@@ -1010,10 +1019,10 @@ void tuneIntegrators(double allowedDis, bool afterMassDet) {
       printf("Setting:  theta = %f, eps=%f, iter= ", Parameter_Theta, Parameter_Epsilon);  
       for (int I2=0; I2<1+Parameter_SubPolyCount; I2++) printf("%d, ",Parameter_Iterations[I2]);
       printf("%d (Higgs) ",Parameter_Iterations[1+SubPolynomMAX]);
-      printf("tried with DeltaDeltaS = %f\n",abs(deltaS0-deltaS1));
+      printf("tried with DeltaDeltaS = %f\n",fabs(deltaS0-deltaS1));
     }
       
-    if ((isNaN(deltaS0-deltaS1)) || (abs(deltaS0-deltaS1) > allowedDis)) {
+    if ((isNaN(deltaS0-deltaS1)) || (fabs(deltaS0-deltaS1) > allowedDis)) {
       Parameter_Iterations[1+SubPolynomMAX] += deltaI;
       break;
     }
@@ -1035,10 +1044,10 @@ void tuneIntegrators(double allowedDis, bool afterMassDet) {
         printf("Setting:  theta = %f, eps=%f, iter= ", Parameter_Theta, Parameter_Epsilon);  
         for (int I2=0; I2<1+Parameter_SubPolyCount; I2++) printf("%d, ",Parameter_Iterations[I2]);
         printf("%d (Higgs) ",Parameter_Iterations[1+SubPolynomMAX]);
-        printf("tried with DeltaDeltaS = %f\n",abs(deltaS0-deltaS1));
+        printf("tried with DeltaDeltaS = %f\n",fabs(deltaS0-deltaS1));
       }
       
-      if ((isNaN(deltaS0-deltaS1)) || (abs(deltaS0-deltaS1) > allowedDis)) {
+      if ((isNaN(deltaS0-deltaS1)) || (fabs(deltaS0-deltaS1) > allowedDis)) {
         Parameter_Theta /= Parameter_ThetaFactor;
         break;
       }
@@ -1532,29 +1541,29 @@ bool readCurrentStateDescriptor() {
   if (Parameter_L2!=READParameter_L2) consistencyError=5;
   if (Parameter_L3!=READParameter_L3) consistencyError=6;
   if (Parameter_Nf!=READParameter_Nf) consistencyError=7;
-  if (abs(Parameter_RHO-READParameter_RHO)>ceps) consistencyError=8;
-  if (abs(Parameter_R-READParameter_R)>ceps) consistencyError=9;
-  if (abs(Parameter_Lambda-READParameter_Lambda)>ceps) consistencyError=10;
-  if (abs(Parameter_Kappa-READParameter_Kappa)>ceps) consistencyError=11;
-  if (abs(Parameter_Y-READParameter_Y)>ceps) consistencyError=12;
-  if (abs(Parameter_MassSplit-READParameter_MassSplit)>ceps) consistencyError=121;
-  if (abs(Parameter_ExplicitMass-READParameter_ExplicitMass)>ceps) consistencyError=122;
-  if (abs(Parameter_ExplicitCurrent-READParameter_ExplicitCurrent)>ceps) consistencyError=123;
-  if (abs(Parameter_c6-READParameter_c6)>ceps) consistencyError=124;
-  if (abs(Parameter_c8-READParameter_c8)>ceps) consistencyError=125;
-  if (abs(Parameter_c10-READParameter_c10)>ceps) consistencyError=126;
-  if (abs(Parameter_lambda6-READParameter_lambda6)>ceps) consistencyError=127;
-  if (abs(Parameter_lambda8-READParameter_lambda8)>ceps) consistencyError=128;
-  if (abs(Parameter_lambda10-READParameter_lambda10)>ceps) consistencyError=129;
+  if (fabs(Parameter_RHO-READParameter_RHO)>ceps) consistencyError=8;
+  if (fabs(Parameter_R-READParameter_R)>ceps) consistencyError=9;
+  if (fabs(Parameter_Lambda-READParameter_Lambda)>ceps) consistencyError=10;
+  if (fabs(Parameter_Kappa-READParameter_Kappa)>ceps) consistencyError=11;
+  if (fabs(Parameter_Y-READParameter_Y)>ceps) consistencyError=12;
+  if (fabs(Parameter_MassSplit-READParameter_MassSplit)>ceps) consistencyError=121;
+  if (fabs(Parameter_ExplicitMass-READParameter_ExplicitMass)>ceps) consistencyError=122;
+  if (fabs(Parameter_ExplicitCurrent-READParameter_ExplicitCurrent)>ceps) consistencyError=123;
+  if (fabs(Parameter_c6-READParameter_c6)>ceps) consistencyError=124;
+  if (fabs(Parameter_c8-READParameter_c8)>ceps) consistencyError=125;
+  if (fabs(Parameter_c10-READParameter_c10)>ceps) consistencyError=126;
+  if (fabs(Parameter_lambda6-READParameter_lambda6)>ceps) consistencyError=127;
+  if (fabs(Parameter_lambda8-READParameter_lambda8)>ceps) consistencyError=128;
+  if (fabs(Parameter_lambda10-READParameter_lambda10)>ceps) consistencyError=129;
   
   for (I=0; I<1+SubPolynomMAX; I++) {  
-    if (abs(Parameter_PolyEpsilon[I]-READParameter_PolyEpsilon[I])>ceps) consistencyError=13;
+    if (fabs(Parameter_PolyEpsilon[I]-READParameter_PolyEpsilon[I])>ceps) consistencyError=13;
   }
-  if (abs(Parameter_PolyLambda-READParameter_PolyLambda)>ceps) consistencyError=14;
+  if (fabs(Parameter_PolyLambda-READParameter_PolyLambda)>ceps) consistencyError=14;
   for (I=0; I<1+SubPolynomMAX; I++) {
     if (Parameter_PolyDegree[I]!=READParameter_PolyDegree[I]) consistencyError=15;
   }
-  if (abs(Parameter_PolyAlpha-READParameter_PolyAlpha)>ceps) consistencyError=16;
+  if (fabs(Parameter_PolyAlpha-READParameter_PolyAlpha)>ceps) consistencyError=16;
   if (Parameter_PolDigit!=READParameter_PolDigit) consistencyError=17;
   if (Parameter_MaxPolDegPerNode!=READParameter_MaxPolDegPerNode) consistencyError=18;
   if (Parameter_FLAG_RandomGauge!=READParameter_FLAG_RandomGauge) consistencyError=181;
@@ -1565,15 +1574,15 @@ bool readCurrentStateDescriptor() {
   if (Parameter_FLAG_Use_P_Preconditioner!=READParameter_FLAG_Use_P_Preconditioner) consistencyError=21;
   if (Parameter_FLAG_Use_Q_Preconditioner!=READParameter_FLAG_Use_Q_Preconditioner) consistencyError=22;
   if (Parameter_FLAG_Use_R_Preconditioner!=READParameter_FLAG_Use_R_Preconditioner) consistencyError=23;
-  if (abs(Parameter_QPreconditioner_Mu-READParameter_QPreconditioner_Mu)>ceps) consistencyError=24;
-  if (abs(Parameter_QPreconditioner_Beta-READParameter_QPreconditioner_Beta)>ceps) consistencyError=25;
-  if (abs(Parameter_UpperEWboundSafetyFactor-READParameter_UpperEWboundSafetyFactor)>ceps) consistencyError=26;
+  if (fabs(Parameter_QPreconditioner_Mu-READParameter_QPreconditioner_Mu)>ceps) consistencyError=24;
+  if (fabs(Parameter_QPreconditioner_Beta-READParameter_QPreconditioner_Beta)>ceps) consistencyError=25;
+  if (fabs(Parameter_UpperEWboundSafetyFactor-READParameter_UpperEWboundSafetyFactor)>ceps) consistencyError=26;
 //  if (Parameter_AdditionalAuxVectors!=READParameter_AdditionalAuxVectors) consistencyError=27;
   if (Parameter_FLAG_DirectOmegaSampling!=READParameter_FLAG_DirectOmegaSampling) consistencyError=28;
   if (Parameter_FLAG_ThetaScan!=READParameter_FLAG_ThetaScan) consistencyError=29;    
-  if (abs(Parameter_ThetaMin-READParameter_ThetaMin)>ceps) consistencyError=30;
-  if (abs(Parameter_ThetaMax-READParameter_ThetaMax)>ceps) consistencyError=31;
-  if (abs(Parameter_ThetaFactor-READParameter_ThetaFactor)>ceps) consistencyError=32;
+  if (fabs(Parameter_ThetaMin-READParameter_ThetaMin)>ceps) consistencyError=30;
+  if (fabs(Parameter_ThetaMax-READParameter_ThetaMax)>ceps) consistencyError=31;
+  if (fabs(Parameter_ThetaFactor-READParameter_ThetaFactor)>ceps) consistencyError=32;
   if (Parameter_FLAG_ModelSelection!=READParameter_FLAG_ModelSelection) consistencyError=33;
 //  if (Parameter_FLAG_xFFT!=READParameter_FLAG_xFFT) consistencyError=34;
   if (Parameter_SubPolyCount!=READParameter_SubPolyCount) consistencyError=35;
@@ -1585,13 +1594,13 @@ bool readCurrentStateDescriptor() {
   if (Parameter_DetermineEWeveryXXXconfsPREC!=READParameter_DetermineEWeveryXXXconfsPREC) consistencyError=41;
   if (Parameter_DetermineEWeveryXXXconfsMEASURE!=READParameter_DetermineEWeveryXXXconfsMEASURE) consistencyError=42;
   if (Parameter_FACC_type!=READParameter_FACC_type) consistencyError=43;
-  if (abs(Parameter_FACC_parameter-READParameter_FACC_parameter)>ceps) consistencyError=44;
+  if (fabs(Parameter_FACC_parameter-READParameter_FACC_parameter)>ceps) consistencyError=44;
   if (Parameter_OmegaMassAdaptionMode!=READParameter_OmegaMassAdaptionMode) consistencyError=45;
   if (Parameter_ReversibilityCheckFreqPrec!=READParameter_ReversibilityCheckFreqPrec) consistencyError=46;
   if (Parameter_ReversibilityCheckFreqMeas!=READParameter_ReversibilityCheckFreqMeas) consistencyError=47;
   if (Parameter_StartRandSeed!=READParameter_StartRandSeed) consistencyError=48;  
   if (Parameter_SphericalHiggsMode!=READParameter_SphericalHiggsMode) consistencyError=49;  
-  if (abs(Parameter_SphericalHiggsZeta-READParameter_SphericalHiggsZeta)>ceps) consistencyError=50;  
+  if (fabs(Parameter_SphericalHiggsZeta-READParameter_SphericalHiggsZeta)>ceps) consistencyError=50;  
 
  
   if (consistencyError>0) {
@@ -1816,7 +1825,7 @@ bool readCurrentStateDescriptor() {
   if (LogLevel>0) printf("Configuration read with mag=%1.15f and stag. mag=%1.15f\n",measurePhiNorm,measureStaggeredPhiNorm);
   if (LogLevel>0) printf("Old result              mag=%1.15f and stag. mag=%1.15f\n",READmeasurePhiNorm,READmeasureStaggeredPhiNorm); 
   
-  if ((abs(READmeasurePhiNorm-measurePhiNorm)>ceps) || (abs(READmeasureStaggeredPhiNorm-measureStaggeredPhiNorm)>ceps)) {
+  if ((fabs(READmeasurePhiNorm-measurePhiNorm)>ceps) || (fabs(READmeasureStaggeredPhiNorm-measureStaggeredPhiNorm)>ceps)) {
     if (LogLevel>0) printf("Consistency-Error for read Phi-Field from File-Descriptor. ==> Exiting\n");
     desini();
     exit(0);  
@@ -2008,12 +2017,12 @@ bool finalIntegratorSelection() {
   double ceps = 1E-9;
   
   for (int I=0; I<ThetaIterIntegratorTableCount; I++) {
-    if (abs(ThetaIterIntegratorTable[I][6+SubPolynomMAX]-1)<ceps) {
+    if (fabs(ThetaIterIntegratorTable[I][6+SubPolynomMAX]-1)<ceps) {
       bool found = false;
       for (int I2=0; I2<tableEntries; I2++) {
         found = true;
 	for (int I3=0; I3<3+SubPolynomMAX; I3++) {
-          if (abs(integratorTableEval[I2][2+I3]-ThetaIterIntegratorTable[I][2+I3])>ceps) found = false;
+          if (fabs(integratorTableEval[I2][2+I3]-ThetaIterIntegratorTable[I][2+I3])>ceps) found = false;
 	}
 	if (found) {
 	  integratorTableEval[I2][0]++;
@@ -2332,7 +2341,7 @@ int main(int argc,char **argv) {
 
   pHMCProp->getNodesReady();
 
-  if (descriptorFileRead) pHMCProp->readAllOmegaFieldsFromDisk();
+	if (descriptorFileRead) pHMCProp->readAllOmegaFieldsFromDisk();
   writeCurrentStateDescriptor(1, true);
   if (Parameter_FACC_type>0) {
     readFourierAccelerationData();
@@ -2383,6 +2392,8 @@ int main(int argc,char **argv) {
       acceptCount = 0;
       
       for (MeasureCount=0; MeasureCount<Parameter_Measurements; MeasureCount++) {
+				cout << "MeasureCount = " << MeasureCount << endl; 
+
         if (AutomaticPreconRunCount==(FACCmassDetTime/2)) {
           pHMCProp->setPhiForceFourierType(Parameter_FACC_type,Parameter_FACC_parameter);	
           pHMCProp->setOmegaMassAdaptionMode(Parameter_OmegaMassAdaptionMode);
@@ -2393,9 +2404,13 @@ int main(int argc,char **argv) {
         if (markovStep()) {
           double exactWeight = NaN;
           if (Parameter_FLAG_ExactReweighing>0) {
-            pHMCProp->calcExactMMdagInverseSQRTOmegaAction();
+						cout << " about to calc exact weight" << endl; 
+						pHMCProp->calcExactMMdagInverseSQRTOmegaAction();
+						cout << " done calc exact weight" << endl; 
             exactWeight = pHMCProp->getExactReweighingFactorFromMMdagInverseSQRTOmegaAction();
+						cout << "got factor" << endl; 
             writeWeightFactor(AutomaticPreconRunCount, 0, exactWeight);
+						cout << "wrote factor" << endl; 
           }
           if (AutomaticPreconRunCount>=(FACCmassDetTime/2)) {
   	    pHMCProp->analyzeAllPolynomialForces();

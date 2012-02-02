@@ -188,8 +188,8 @@ double PowerPolynomialsOneOverX::calcControlPlot() {
       v3 = (double) (expl(-beta*logl(x)));
       v4 = (double) (s-v3);
       v5 = (double) (v4/v3);
-      if (abs(v5) > maxRelDiff) {
-        maxRelDiff = abs(v5);
+      if (fabs(v5) > maxRelDiff) {
+        maxRelDiff = fabs(v5);
       }
     }
     

@@ -51,7 +51,7 @@ void HMCForce::calcInverse(vector4D* phi, double TOL) {
   fermiOps->solveFermionMatrixLGS(omegaField, outMMdaggerInverseOmega, (double*) phi, TOL, true, false, -1, neededIter);  
   double actualAcc = fermiOps->checkLGSsolutionAccuracy(outMMdaggerInverseOmega, omegaField, (double*) phi);  
   if (LogLevel>2) {
-    printf("Matrix-Inversion: %d iterations needed. Actual absolute accuracy %1.15f (requested %1.15f)\n", neededIter, actualAcc, TOL);
+    printf("Matrix-Inversion: %d iterations needed. Actual fabsolute accuracy %1.15f (requested %1.15f)\n", neededIter, actualAcc, TOL);
   }
 }
 

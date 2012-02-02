@@ -11,8 +11,9 @@
 #include "FermionMatrixOperations.h"
 #include "Force.h"
 #include "LatticeSiteBins.h"
-#include "GeneralChebyshevApproximation.h"
 #include "LatticeMomentumBins.h"
+#include "GeneralChebyshevApproximation.h"
+
 
 #define pHMCForcePolynomialsMAX 20
 #define pHMCForceDirectOmegaSamplingRelAccuracy 1E-12
@@ -154,4 +155,5 @@ public:
   double* getAverageOmegaForceStrengthPREC();
 };
  
+
 #endif

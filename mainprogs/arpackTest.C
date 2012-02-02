@@ -152,7 +152,7 @@ c     |                                                     |
 c     | TOL  determines the stopping criterion.             |
 c     |                                                     |
 c     |      Expect                                         |
-c     |           abs(lambdaC - lambdaT) < TOL*abs(lambdaC) |
+c     |           fabs(lambdaC - lambdaT) < TOL*fabs(lambdaC) |
 c     |               computed   true                       |
 c     |                                                     |
 c     |      If TOL .le. 0,  then TOL <- macheps            |

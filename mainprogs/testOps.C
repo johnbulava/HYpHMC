@@ -1206,7 +1206,7 @@ void testSSEVectorAddition() {
   }
   printf("SSE-Improved: %d iterations (vector add with scalar product) within %1.2f seconds.\n",count,timePassed());
 #ifdef useBLAS
-  printf("Difference between results = %1.15f  %1.15f \n",diff2, abs((double)(n2-n1)));
+  printf("Difference between results = %1.15f  %1.15f \n",diff2, fabs((double)(n2-n1)));
 #else
   printf("Difference between results = %1.15f \n",diff2);
 #endif  
@@ -1904,7 +1904,7 @@ void testdSdPhiNeubergerWithChi(double yN, double h, double TOL) {
 }
 
 
-/*void testConditionNumberEstimation(double yN) {
+void testConditionNumberEstimation(double yN) {
   printf("\nTesting Condition Number Estimation (Neuberger with Xi) with yN = %1.2f ...\n",yN);
   randomPhi(0.5,5,0);
   fOps->setYukawaCoupling(yN);
@@ -1932,7 +1932,7 @@ void testdSdPhiNeubergerWithChi(double yN, double h, double TOL) {
   }
   cond = eigMin/eigMax;  
   printf("Real Min. EV. %f, Max. EV. %f, Condition-Number: %f\n",eigMin, eigMax, cond);
-}*/
+}
 
 
 void testEigenvaluesNeubergerWithChi(double yN) {
@@ -2637,7 +2637,7 @@ void testPHMCdSdOmegaNeubergerWithChi(double yN, double massSplit, double explic
   fOps->setExplicitMass(explicitMass);
   pHMCForce* pHMCforce = new pHMCForce(fOps, true, 1,0, 0); 
   
-  int rootCount = 10;
+  int rootCount = 1;
   Complex* roots = new Complex[2*rootCount];
   int I;
   for (I=0; I<rootCount; I++) {
@@ -2645,8 +2645,8 @@ void testPHMCdSdOmegaNeubergerWithChi(double yN, double massSplit, double explic
     roots[2*I+1] = roots[2*I];
     roots[2*I+1].y = -roots[2*I+1].y;    
   }
-  pHMCforce->setApproxPolyRoots(0, roots, 2*rootCount, 1.6E-4, 1.0);
-  pHMCforce->randomOmegaField();  
+  pHMCforce->setApproxPolyRoots(0, roots, 2*rootCount, 1.6, 1.0);
+	pHMCforce->randomOmegaField();  
   pHMCforce->setQuasiHermiteanMode(true);
   double S = pHMCforce->calcOmegaAction(0, phiField);
   printf(" -> Omega Action: %f\n",S);
@@ -2753,7 +2753,7 @@ void testDistributedPHMCPolynomialMMdagInverseSQRTomegaAction(int OpMode, bool e
   double polS2 = pHMCforce2->getActOmegaAction(0);
 
 
-  double diff = abs(polS2 - polS1);
+  double diff = fabs(polS2 - polS1);
   printf("Difference between exact actions: %1.15f (relative %1.15e)\n", diff, diff/polS1);
 
   delete pHMCforce2;
@@ -2821,7 +2821,7 @@ void testDistributedPHMCExactMMdagInverseSQRTomegaAction(int OpMode, bool enforc
   double exactS2 = pHMCforce2->getExactOmegaMMdagInverseSQRTAction();
 
 
-  double diff = abs(exactS2 - exactS1);
+  double diff = fabs(exactS2 - exactS1);
   printf("Difference between exact actions: %1.15f (relative %1.15e)\n", diff, diff/exactS1);
 
   delete pHMCforce2;
@@ -2974,10 +2974,10 @@ void testDistributedPHMCForcesNeubergerWithChi(int OpMode, bool enforceCoreTie, 
   printf(" ==> For %d roots (Distributed): %d iterations within %1.2f seconds.\n",2*rootCount, count,timePassed());
 
   double diff = 0;
-  diff = abs(S1-S2);
+  diff = fabs(S1-S2);
   printf("Difference of actions (a): %1.15f\n", diff);
   diff = 0;
-  diff = abs(S1b-S2b);
+  diff = fabs(S1b-S2b);
   printf("Difference of actions (b): %1.15f\n", diff);
   diff = 0;
   fOps->transformFromXtraSizeArray(dSdOmega1, dSdOmega1);
@@ -3361,10 +3361,10 @@ int main(int argc,char **argv) {
   fftw_plan_with_nthreads(FFTW_ThreadCount);  
   
   iniTools(1);
-  L0 = 16;
-  L1 = 16;
-  L2 = 16;
-  L3 = 32;
+  L0 = 4;
+  L1 = 4;
+  L2 = 4;
+  L3 = 8;
   bool usexFFT = false;
   int threadCountPerNode = 2;
   int ParaOpMode = 1;
@@ -3395,13 +3395,13 @@ xtraSize3 = 1;
   phiField = (double*) HMCProp->phiField;
   dSdPhi = (double*) fOps->createFermionVector(2);
   
-  
-//  PolynomialApproximation poly(128, 1000, 0.5, 1E-4);
-//  poly.plotApproxPolynomials("data/polyApproxCheck.dat");
-//  PowerPolynomialsOneOverX powerPoly(12, 1E-2, 0, 0.5);
-//  powerPoly.printToFile();
-//  powerPoly.calcControlPlot();
-
+ /* 
+  PolynomialApproximation poly(128, 1000, 0.5, 1E-4);
+  poly.plotApproxPolynomials("data/polyApproxCheck.dat");
+  PowerPolynomialsOneOverX powerPoly(12, 1E-2, 0, 0.5);
+  powerPoly.printToFile();
+  powerPoly.calcControlPlot();
+	*/
   
   initializePerformanceProfiler("testOpsPerformanceProfile.dat");
 
@@ -3415,15 +3415,15 @@ exit(0);*/
 
 //  testFourierTrafo();
 
-//  testConditionNumberEstimation(10);
+  //testConditionNumberEstimation(10);
 //exit(0);
  
 
-//  testDerivativeB(1.2, 0.15, 0.0, 1E-5);
-//  testPHMCdSdOmegaNeubergerWithChi(1.2, 0.15, 0.0, 1E-5, true, 1, 0, true, 0.5, 0.5, true, 1.0, 1.0);
-//  testPHMCdSdPhiNeubergerWithChi(1.2, 0.15, 0.0, 1E-5, true, 1, 0, true, 0.5, 0.5, true, 1.0, 1.0);
-//  testPHMCSampleOmegaNeubergerWithChi(1.2, true, 1, 0, true, 0.5, 0.5, true, 1.0, 0.30, false);
-//  testpHMCPropagation(1, false, true, 1.2, 0.1, NaN, true, 0*0.23, 0.15, 0.0, 1.4, 0.0051, 0.0052, 0.0053, 0.054, 0.055, 0.056, true, 1, 0, true, 1, 0.5, true, 1.0, 1.0); 
+  testDerivativeB(1.2, 0.15, 0.0, 1E-5);
+  testPHMCdSdOmegaNeubergerWithChi(1.2, 0.15, 0.0, 1E-5, false, 1, 0, false, 0.5, 0.5, false, 1.0, 1.0);
+  testPHMCdSdPhiNeubergerWithChi(1.2, 0.15, 0.0, 1E-5, true, 1, 0, true, 0.5, 0.5, true, 1.0, 1.0);
+  testPHMCSampleOmegaNeubergerWithChi(1.2, true, 1, 0, true, 0.5, 0.5, true, 1.0, 0.30, false);
+  testpHMCPropagation(1, false, true, 1.2, 0.1, NaN, true, 0*0.23, 0.15, 0.0, 1.4, 0.0051, 0.0052, 0.0053, 0.054, 0.055, 0.056, true, 1, 0, true, 1, 0.5, true, 1.0, 1.0); 
 
 
 //  testDistributedVectorCopy(1, false);
@@ -3460,11 +3460,11 @@ exit(0);*/
 //  testMMDaggerxQuasiHermiteanNeubergerWithChi(1.5, true, true);
 //  testCompactMMDaggerxNeubergerWithChi(1.5, true, true, 1, 0, true, 0.5, 0.5);
 
-//  testPreconditioner(0.7, 0.24, 0.03);
-//  testSolverNeubergerWithChi(5, true, true, 1E-8);
+  testPreconditioner(0.7, 0.24, 0.03);
+  testSolverNeubergerWithChi(5, true, true, 1E-8);
   testMMDaggerSQTRSolverNeubergerWithChi(1.1, 1E-10, true, 1.0, 0, true, 0.5, 0.5, true, 1.0, 1.0, 20);
-//  testMMDaggerChebyshevPolynomialApplication(1.1, 1E-10, true, 1.0, 0, true, 0.5, 0.5);
-//  testdSdPhiNeubergerWithChi(1.5, 1E-5, 1E-12);
+  testMMDaggerChebyshevPolynomialApplication(1.1, 1E-10, true, 1.0, 0, true, 0.5, 0.5);
+  testdSdPhiNeubergerWithChi(1.5, 1E-5, 1E-12);
 //  testHMCPropagation(1.5, 0.10, 0.01);
 
 

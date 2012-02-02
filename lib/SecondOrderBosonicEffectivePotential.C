@@ -123,7 +123,7 @@ SecondOrderBosonicEffectivePotential::SecondOrderBosonicEffectivePotential(int l
     U[I]  = calcEffectivePotDn(I);
     nU[I] = numericalDerivativeOfEffPot_dv(vev, I, I-1, 1E-6);
     
-    if (abs((U[I]-nU[I]) / U[I])>3E-5) {    
+    if (fabs((U[I]-nU[I]) / U[I])>3E-5) {    
       printf("ERROR in SecondOrderBosonicEffectivePotential: Derivative d^%d/dv^%d incorrect!!!\n", I,I);
       printf("Analytical: %1.10f, Numerical: %1.10f\n", U[I], nU[I]);      
       exit(0);

@@ -154,7 +154,7 @@ void performFit() {
 
   printf("\nFinal fit parameters are:\n");
   for (int I=0; I<NrOfTerms; I++) {
-    printf("  A%d = %1.3e +- %1.3e (%1.1f %%)\n", I+1, fitConst[I], fitConstError[I], 100*fitConstError[I]/ abs(fitConst[I]));
+    printf("  A%d = %1.3e +- %1.3e (%1.1f %%)\n", I+1, fitConst[I], fitConstError[I], 100*fitConstError[I]/ fabs(fitConst[I]));
   }
 
   

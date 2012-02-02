@@ -270,7 +270,7 @@ void findErrorEstimatesOfFitParameters(double& lamRen, double& lamRenError, doub
     if (chiSqr<30) {
       lamRen += dummyLam;
       lamRenError += dummyLam*dummyLam;
-      mH += abs(dummyMH);
+      mH += fabs(dummyMH);
       mHError += dummyMH*dummyMH;
     } else {
       printf("Fit-Result rejected due to chiScr>30!!!\n");

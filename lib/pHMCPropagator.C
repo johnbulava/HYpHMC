@@ -1,6 +1,4 @@
 #include "pHMCPropagator.h"
-#include "Tools.h"
-
 
 pHMCPropagator::pHMCPropagator(FermionMatrixOperations* fOps, double lam, double kap, double current, double c6, double c8, double c10, double lam6, double lam8, double lam10, int nf, double gam, bool sphMode, double sphZeta, double tht, int subPolCnt, double* polEps, double* polLam, int* polDeg, int precMCnt, double* precMss, int digit, double alpha, int maxPolDegPerNod, int addAuxVecsCount):Propagator(fOps, lam, kap, current, c6, c8, c10, lam6, lam8, lam10, nf, gam, sphMode, sphZeta) {
   if (LogLevel>2) printf("Initializing pHMC-Propagator with lambda = %1.3f, kappa = %1.3f, current = %1.3e, c6 = %1.3e, c8 = %1.3e, c10 = %1.3e, lam6 = %1.3e, lam8 = %1.3e, lam10 = %1.3e, Nf = %d, gamma = %1.3f, SphericalMode = %d, SphericalZeta = %1.3e, theta = %1.3f, SubPolCount = %d, PrecMassCount = %d, Poly.Digit = %d, Poly.Alpha = %1.3f, max.Poly.Deg. Per Node = %d, addAuxVecsCount=%d\n", lam, kap, current, c6, c8, c10, lam6, lam8, lam10, nf, gam, sphMode, sphZeta, tht, subPolCnt, precMCnt, digit, alpha, maxPolDegPerNod, addAuxVecsCount);

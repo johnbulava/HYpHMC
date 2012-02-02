@@ -507,16 +507,16 @@ void readCurrentStateDescriptor() {
   if (Parameter_L2!=READParameter_L2) consistencyError=102;
   if (Parameter_L3!=READParameter_L3) consistencyError=103;
   if (Parameter_Nf!=READParameter_Nf) consistencyError=2;
-  if (abs(Parameter_RHO-READParameter_RHO)>ceps) consistencyError=3;
-  if (abs(Parameter_R-READParameter_R)>ceps) consistencyError=4;
-  if (abs(Parameter_Lambda-READParameter_Lambda)>ceps) consistencyError=5;
-  if (abs(Parameter_Kappa-READParameter_Kappa)>ceps) consistencyError=6;
-  if (abs(Parameter_Y-READParameter_Y)>ceps) consistencyError=7;
+  if (fabs(Parameter_RHO-READParameter_RHO)>ceps) consistencyError=3;
+  if (fabs(Parameter_R-READParameter_R)>ceps) consistencyError=4;
+  if (fabs(Parameter_Lambda-READParameter_Lambda)>ceps) consistencyError=5;
+  if (fabs(Parameter_Kappa-READParameter_Kappa)>ceps) consistencyError=6;
+  if (fabs(Parameter_Y-READParameter_Y)>ceps) consistencyError=7;
   if (Parameter_FLAG_CalcNeubergerDetWithXi!=READParameter_FLAG_CalcNeubergerDetWithXi) consistencyError=8;
   if (Parameter_FLAG_CalcWilsonDetWithoutXi!=READParameter_FLAG_CalcWilsonDetWithoutXi) consistencyError=9;
   if (Parameter_FLAG_CalcNeubergerDetWithoutXi!=READParameter_FLAG_CalcNeubergerDetWithoutXi) consistencyError=10;
   if (Parameter_FLAG_CalcWilsonDetWithXi!=READParameter_FLAG_CalcWilsonDetWithXi) consistencyError=11;
-  if (abs(Parameter_FinalTOL-READParameter_FinalTOL)>ceps) consistencyError=12;
+  if (fabs(Parameter_FinalTOL-READParameter_FinalTOL)>ceps) consistencyError=12;
   if (Parameter_Measurements!=READParameter_Measurements) consistencyError=13;
   if (Parameter_AutomaticPreconditioningMetros!=READParameter_AutomaticPreconditioningMetros) consistencyError=14;
   if (Parameter_ThermalizingMetros!=READParameter_ThermalizingMetros) consistencyError=15;
@@ -627,7 +627,7 @@ void readCurrentStateDescriptor() {
   if (LogLevel>0) printf("Configuration read with mag=%1.15f and stag. mag=%1.15f\n",measurePhiNorm,measureStaggeredPhiNorm);
   if (LogLevel>0) printf("Old result              mag=%1.15f and stag. mag=%1.15f\n",READmeasurePhiNorm,READmeasureStaggeredPhiNorm); 
   
-  if ((abs(READmeasurePhiNorm-measurePhiNorm)>ceps) || (abs(READmeasureStaggeredPhiNorm-measureStaggeredPhiNorm)>ceps)) {
+  if ((fabs(READmeasurePhiNorm-measurePhiNorm)>ceps) || (fabs(READmeasureStaggeredPhiNorm-measureStaggeredPhiNorm)>ceps)) {
     if (LogLevel>0) printf("Consistency-Error for read Phi-Field from File-Descriptor. ==> Exiting\n");
     desini();
     exit(0);  
@@ -732,7 +732,7 @@ void automaticEpsilonAdaption(double acceptRate) {
 void automaticPropTolAdaption(double acceptRate) {
   if (acceptRate<AutomaticAdaption_LowPro) {
     double fac = 1.15 + (AdvancedZufall(AdvancedSeed)/10.0);
-    fac *= 1.5*(abs(log(Parameter_PropTOL)/log(AutomaticPropTolAdaption_MaxPropTol)));
+    fac *= 1.5*(fabs(log(Parameter_PropTOL)/log(AutomaticPropTolAdaption_MaxPropTol)));
     Parameter_PropTOL /= fac;
     if (Parameter_PropTOL <= Parameter_FinalTOL) Parameter_PropTOL = Parameter_FinalTOL;    
     if (LogLevel>2) printf("==> Decreasing PropTol to %1.15f (FinalTol = %1.15f).\n",Parameter_PropTOL, Parameter_FinalTOL);
@@ -746,7 +746,7 @@ void automaticPropTolAdaption(double acceptRate) {
   }
   if (acceptRate>AutomaticAdaption_HighPro) {
     double fac = 1.15 + (AdvancedZufall(AdvancedSeed)/10.0);
-    fac *= (abs(log(Parameter_PropTOL)/log(AutomaticPropTolAdaption_MaxPropTol)));
+    fac *= (fabs(log(Parameter_PropTOL)/log(AutomaticPropTolAdaption_MaxPropTol)));
     Parameter_PropTOL *= fac;
     if (Parameter_PropTOL >= AutomaticPropTolAdaption_MaxPropTol) Parameter_PropTOL = AutomaticPropTolAdaption_MaxPropTol;    
     if (LogLevel>2) printf("==> Increasing PropTol to %1.15f (FinalTol = %1.15f).\n",Parameter_PropTOL, Parameter_FinalTOL);

@@ -89,7 +89,7 @@ LAPsystemPlot* EvaluateObservablePsiBarPsiCorrBase::createPlot1(bool logY) {
     plotData[I] = new double[3];
     plotData[I][0] = I;
     plotData[I][1] = massAnalyzer->getMassCorrelationEigenvalue(I, 0);
-    if (logY) plotData[I][1] = abs(massAnalyzer->getMassCorrelationEigenvalue(I, 0));
+    if (logY) plotData[I][1] = fabs(massAnalyzer->getMassCorrelationEigenvalue(I, 0));
     plotData[I][2] = massAnalyzer->getMassCorrelationEigenvalueError(I, 0);    
   }
   plot->setPlotData(LargestL+1, 3, plotData);

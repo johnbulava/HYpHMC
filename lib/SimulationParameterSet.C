@@ -35,12 +35,12 @@ SimulationParameterSet::~SimulationParameterSet() {
 
 double SimulationParameterSet::reparametrize_HiggsField(int targetType) {
   if ((ParameterType==SimulationParameterSet_NfNotation) && (targetType==SimulationParameterSet_ContinuumNotation)) {
-    double d = abs(2*kappaOrMassSquared);
+    double d = fabs(2*kappaOrMassSquared);
     if (d>0) return sqrt(d);  
     return 1.0;
   }
   if ((ParameterType==SimulationParameterSet_ContinuumNotation) && (targetType==SimulationParameterSet_NfNotation)) {
-    double d = abs(2*getKappaN());  
+    double d = fabs(2*getKappaN());  
     if (d>0) return 1.0/sqrt(d);      
     return 1.0;  
   }

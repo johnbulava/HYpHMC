@@ -38,7 +38,7 @@ double calcNorm(double prec) {
       tn = tnp1;
     }
     rel = s*exp(beta*log(1+epsilon+x)) - 1;
-    if (abs(rel)>maxRel) maxRel = abs(rel);
+    if (fabs(rel)>maxRel) maxRel = fabs(rel);
   
     x += prec;
   }
@@ -61,7 +61,7 @@ double calcNorm(double prec) {
       d *= x;
     }
     rel = s*exp(beta*log(x)) - 1;
-    if (abs(rel)>maxRel) maxRel = abs(rel);
+    if (fabs(rel)>maxRel) maxRel = fabs(rel);
   
     x += prec;
   }
