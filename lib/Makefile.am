@@ -192,7 +192,6 @@ nobase_include_HEADERS = AnalyzerHiggs.h AnalyzerIOControl.h \
                          TuningDataBase.h\
 												 WilsonMatrix.h\
 												 xSSE.h\
-												 objfunctor.h\
 												 @top_srcdir@/asmCode64/xSSE_Global.h
 ##----------------------------------------------------------
 
