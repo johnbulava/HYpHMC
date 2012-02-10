@@ -22,7 +22,7 @@ LatexSummary::LatexSummary(char* latexBaseFilename, char* baseDirName, int subDi
 	}	
 	preIncludeText = NULL;
 	postIncludeText = NULL;
-	// ACHTUNG: Möglicherweise ist body-datei nicht existent  ==> checken
+	// ACHTUNG: Mï¿½glicherweise ist body-datei nicht existent  ==> checken
 }
 
 
@@ -46,7 +46,7 @@ LatexSummary::~LatexSummary() {
 }
 
 
-void LatexSummary::addDirectTextBeforeIncludes(char* text) {
+void LatexSummary::addDirectTextBeforeIncludes(const char* text) {
 	printf("addDirectBefore: %s\n",text);
 	if(text != NULL && strlen(text) != 0) {
 		if (preIncludeText != NULL && strlen(preIncludeText) != 0) {
@@ -66,7 +66,7 @@ void LatexSummary::addDirectTextBeforeIncludes(char* text) {
 }
 
 
-void LatexSummary::addDirectTextAfterIncludes(char* text) {
+void LatexSummary::addDirectTextAfterIncludes(const char* text) {
   printf("addDirectAfter: %s\n",text);  
   if(text != NULL && strlen(text) != 0) {
 	  if (postIncludeText != NULL && strlen(postIncludeText) != 0) {

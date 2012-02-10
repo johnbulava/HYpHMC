@@ -1,6 +1,6 @@
 #include "MassCorrelationMatrixAnalyzer.h"
 
-MassCorrelationMatrixAnalyzer::MassCorrelationMatrixAnalyzer(int dim, int timeEx, bool opCorMode, bool genEWprob, bool iterEValign, bool SubVac, bool FitVac, int fitRangeRed, int datMx, char* uniqueID) {
+MassCorrelationMatrixAnalyzer::MassCorrelationMatrixAnalyzer(int dim, int timeEx, bool opCorMode, bool genEWprob, bool iterEValign, bool SubVac, bool FitVac, int fitRangeRed, int datMx, const char* uniqueID) {
   if (LogLevel>2) printf("Initializing MassCorrelationMatrixAnalyzer with dim = %d, timeEx = %d, opCorMode = %d, genEWprob = %d, iterEValign = %d , SubVac = %d, FitVac = %d, fitRangeRed = %d, dataMax = %d and uniqueID = %s\n", dim, timeEx, opCorMode, genEWprob, iterEValign, SubVac, FitVac, fitRangeRed, datMx, uniqueID);
 
   dimension = dim;

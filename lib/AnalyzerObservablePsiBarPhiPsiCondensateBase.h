@@ -32,7 +32,7 @@ protected:
   int multiplyWithPhiMatBSelection;
 
 public:
-  AnalyzerObservablePsiBarPhiPsiCondensateBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, char* oName, char* nick); 
+  AnalyzerObservablePsiBarPhiPsiCondensateBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, const char* oName, const char* nick); 
   ~AnalyzerObservablePsiBarPhiPsiCondensateBase();
   
   bool analyze(AnalyzerPhiFieldConfiguration* phiFieldConf, Complex** auxVectors);

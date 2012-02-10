@@ -354,7 +354,7 @@ void desini() {
 }
 
 
-void addXmlOutput(char* tag, char* des, double val, double err) {
+void addXmlOutput(const char* tag, const char* des, double val, double err) {
   xmlOutput_Tag[xmlOutput_Count] = cloneString(tag);
   xmlOutput_Description[xmlOutput_Count] = cloneString(des);
   xmlOutput_Value[xmlOutput_Count] = val;
@@ -416,7 +416,7 @@ void writeSummaryXmlFile() {
 }
 
 
-void addXML_And_LatexSummaryInfoTableLine(char* xmltag, char* des, char* shortCut, double val, double error, char* unit, char* valFormat) {
+void addXML_And_LatexSummaryInfoTableLine(const char* xmltag, const char* des, const char* shortCut, double val, double error, const char* unit, const char* valFormat) {
   char* line = new char[2000];
   char* formatStr = new char[1000];
   

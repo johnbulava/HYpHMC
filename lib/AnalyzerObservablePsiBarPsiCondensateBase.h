@@ -38,7 +38,7 @@ protected:
   bool stochasticalSource;
 
 public:
-  AnalyzerObservablePsiBarPsiCondensateBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, char* oName, char* nick); 
+  AnalyzerObservablePsiBarPsiCondensateBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, const char* oName, const char* nick); 
   ~AnalyzerObservablePsiBarPsiCondensateBase();
   
   bool analyze(AnalyzerPhiFieldConfiguration* phiFieldConf, Complex** auxVectors);

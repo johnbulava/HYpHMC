@@ -82,7 +82,7 @@ void LatexAndPlottingSystem::newPage() {
 	strcat(latexStr, "\\newpage\n");
 }
 
-void LatexAndPlottingSystem::addDirectText(char* text) {
+void LatexAndPlottingSystem::addDirectText(const char* text) {
 	strcat(latexStr, text);
 }
 

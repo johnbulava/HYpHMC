@@ -48,7 +48,7 @@ protected:
 
   
 public:    
-  EvaluateObservablePsiBarPsiPropagatorBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, char* oName, char* nick, double relStart, double relEnd); 
+  EvaluateObservablePsiBarPsiPropagatorBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, const char* oName, const char* nick, double relStart, double relEnd); 
   ~EvaluateObservablePsiBarPsiPropagatorBase();
 
   bool evaluate();

@@ -172,7 +172,7 @@ bool areParametersEqualWithRespectToPSqr(ParameterType p1, ParameterType p2) {
 }
 
 
-char* constructFileName(ParameterType p, char* des) {
+char* constructFileName(ParameterType p, const char* des) {
   char* fileName = new char[1000];
   #ifdef USEBOSONICDETERMINANT
       snprintf(fileName, 1000,"HiggsMassFromLargeNfBOSONICDET_m0InDet%d_LamInDet%d_PertOrder%d_L%dx%dx%dx%dyt%1.3fyb%1.3flam%1.5fl6am%1.5fl8am%1.5fl10am%1.5fCut%1.1fNf%dRho%1.3fr%1.3f_%s.dat", BOSONICDETERMINANTM0INDET, BOSONICDETERMINANTLAMBDASINDET, BOSONICDETERMINANTPERTORDER, p.L0,p.L1,p.L2,p.L3, p.yt0,p.yb0, p.lam0,p.lam6,p.lam8,p.lam10,p.CutoffInGev,p.Nf,p.rho,p.r,des);  
@@ -187,7 +187,7 @@ char* constructFileName(ParameterType p, char* des) {
 }
 
 
-char* constructFileNameShort(ParameterType p, char* des) {
+char* constructFileNameShort(ParameterType p, const char* des) {
   char* fileName = new char[1000];
   #ifdef USEBOSONICDETERMINANT
       snprintf(fileName, 1000,"HiggsMassFromLargeNfBOSONICDET_m0InDet%d_LamInDet%d_PertOrder%d_L%dx%dx%dx%dyt%1.3fyb%1.3fCut%1.1fNf%dRho%1.3fr%1.3f_%s.dat", BOSONICDETERMINANTM0INDET, BOSONICDETERMINANTLAMBDASINDET, BOSONICDETERMINANTPERTORDER,p.L0,p.L1,p.L2,p.L3, p.yt0,p.yb0,p.CutoffInGev,p.Nf,p.rho,p.r,des);  
@@ -2308,7 +2308,7 @@ int main(int argc,char **argv) {
   diracOp = new NeubergerMatrix(Parameters.rho, Parameters.r, 1, 1, 1, 1, 2);
   QuietMode = true;
 //0.180173 -0.010793 -0.002700 0.000948 nahezu keine masse bei 8x8x8x16
-//0.181642 -0.012943 -0.001397 0.000743 für 10GeV   bei 8x8x8x16
+//0.181642 -0.012943 -0.001397 0.000743 fï¿½r 10GeV   bei 8x8x8x16
 
 
   calcCoefficientsOfCouplingTerm(2);

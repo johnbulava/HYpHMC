@@ -34,7 +34,7 @@ private:
 	
 	int getDeterminant_old (FermionMatrixOperations& fermiOps, double* phiField, int initialEigenValueCount, double tol, Complex& det);
 	int getSignOfDeterminant (FermionMatrixOperations& fermiOps, double* phiField, int initialEigenValueCount, double tol, Complex& det);
-	void println(int level, char * format, ...);
+	void println(int level, const char * format, ...);
 	
 public:    
   double* phiField_2save; // only for testing: this and the following line shoule be deleted for later use

@@ -232,7 +232,7 @@ cln::cl_F PolynomialApproximation::Recurev(int Maxpow, cln::cl_F Xval, cln::cl_F
 // The ofstream of the output file is                     Ostream
 //  
 // At the beginning write the string                      Text
-void PolynomialApproximation::WriteAssign(ostream& Ostream, char* Text, cln::cl_F* Wlist, int Leng, char* Arrayname) {
+void PolynomialApproximation::WriteAssign(ostream& Ostream, const char* Text, cln::cl_F* Wlist, int Leng, const char* Arrayname) {
    int   ord;
    Ostream <<endl <<Text <<endl <<endl;
 

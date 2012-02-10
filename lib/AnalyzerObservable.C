@@ -1,7 +1,7 @@
 #include "AnalyzerObservable.h"
 
 
-AnalyzerObservable::AnalyzerObservable(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, char* oName, char* nick) { 
+AnalyzerObservable::AnalyzerObservable(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, const char* oName, const char* nick) { 
   if (LogLevel>1) printf("AnalyzerObservable %s (%s) initializing ...\n",oName,nick);
   ioControl = aIOcon;
   fermiOps = fOps;

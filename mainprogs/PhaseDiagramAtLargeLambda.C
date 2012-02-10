@@ -46,14 +46,14 @@ bool QuietMode = false;
 
 
 
-char* constructFileName(ParameterType p, char* des) {
+char* constructFileName(ParameterType p, const char* des) {
   char* fileName = new char[1000];
   snprintf(fileName, 1000, "PhaseDiagramAtLargeLambda_L%dx%dx%dx%dyt%1.3fyb%1.3flam%1.5ffNf%dRho%1.3fr%1.3f_%s.dat", p.L0,p.L1,p.L2,p.L3, p.yt0,p.yb0, p.lam0,p.Nf,p.rho,p.r,des);  
   return fileName;  
 }
 
 
-char* constructFileNameNoY(ParameterType p, char* des) {
+char* constructFileNameNoY(ParameterType p, const char* des) {
   char* fileName = new char[1000];
   snprintf(fileName, 1000, "PhaseDiagramAtLargeLambda_L%dx%dx%dx%dybytRatio%1.3flam%1.5ffNf%dRho%1.3fr%1.3f_%s.dat", p.L0,p.L1,p.L2,p.L3, p.yb0/p.yt0, p.lam0,p.Nf,p.rho,p.r,des);  
   return fileName;  

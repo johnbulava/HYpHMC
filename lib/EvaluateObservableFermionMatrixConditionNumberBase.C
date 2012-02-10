@@ -1,6 +1,6 @@
 #include "EvaluateObservableFermionMatrixConditionNumberBase.h"
 
-EvaluateObservableFermionMatrixConditionNumberBase::EvaluateObservableFermionMatrixConditionNumberBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, char* oName, char* nick, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, oName, nick, relStart, relEnd) { 
+EvaluateObservableFermionMatrixConditionNumberBase::EvaluateObservableFermionMatrixConditionNumberBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, const char* oName, const char* nick, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, oName, nick, relStart, relEnd) { 
   ini(getAnalyzerResultsCount(), obsWeight, obsDetSign);
   drawUpperBound = false;
   drawLowerBound = false;

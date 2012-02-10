@@ -1,6 +1,6 @@
 #include "AnalyzerObservableScalarPsiBarPsiVertexBase.h"
 
-AnalyzerObservableScalarPsiBarPsiVertexBase::AnalyzerObservableScalarPsiBarPsiVertexBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, char* oName, char* nick) : AnalyzerObservable(fOps, aIOcon, SDreader, oName, nick) { 
+AnalyzerObservableScalarPsiBarPsiVertexBase::AnalyzerObservableScalarPsiBarPsiVertexBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, const char* oName, const char* nick) : AnalyzerObservable(fOps, aIOcon, SDreader, oName, nick) { 
   if (fermiOps->get1DSizeLargest() >= 32) {
     analyzeEveryXXXconf = 1;
   }

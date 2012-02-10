@@ -25,7 +25,7 @@ protected:
   char* displayedFormula;
 
 public:    
-  EvaluateObservablePsiBarPsiCondensateBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, char* oName, char* nick, double relStart, double relEnd); 
+  EvaluateObservablePsiBarPsiCondensateBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, const char* oName, const char* nick, double relStart, double relEnd); 
   ~EvaluateObservablePsiBarPsiCondensateBase();
 
   bool evaluate();

@@ -1,6 +1,6 @@
 #include "EvaluateObservable.h"
 
-EvaluateObservable::EvaluateObservable(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, char* oName, char* nick, double relStart, double relEnd) { 
+EvaluateObservable::EvaluateObservable(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, const char* oName, const char* nick, double relStart, double relEnd) { 
   if (LogLevel>1) printf("EvaluateObservable %s (%s) initializing with rel. eval-indices (%1.2f/%1.2f)...\n",oName,nick, relStart, relEnd);
   ioControl = aIOcon;
   SDReader = sdr;
@@ -304,7 +304,7 @@ bool EvaluateObservable::isNick(char* nick) {
 }
 
 
-bool EvaluateObservable::isObs(char* obs) {
+bool EvaluateObservable::isObs(const char* obs) {
   if (strlen(obs) != strlen(obsName)) return false;
   
   for (int I=0; I<(int)strlen(obs); I++) {
@@ -487,7 +487,7 @@ void EvaluateObservable::deleteLoadedData(int& count, int* &IDs, double** &data)
 }
 
 
-void EvaluateObservable::addXmlOutput(char* tag, char* des, double val, double err) {
+void EvaluateObservable::addXmlOutput(const char* tag, const char* des, double val, double err) {
   xmlOutput_Tag[xmlOutput_Count] = cloneString(tag);
   xmlOutput_Description[xmlOutput_Count] = cloneString(des);
   xmlOutput_Value[xmlOutput_Count] = val;
@@ -535,7 +535,7 @@ char* EvaluateObservable::getNickName() {
 
 
 
-void EvaluateObservable::addDependOnObsByName(char* obsName) {
+void EvaluateObservable::addDependOnObsByName(const char* obsName) {
   bool found = false;
   for (int I=0; I<otherObscount; I++) {
     if (otherObs[I]->isObs(obsName)) {
@@ -552,7 +552,7 @@ void EvaluateObservable::addDependOnObsByName(char* obsName) {
 }
 
 
-EvaluateObservable* EvaluateObservable::getDependOnObsByName(char* name) {
+EvaluateObservable* EvaluateObservable::getDependOnObsByName(const char* name) {
   for (int I=0; I<dependOnObsCount; I++) {
     if (dependOnObs[I]->isObs(name)) {
       return dependOnObs[I];
@@ -699,12 +699,12 @@ void EvaluateObservable::startLatexOutputSummaryTable() {
 }
 
 
-void EvaluateObservable::addXMLonly(char* xmltag, char* des, double val, double error) {
+void EvaluateObservable::addXMLonly(const char* xmltag, const char* des, double val, double error) {
   addXmlOutput(xmltag, des, val, error);
 }
 
 
-void EvaluateObservable::addXML_And_LatexOutputSummaryTableLine(char* xmltag, char* des, char* shortCut, double val, double error, char* unit, char* valFormat) {
+void EvaluateObservable::addXML_And_LatexOutputSummaryTableLine(const char* xmltag, const char* des, const char* shortCut, double val, double error, const char* unit, const char* valFormat) {
   char* line = new char[2000];
   char* formatStr = new char[1000];
   

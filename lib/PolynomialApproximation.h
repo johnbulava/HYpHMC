@@ -80,7 +80,7 @@ protected:
   void BaseIntS(int Maxpow, cln::cl_F Epsilon, cln::cl_F Lambda, cln::cl_F* Sint);
   void BaseIntT(int Maxpow, cln::cl_F Epsilon, cln::cl_F Lambda, cln::cl_F* Tint);
   cln::cl_F Recurev(int Maxpow, cln::cl_F Xval, cln::cl_F* Recb,cln::cl_F* Recg,cln::cl_F* Orth,cln::cl_F* Coed);
-  void WriteAssign(std::ostream& Ostream, char* Text, cln::cl_F* Wlist, int Leng, char* Arrayname);
+  void WriteAssign(std::ostream& Ostream, const char* Text, cln::cl_F* Wlist, int Leng, const char* Arrayname);
   void WriteRoots(char * filename, cln::cl_N *list, const int length);
   void WriteCoefs(cln::cl_N *list, const int length);
   void Quadropt(int Maxpow, cln::cl_F Epsilon, cln::cl_F Lambda, cln::cl_F* Recb, cln::cl_F* Recg, cln::cl_F* Orth, cln::cl_F* Coed, char* Filename);

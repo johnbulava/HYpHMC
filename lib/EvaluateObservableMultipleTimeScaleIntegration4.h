@@ -16,7 +16,7 @@
 class EvaluateObservableMultipleTimeScaleIntegration4 : public EvaluateObservable {
 private:  
   bool MultiplePolynomFlag;
-  LAPsystemPlot* createPlot1(int startInd, int indCount, char* tag, char* des);
+  LAPsystemPlot* createPlot1(int startInd, int indCount, const char* tag, const char* des);
   double trajectoryLength;
   
 public:    

@@ -27,7 +27,7 @@ protected:
     
   
 public:    
-  EvaluateObservableFermionMatrixConditionNumberBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, char* oName, char* nick, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd); 
+  EvaluateObservableFermionMatrixConditionNumberBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, const char* oName, const char* nick, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd); 
   ~EvaluateObservableFermionMatrixConditionNumberBase();
 
   bool evaluate();

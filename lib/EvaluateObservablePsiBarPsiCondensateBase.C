@@ -1,6 +1,6 @@
 #include "EvaluateObservablePsiBarPsiCondensateBase.h"
 
-EvaluateObservablePsiBarPsiCondensateBase::EvaluateObservablePsiBarPsiCondensateBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, char* oName, char* nick, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, oName, nick, relStart, relEnd) {
+EvaluateObservablePsiBarPsiCondensateBase::EvaluateObservablePsiBarPsiCondensateBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, const char* oName, const char* nick, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, oName, nick, relStart, relEnd) {
   condensate.x = NaN;
   condensate.y = NaN; 
   condensateSigma.x = NaN;

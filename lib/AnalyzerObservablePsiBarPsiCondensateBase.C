@@ -1,6 +1,6 @@
 #include "AnalyzerObservablePsiBarPsiCondensateBase.h"
 
-AnalyzerObservablePsiBarPsiCondensateBase::AnalyzerObservablePsiBarPsiCondensateBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, char* oName, char* nick) : AnalyzerObservable(fOps, aIOcon, SDreader, oName, nick) { 
+AnalyzerObservablePsiBarPsiCondensateBase::AnalyzerObservablePsiBarPsiCondensateBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, const char* oName, const char* nick) : AnalyzerObservable(fOps, aIOcon, SDreader, oName, nick) { 
   if (fermiOps->get1DSizeLargest() >= 32) {
     analyzeEveryXXXconf = 1;
   }

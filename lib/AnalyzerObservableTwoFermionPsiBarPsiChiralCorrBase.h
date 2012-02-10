@@ -30,7 +30,7 @@ protected:
   bool multiplyWithPhiMatBSelection;
 
 public:
-  AnalyzerObservableTwoFermionPsiBarPsiChiralCorrBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, char* oName, char* nick); 
+  AnalyzerObservableTwoFermionPsiBarPsiChiralCorrBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, const char* oName, const char* nick); 
   ~AnalyzerObservableTwoFermionPsiBarPsiChiralCorrBase();
   
   bool analyze(AnalyzerPhiFieldConfiguration* phiFieldConf, Complex** auxVectors);

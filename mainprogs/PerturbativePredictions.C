@@ -46,7 +46,7 @@ bool QuietMode = false;
 
 
 
-char* constructFileName(ParameterType p, char* des) {
+char* constructFileName(ParameterType p, const char* des) {
   char* fileName = new char[1000];
   snprintf(fileName, 1000, "PerturbativePredictions_L%dx%dx%dx%dyt%1.3fyb%1.3flam%1.5fm0Sqr%1.6fNf%dRho%1.3fr%1.3f_%s.dat",p.L0,p.L1,p.L2,p.L3, p.yt0,p.yb0,p.lam0,p.m0Sqr,p.Nf,p.rho,p.r,des);
   return fileName;  
@@ -563,7 +563,7 @@ void calcEffectiveFermionMassesFromMomentumPropagator(int Lt, double* tresProp, 
 }
 
 
-void calcFermionMasses(ParameterType p, double vev, double mHiggsSqr, double mGoldSqr, double &topMass, double &bottomMass, char* fileNameCorr, char* fileNameEffMa) {
+void calcFermionMasses(ParameterType p, double vev, double mHiggsSqr, double mGoldSqr, double &topMass, double &bottomMass, const char* fileNameCorr, const char* fileNameEffMa) {
   topMass = 0;
   bottomMass = 0;  
   if ((p.yt0==0) && (p.yb0==0)) return;

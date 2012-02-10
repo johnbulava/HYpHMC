@@ -62,7 +62,7 @@ double* asymptoticEffectiveMassesError;
   
 
 public:
-  MassCorrelationMatrixAnalyzer(int dim, int timeEx, bool opCorMode, bool genEWprob, bool iterEValign, bool SubVac, bool FitVac, int fitRangeRed, int datMx, char* uniqueID);
+  MassCorrelationMatrixAnalyzer(int dim, int timeEx, bool opCorMode, bool genEWprob, bool iterEValign, bool SubVac, bool FitVac, int fitRangeRed, int datMx, const char* uniqueID);
   ~MassCorrelationMatrixAnalyzer();
 
   void clearData();

@@ -32,7 +32,7 @@ bool EvaluateObservableMultipleTimeScaleIntegration4::evaluate() {
 }
 
 
-LAPsystemPlot* EvaluateObservableMultipleTimeScaleIntegration4::createPlot1(int startInd, int indCount, char* tag, char* des) {
+LAPsystemPlot* EvaluateObservableMultipleTimeScaleIntegration4::createPlot1(int startInd, int indCount, const char* tag, const char* des) {
   LAPsystemPlot* plot = LAPsystem->createNewPlot(tag);
 
   double** plotData = new double*[indCount];

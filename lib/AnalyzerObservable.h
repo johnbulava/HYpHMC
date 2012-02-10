@@ -34,7 +34,7 @@ protected:
   virtual int getAnalyzerResultsCount() = 0;
  
 public:
-  AnalyzerObservable(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, char* oName, char* nick); 
+  AnalyzerObservable(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, const char* oName, const char* nick); 
   virtual ~AnalyzerObservable();
   
   void saveAnalyzerResults(int ID);

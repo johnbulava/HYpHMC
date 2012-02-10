@@ -37,10 +37,10 @@ public:
   void generateLatex();
   void setLatexFileName(char* fname);
 
-  void addSection(char* caption);
+  void addSection(const char* caption);
   void clearPage();
   void newPage();
-  void addPlot(char* title1, char* title2, char* caption, char* xlabel, char* ylabel, double* x, double* y1, double* err1, double* y2, double* err2, int N, char* fitCommand);
+  void addPlot(const char* title1, const char* title2, const char* caption, const char* xlabel, const char* ylabel, double* x, double* y1, double* err1, double* y2, double* err2, int N, const char* fitCommand);
   void addPlotWithAdditionalLinePlots(char* title1, char* title2, char* caption, char* xlabel, char* ylabel, double* x, double* y1, double* err1, double* y2, double* err2, double* l1, double* l2, int N, char* fitCommand1, char* fitCommand2);
   void addGnuplotTableLinePlot(char* title1, char* title2, char* caption, char* xlabel, char* ylabel, double* x, double* y1, double* y2, int N, char* fitCommand1, char* fitCommand2);
   void addTablePlot(char* title1, char* title2, char* caption, char* xlabel1, char* xlabel2, char* ylabel1, char* ylabel2, double* x1, double* x2, double* y1, double* y2, double* yErr1, double* yErr2, int N1, int N2, char* fitCommand1, char* fitCommand2);

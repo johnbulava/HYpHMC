@@ -26,7 +26,7 @@ protected:
 
   
 public:    
-  EvaluateObservableScalarPsiBarPsiVertexBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, char* oName, char* nick, double relStart, double relEnd); 
+  EvaluateObservableScalarPsiBarPsiVertexBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, const char* oName, const char* nick, double relStart, double relEnd); 
   ~EvaluateObservableScalarPsiBarPsiVertexBase();
 
   bool evaluate();

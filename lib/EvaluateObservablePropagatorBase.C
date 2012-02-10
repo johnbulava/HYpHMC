@@ -1,6 +1,6 @@
 #include "EvaluateObservablePropagatorBase.h"
 
-EvaluateObservablePropagatorBase::EvaluateObservablePropagatorBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, char* oName, char* nick, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, oName, nick, relStart, relEnd) { 
+EvaluateObservablePropagatorBase::EvaluateObservablePropagatorBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, const char* oName, const char* nick, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, oName, nick, relStart, relEnd) { 
   L0 = SDReader->getL0();  
   L1 = SDReader->getL1();  
   L2 = SDReader->getL2();  

@@ -27,7 +27,7 @@ ControlLogger::~ControlLogger() {
 }
 
 
-void ControlLogger::addSection(char* caption) {
+void ControlLogger::addSection(const char* caption) {
   if (!loggingActive) return;
   char* fName = new char[1000];
   snprintf(fName,1000,"%s_content.tex",latexFileName);
@@ -122,7 +122,7 @@ void ControlLogger::setLogging(bool on) {
 }
 
   
-void ControlLogger::addPlot(char* title1, char* title2, char* caption, char* xlabel, char* ylabel, double* x, double* y1, double* err1, double* y2, double* err2, int N, char* fitCommand) {
+void ControlLogger::addPlot(const char* title1, const char* title2, const char* caption, const char* xlabel, const char* ylabel, double* x, double* y1, double* err1, double* y2, double* err2, int N, const char* fitCommand) {
   if (!loggingActive) return;
   bool dob = true;
   if ((y2==NULL) || (err2==NULL) || (title2==NULL)) {

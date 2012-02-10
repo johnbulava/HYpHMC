@@ -110,7 +110,7 @@ protected:
   bool HiggsPropFourParameterFit;
   
 public:    
-  EvaluateObservablePropagatorBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, char* oName, char* nick, double relStart, double relEnd); 
+  EvaluateObservablePropagatorBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, const char* oName, const char* nick, double relStart, double relEnd); 
   ~EvaluateObservablePropagatorBase();
 
   bool evaluate();

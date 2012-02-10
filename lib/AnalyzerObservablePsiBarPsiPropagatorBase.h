@@ -35,7 +35,7 @@ protected:
   int PsiPsiBarMatrixInd2End;
 
 public:
-  AnalyzerObservablePsiBarPsiPropagatorBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, char* oName, char* nick); 
+  AnalyzerObservablePsiBarPsiPropagatorBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, const char* oName, const char* nick); 
   ~AnalyzerObservablePsiBarPsiPropagatorBase();
   
   bool analyze(AnalyzerPhiFieldConfiguration* phiFieldConf, Complex** auxVectors);

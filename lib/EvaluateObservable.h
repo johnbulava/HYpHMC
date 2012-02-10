@@ -36,7 +36,7 @@ private:
   int bareObsDataSetsGapCount;
   double relativeEvaluationStartIndex;
   double relativeEvaluationEndIndex;
-  void addXmlOutput(char* tag, char* des, double val, double err);
+  void addXmlOutput(const char* tag, const char* des, double val, double err);
   
 
 protected:
@@ -51,21 +51,21 @@ protected:
   SimulationParameterSet* SimParaSet;
   
   void ini(int resCount, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign);
-  void addDependOnObsByName(char* obsName);
-  EvaluateObservable* getDependOnObsByName(char* name);
+  void addDependOnObsByName(const char* obsName);
+  EvaluateObservable* getDependOnObsByName(const char* name);
   double* getDataForID(int ID);
   void startLatexOutputSummaryTable();
-  void addXMLonly(char* xmltag, char* des, double val, double error);
-  void addXML_And_LatexOutputSummaryTableLine(char* xmltag, char* des, char* shortCut, double val, double error, char* unit, char* valFormat);
+  void addXMLonly(const char* xmltag, const char* des, double val, double error);
+  void addXML_And_LatexOutputSummaryTableLine(const char* xmltag, const char* des, const char* shortCut, double val, double error, const char* unit, const char* valFormat);
   void endLatexOutputSummaryTable();
   
  
 public:
-  EvaluateObservable(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, char* oName, char* nick, double relStart, double relEnd); 
+  EvaluateObservable(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, const char* oName, const char* nick, double relStart, double relEnd); 
   virtual ~EvaluateObservable();
   
   bool isNick(char* nick);
-  bool isObs(char* obs);  
+  bool isObs(const char* obs);  
   char* getObsName();
   char* getNickName();
   void setPhysicalScale(double physScale, double physScaleErr, bool ZFacDet);

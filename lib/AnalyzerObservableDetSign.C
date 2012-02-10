@@ -75,7 +75,7 @@ int AnalyzerObservableDetSign::getAnalyzerResultsCount() {
   return 3;
 }
 
-void AnalyzerObservableDetSign::println(int level, char * format, ...) {	
+void AnalyzerObservableDetSign::println(int level, const char * format, ...) {	
 	va_start (args, format);
 	vsprintf (str,format, args);	
 	va_end (args);

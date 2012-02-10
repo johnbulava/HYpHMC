@@ -32,7 +32,7 @@ protected:
   virtual double transformData(double* data, int index);
   
 public:    
-  EvaluateObservableCorrelatorBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, char* oName, char* nick, double relStart, double relEnd, int nrOfVar, int nrOfIndVars); 
+  EvaluateObservableCorrelatorBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, const char* oName, const char* nick, double relStart, double relEnd, int nrOfVar, int nrOfIndVars); 
   ~EvaluateObservableCorrelatorBase();
 
   bool evaluate();

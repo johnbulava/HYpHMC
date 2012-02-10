@@ -19,7 +19,7 @@ protected:
     
   
 public:    
-  EvaluateObservableFermionMatrixSpectrumBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, char* oName, char* nick, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd); 
+  EvaluateObservableFermionMatrixSpectrumBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, const char* oName, const char* nick, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, double relStart, double relEnd); 
   ~EvaluateObservableFermionMatrixSpectrumBase();
 
   bool evaluate();

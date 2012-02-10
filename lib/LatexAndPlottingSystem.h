@@ -37,7 +37,7 @@ public:
   void addSection(char* caption);
   void clearPage();
   void newPage();
-  void addDirectText(char* text);
+  void addDirectText(const char* text);
   void processContent();
 };
 

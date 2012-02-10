@@ -192,7 +192,7 @@ void destroySuperAlignedInt(int* &p) {
 }
 
 
-void initializePerformanceProfiler(char* fileName) {
+void initializePerformanceProfiler(const char* fileName) {
   if (performanceProfiler != NULL) return;
   performanceProfiler = new PerformanceProfiler(fileName);
 }
@@ -524,7 +524,7 @@ double calcLogDetScaledAbsNorm(ComplexMatrix& mat, int removeSmallestModesCount,
 }
 
 
-void printEigenvalues(char* OPname, ComplexMatrix& op, Complex fac) {
+void printEigenvalues(const char* OPname, ComplexMatrix& op, Complex fac) {
   printf("Trying to print eigenvalues of %s-operator to disk...",OPname);
   bool b = op.calcEigenvalues();
   if (b) {
@@ -1718,7 +1718,7 @@ int getLargestL(StateDescriptorReader* SDReader) {
 }
 
 
-char* cloneString(char* s) {
+char* cloneString(const char* s) {
   char* res = new char[1+strlen(s)];
   snprintf(res,1+strlen(s),"%s",s);
   return res;

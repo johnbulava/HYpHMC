@@ -32,11 +32,11 @@ private:
   long int getCPUCycleCounter();
   
 public:
-  PerformanceProfiler(char* fileN); 
+  PerformanceProfiler(const char* fileN); 
   ~PerformanceProfiler();
 
   long int getTimerStartCPUcycle(int node);
-  void addPerformanceItem(char* rName, long int startCycle, int node);
+  void addPerformanceItem(const char* rName, long int startCycle, int node);
   void writePerformanceItemsToDisk();
 };
 

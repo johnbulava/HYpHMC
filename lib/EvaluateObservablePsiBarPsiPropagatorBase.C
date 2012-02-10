@@ -2,7 +2,7 @@
 #include "EvaluateObservableMagnetizations.h"
 #include "AutoCorrelation.h"
 
-EvaluateObservablePsiBarPsiPropagatorBase::EvaluateObservablePsiBarPsiPropagatorBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, char* oName, char* nick, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, oName, nick, relStart, relEnd) { 
+EvaluateObservablePsiBarPsiPropagatorBase::EvaluateObservablePsiBarPsiPropagatorBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, const char* oName, const char* nick, double relStart, double relEnd) : EvaluateObservable(aIOcon, sdr, oName, nick, relStart, relEnd) { 
   PropagatorValues = NULL;
   PropagatorErrors = NULL;
   FreePropagatorValues = NULL;

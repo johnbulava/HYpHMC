@@ -1,6 +1,6 @@
 #include "EvaluateObservableCorrelatorBase.h"
 
-EvaluateObservableCorrelatorBase::EvaluateObservableCorrelatorBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, char* oName, char* nick, double relStart, double relEnd, int nrOfVar, int nrOfIndVars) : EvaluateObservable(aIOcon, sdr, oName, nick, relStart, relEnd) { 
+EvaluateObservableCorrelatorBase::EvaluateObservableCorrelatorBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, const char* oName, const char* nick, double relStart, double relEnd, int nrOfVar, int nrOfIndVars) : EvaluateObservable(aIOcon, sdr, oName, nick, relStart, relEnd) { 
   NrOfNestedVariables = nrOfVar;
   NrOfIndependentVariables = nrOfIndVars;
   ini(getAnalyzerResultsCount(), obsWeight, obsDetSign);

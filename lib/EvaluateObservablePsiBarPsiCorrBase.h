@@ -24,7 +24,7 @@ protected:
   int fitMassCount; 
   
 public:    
-  EvaluateObservablePsiBarPsiCorrBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, char* oName, char* nick, double relStart, double relEnd); 
+  EvaluateObservablePsiBarPsiCorrBase(AnalyzerIOControl* aIOcon, StateDescriptorReader* sdr, EvaluateObservable* obsWeight, EvaluateObservable* obsDetSign, const char* oName, const char* nick, double relStart, double relEnd); 
   ~EvaluateObservablePsiBarPsiCorrBase();
 
   bool evaluate();

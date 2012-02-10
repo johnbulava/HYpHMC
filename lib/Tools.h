@@ -53,7 +53,7 @@ void destroySuperAlignedComplex(Complex* &p);
 void destroySuperAlignedIntP(int** &p); 
 void destroySuperAlignedLongInt(long int* &p); 
 void destroySuperAlignedInt(int* &p); 
-void initializePerformanceProfiler(char* fileName); 
+void initializePerformanceProfiler(const char* fileName); 
 
 
 inline long int getPerformanceProfilingStartCycle(int node) {
@@ -61,7 +61,7 @@ inline long int getPerformanceProfilingStartCycle(int node) {
   return performanceProfiler->getTimerStartCPUcycle(node);
 }
 
-inline void addPerformanceProfilingItem(char* routineName, long int startCycle, int node) {
+inline void addPerformanceProfilingItem(const char* routineName, long int startCycle, int node) {
   if (performanceProfiler == NULL) return;
   performanceProfiler->addPerformanceItem(routineName, startCycle, node);
 }
@@ -272,7 +272,7 @@ void desiniTools();
 double calcLogDetScaledAbsNorm(ComplexMatrix& mat, int removeSmallestModesCount, double scaleFac, bool execCalcEigenV); 
 
 
-void printEigenvalues(char* OPname, ComplexMatrix& op, Complex fac); 
+void printEigenvalues(const char* OPname, ComplexMatrix& op, Complex fac); 
 
 
 inline void calcGamma5VectorProduct(Complex* left, Complex* right, Complex& res) {
@@ -565,7 +565,7 @@ void deleteFileNameList(char** &fileNames, int& fileCount);
 int getLargestL(StateDescriptorReader* SDReader); 
 
 
-char* cloneString(char* s); 
+char* cloneString(const char* s); 
 
 
 ComplexMatrix getProjectorMatrix(int sign); 

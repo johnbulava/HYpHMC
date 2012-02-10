@@ -1,6 +1,6 @@
 #include "AnalyzerObservablePsiBarPhiPsiCondensateBase.h"
 
-AnalyzerObservablePsiBarPhiPsiCondensateBase::AnalyzerObservablePsiBarPhiPsiCondensateBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, char* oName, char* nick) : AnalyzerObservable(fOps, aIOcon, SDreader, oName, nick) { 
+AnalyzerObservablePsiBarPhiPsiCondensateBase::AnalyzerObservablePsiBarPhiPsiCondensateBase(FermionMatrixOperations* fOps, AnalyzerIOControl* aIOcon, StateDescriptorReader* SDreader, const char* oName, const char* nick) : AnalyzerObservable(fOps, aIOcon, SDreader, oName, nick) { 
   fixGauge = false;
   randomGauge = false;
   projectorSelection = -1;

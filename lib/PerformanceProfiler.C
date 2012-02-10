@@ -4,7 +4,7 @@
 #include <string.h>
 #include "Global.h"
 
-PerformanceProfiler::PerformanceProfiler(char* fileN) { 
+PerformanceProfiler::PerformanceProfiler(const char* fileN) { 
   fileName = new char[2000];
   snprintf(fileName, 2000, "%s", fileN);
   node0StartedTimerCount = 0;
@@ -40,7 +40,7 @@ PerformanceProfiler::~PerformanceProfiler() {
 }
 
 
-void PerformanceProfiler::addPerformanceItem(char* rName, long int startCycle, int node) {
+void PerformanceProfiler::addPerformanceItem(const char* rName, long int startCycle, int node) {
   long int cycles = getCPUCycleCounter() - startCycle;
   if (cycles<0) cycles = 0;
   

@@ -31,8 +31,8 @@ public:
   LatexSummary(char* latexBaseFilename, char* baseDirName, int subDirCount, char** subDirNames, char** localLatexBodyFileNames); 
   ~LatexSummary();  // Body- und Head-Files werden geschrieben, wenn Destructor aufgerufen wird.
   
-  void addDirectTextBeforeIncludes(char* text);
-  void addDirectTextAfterIncludes(char* text);
+  void addDirectTextBeforeIncludes(const char* text);
+  void addDirectTextAfterIncludes(const char* text);
 };
 
 

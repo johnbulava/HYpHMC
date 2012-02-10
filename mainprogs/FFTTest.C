@@ -61,7 +61,7 @@ void zeroOutput() {
 }
 
 
-void generateFileName(char* tag) {
+void generateFileName(const char* tag) {
   delete[] fileName;
   fileName = new char[1000];
   snprintf(fileName,1000,"FFTTest_%s_XFFT%dOptiEmbed%dThreads%dParaOp%dInnerInd%dTuneLevel%d_%s.dat", getHostName(), usexFFT, optimizeEmbedding, threadCountPerNode, ParaOpMode, innerIndex, tuneLevel, tag);
