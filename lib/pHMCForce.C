@@ -1533,7 +1533,7 @@ double pHMCForce::calcExactMMdagInverseSQRTomegaAction(double* phi, double alpha
     printf("ERROR in calcExactMMdagInverseSQRTomegaAction: No convergence\n");
     exit(0);
   }
-  if (abs(res.y)>TOL) {
+  if (fabs(res.y)>TOL) {
     if (LogLevel>2) printf("WARNING in calcExactMMdagInverseSQRTomegaAction: Imaginary part of result greater than tolerance (%e): %e\n",TOL,res.y);
   }
   setExactOmegaMMdagInverseSQRTAction(0.5*res.x);
@@ -1858,7 +1858,7 @@ double pHMCForce_applyInverseSQRTPolynomial_HelperFunction(double x) {
   for (int I=0; I<pHMCForce_applyInverseSQRTPolynomial_HelperFunction_PolyDegree; I++) {
     z = z * (c - pHMCForce_applyInverseSQRTPolynomial_HelperFunction_PolyRoots[I]);  
   }
-  if (abs(z.y) > 1E-11 * abs(z.x)) {
+  if (fabs(z.y) > 1E-11 * fabs(z.x)) {
     printf("ERROR in pHMCForce_applyInverseSQRTPolynomial_HelperFunction: Imaginary part not zero (%1.5e: %1.5e, %1.5e)!\n",x,z.x,z.y);
     exit(0);
   }
@@ -2060,7 +2060,7 @@ double pHMCForce::calcGaussianWeightFactor(double* phi, double TOL, int &Ncg, in
   res = exp(-0.5*(s1.x - s2.x));
   
   //Only for Testing...
-  if (abs(s1.y/s1.x)>1E-10) {
+  if (fabs(s1.y/s1.x)>1E-10) {
     printf("Error in pHMCForce::calcGaussianWeightFactor: Non-vanishing imaginary part!!!\n");
     exit(0);
   }

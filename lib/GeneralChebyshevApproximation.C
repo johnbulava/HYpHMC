@@ -158,12 +158,12 @@ bool GeneralChebyshevApproximation::calcApproximationKrylovBased(double (*func)(
     }
     
     for (int I=0; I<coeffCount; I++) {
-      if (abs(KrylovOp.eigenvalues[I].y) > TOL) {
+      if (fabs(KrylovOp.eigenvalues[I].y) > TOL) {
         b = false;
 	printf("%e\n",KrylovOp.eigenvalues[I].y);
       }
       for (int I2=0; I2<coeffCount; I2++) {
-        if (abs(KrylovOp.rightEigenVectors[I]->vectorElements[I2].y) > TOL) {
+        if (fabs(KrylovOp.rightEigenVectors[I]->vectorElements[I2].y) > TOL) {
 	  b = false;
   	  printf("%e\n",KrylovOp.rightEigenVectors[I]->vectorElements[I2].y);	  
 	}
@@ -201,7 +201,7 @@ bool GeneralChebyshevApproximation::calcApproximationKrylovBased(double (*func)(
     for (int I=0; I<coeffCount; I++) {
       double f = (*func)(A*KrylovOp.eigenvalues[I].x+B);
       dummyVec.vectorElements[I] = f * dummyVec.vectorElements[I];
-      if (abs(dummyVec.vectorElements[I].y) > TOL) {
+      if (fabs(dummyVec.vectorElements[I].y) > TOL) {
         b = false;
         printf("%e %e\n",dummyVec.vectorElements[I].x,dummyVec.vectorElements[I].y);
       }
@@ -230,8 +230,8 @@ bool GeneralChebyshevApproximation::calcApproximationKrylovBased(double (*func)(
       double f = (*func)(x);
       double p = evaluatePolynomial(x, true);
       double r = (p-f) / f;
-      if (abs(r)>relAccuracy) {
-        relAccuracy = abs(r);
+      if (fabs(r)>relAccuracy) {
+        relAccuracy = fabs(r);
       }
     }
     
@@ -289,8 +289,8 @@ bool GeneralChebyshevApproximation::calcApproximationStandard(double (*func)(dou
       double f = (*func)(x);
       double p = evaluatePolynomial(x, true);
       double r = (p-f) / f;
-      if (abs(r)>relAccuracy) {
-        relAccuracy = abs(r);
+      if (fabs(r)>relAccuracy) {
+        relAccuracy = fabs(r);
       }
     }
     
@@ -376,8 +376,8 @@ bool GeneralChebyshevApproximation::calcApproximationRemez(double (*func)(double
       double f = (*func)(x);
       double p = evaluatePolynomial(x, true);
       double r = (p-f) / f;
-      if (abs(r)>relAccuracy) {
-        relAccuracy = abs(r);
+      if (fabs(r)>relAccuracy) {
+        relAccuracy = fabs(r);
       }
     }
     

@@ -46,7 +46,7 @@ bool EvaluateObservableFermionMatrixSingleMFullRanSpectrumNoPreconditioning::eva
     if (normedDet.x<0) phase = pi - phase;
     while (phase<-pi) phase += 2*pi;
     while (phase>pi) phase -= 2*pi;
-    if (abs(phase)>MaxPhaseExtension) MaxPhaseExtension = abs(phase);
+    if (fabs(phase)>MaxPhaseExtension) MaxPhaseExtension = fabs(phase);
     detPhases[I] = phase;
     avg += phase;
     sigma += sqr(phase);

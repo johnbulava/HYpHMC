@@ -111,7 +111,7 @@ int pHMCPropagator::getFermionForceSubCategoryCount() {
 
 
 int pHMCPropagator::getFermionForceSubCategory(double x) {
-  return roundToInt(abs(x));
+  return roundToInt(fabs(x));
 }
 
 
@@ -767,7 +767,7 @@ void pHMCPropagator::threadedExecuteFORCE(int mode, double eps) {
   
   if (mode == pHMCPropagator_CALCOMEGAACTION) {
     for (I=0; I<forceCount; I++) {
-      para_double[I] = roundToInt(abs(eps));
+      para_double[I] = roundToInt(fabs(eps));
       para_int[I] = (int)false;
       if (eps<-1E-9) para_int[I] = (int)true;
     }    
@@ -1206,7 +1206,7 @@ void pHMCPropagator::improveRPreconditioningParameters(int thermStepID, int Para
     int eligibleCount = 0;
 
     for (int I=5; I<upperEWboundLogCount; I++) {
-      if ((abs(upperEWboundLog[I][0]-thermStepID)<150) && (abs((upperEWboundLog[I][1]-RprecM)/RprecM)<0.15) && (upperEWboundLog[I][0] > 0)) {
+      if ((fabs(upperEWboundLog[I][0]-thermStepID)<150) && (fabs((upperEWboundLog[I][1]-RprecM)/RprecM)<0.15) && (upperEWboundLog[I][0] > 0)) {
         eligibleCount++;
         double upEW = upperEWboundLog[I][3]/sqr(upperEWboundLog[I][2]);
         if (upEW > largestEW) largestEW = upEW;
@@ -1215,7 +1215,7 @@ void pHMCPropagator::improveRPreconditioningParameters(int thermStepID, int Para
     if (eligibleCount<50) {
       eligibleCount = 0;
       for (int I=5; I<upperEWboundLogCount; I++) {
-        if ((abs(upperEWboundLog[I][0]-thermStepID)<150) && (upperEWboundLog[I][0] > 0)) {
+        if ((fabs(upperEWboundLog[I][0]-thermStepID)<150) && (upperEWboundLog[I][0] > 0)) {
           eligibleCount++;
           double upEW = upperEWboundLog[I][3]/sqr(upperEWboundLog[I][2]);
           if (upEW > largestEW) largestEW = upEW;
@@ -1225,7 +1225,7 @@ void pHMCPropagator::improveRPreconditioningParameters(int thermStepID, int Para
     if (eligibleCount<30) {
       eligibleCount = 0;
       for (int I=5; I<upperEWboundLogCount; I++) {
-        if (abs(upperEWboundLog[I][0]-thermStepID)<150) {
+        if (fabs(upperEWboundLog[I][0]-thermStepID)<150) {
           eligibleCount++;
           double upEW = upperEWboundLog[I][3]/sqr(upperEWboundLog[I][2]);
           if (upEW > largestEW) largestEW = upEW;
@@ -1306,7 +1306,7 @@ void pHMCPropagator::improvePreconditioningParameters(int iterGrob, int iterFein
 /*    m[I] = 0.001 + abs(bestM + 2*(AdvancedZufall(AdvancedSeed)-0.5)*0.1*avgPhi);
     s[I] = abs(bestS + 2*(AdvancedZufall(AdvancedSeed)-0.5)*0.1*avgStagPhi);
     randomCount += 2;*/    
-    m[I] = 0.001 + abs(bestM + 2*(AdvancedZufall(AdvancedSeed)-0.5)*0.1*avgNorm);
+    m[I] = 0.001 + fabs(bestM + 2*(AdvancedZufall(AdvancedSeed)-0.5)*0.1*avgNorm);
     s[I] = 0;
     randomCount += 1;
   }

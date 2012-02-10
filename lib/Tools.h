@@ -215,15 +215,15 @@ inline ComplexMatrix AdvancedSU2Zufall(int &idum) {
 }
 
 
-double round(double x); 
+// // double round(double x);  //why needed? 
 
 
 int roundToInt(double x); 
 
-inline double fabs(double x) {
-  if (x>=0) return x;
-  return -x;
-}
+// inline double fabs(double x) {   //why needed?
+//   if (x>=0) return x;
+//   return -x;
+// }
 
 bool isInteger(double x); 
 
