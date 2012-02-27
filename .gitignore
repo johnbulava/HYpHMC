@@ -1,2 +1,17 @@
 *~
 *.o
+Makefile.in 
+lib/Makefile.in
+mainprogs/Makefile.in
+autom4te.cache
+configure 
+aclocal.m4
+Changelog
+AUTHORS 
+COPYING
+INSTALL
+depcomp
+install-sh
+missing
+NEWS
+
